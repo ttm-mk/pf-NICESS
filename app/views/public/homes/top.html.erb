@@ -1,38 +1,52 @@
-<div class="container">
-  <div class="row">
-    <h1>NICESSとは</h1>
-  </div>
-  <div class="row border border-round">
-    <div class="col-12 text-center">
-      匿名で創作活動をしたい人を応援するSNSサイトです。<br>
-      ＥＣサイトを複合することで、<br>
-      創作活動をする人たちをつなぎ、支援します。<br>
-      <br>
-      創作活動や交流を楽しみましょう！
+<div class="bg-primary">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-12 pt-4">
+        <h1 class="text-center">NICESSとは</h1>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    画像
-  </div>
-  <div class="row">
-    <h2>まずはゲストログインをして<br>試してみてください！</h2>
-    <div>
-      こちらからどうぞ！
+
+    <div class="row">
+      <div class="col-6 offset-3 rounded text-center bg-white my-3">
+        匿名で創作活動をしたい人を応援するSNSサイトです。<br>
+        ＥＣサイトを複合することで、<br>
+        創作活動をする人たちをつなぎ、支援します。<br>
+        <br>
+        創作活動や交流を楽しみましょう！
+      </div>
+      <div class="col-3"></div>
     </div>
-    <div>
-      NICESSの詳しい内容は
-      <%= link_to "ABOUT", about_path, class: 'h5' %>
-      をご覧ください。
+
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center">画像</div>
+      </div>
     </div>
-    <div>
-      新規登録は
-      <%= link_to "こちら", new_user_registration_path %>
-      から
+
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="h2">まずはゲストログインをして<br>試してみてください！</div>
+        <div>
+          こちらからどうぞ！
+        </div>
+        <div>
+          NICESSの詳しい内容は
+          <%= link_to "ABOUT", about_path, class: 'h5 text-light' %>
+          をご覧ください。
+        </div>
+        <div>
+          新規登録は
+          <%= link_to "こちら", new_user_registration_path, class: 'h5 text-light' %>
+          から
+        </div>
+        <div>
+          ログインは
+          <%= link_to "こちら", new_user_session_path, class: 'h5 text-light' %>
+          から
+        </div>
+      </div>
     </div>
-    <div>
-      ログインは
-      <%= link_to "こちら", new_user_session_path %>
-      から
-    </div>
+
   </div>
 </div>

@@ -1,2 +1,57 @@
-<h1>Homes#about</h1>
-<p>Find me in app/views/homes/about.html.erb</p>
+<div class="bg-primary">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-12 pt-4">
+        <h1 class="text-center">NICESSとは</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6 offset-3 rounded text-center bg-white my-3">
+        匿名で創作活動をしたい人を応援するSNSサイトです。<br>
+        ＥＣサイトを複合することで、<br>
+        創作活動をする人たちをつなぎ、支援します。
+      </div>
+      <div class="col-3"></div>
+    </div>
+    
+    <div class="row">
+      <div class="col-6 offset-3">
+        <h4>
+          NICESSは、「SNS」と「EC」（通販）サイトを
+         「I」ntermingling（混ぜ合わせる）という意味があります。
+        </h4>
+      </div>
+      <div class="col-3"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center">画像</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 offset-1 text-center mb-5 bg-white">
+        <div>
+          初めての方はゲストログインから<br>
+          お試しで利用することができます。
+        </div>
+        <div>
+          利用したい方は
+          <%= link_to "新規登録", new_user_registration_path %>
+          から
+        </div>
+        <div>
+          すでに登録しているユーザーは<br>
+          <%= link_to "こちら", new_user_session_path %>
+          からどうぞ！
+        </div>
+      </div>
+      <div class="col-7"></div>
+    </div>
+
+  </div>
+</div>
+
