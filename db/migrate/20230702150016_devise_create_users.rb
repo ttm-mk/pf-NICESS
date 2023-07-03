@@ -31,6 +31,15 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
+      
+      # 追加カラム一覧
+      t.string :name,                null: false
+      t.string :name_id,             null: false, unique: true
+      t.string :profile,             limit: 200
+      t.string :ecsite_name,         limit: 50
+      t.string :ecsite_introduction, limit: 200
+      t.boolean :is_deleted,         null: false, default: false
+      
 
 
       t.timestamps null: false

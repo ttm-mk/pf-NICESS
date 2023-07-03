@@ -58,6 +58,12 @@ ActiveRecord::Schema.define(version: 2023_07_02_150922) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "name", null: false
+    t.string "name_id", null: false
+    t.string "profile", limit: 200
+    t.string "ecsite_name", limit: 50
+    t.string "ecsite_introduction", limit: 200
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
