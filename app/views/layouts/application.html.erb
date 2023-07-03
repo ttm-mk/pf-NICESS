@@ -10,6 +10,25 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header>
+    <div class="container">
+
+      <div class="row">
+        <div class="col-9"></div>
+        <div class="col-3">
+          <nav class="navbar navbar-expend-lg navbar-light fixed-right">
+            <div class="h2">NICESS</div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
+                           aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </nav>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
   <body>
     <%= yield %>
   </body>
