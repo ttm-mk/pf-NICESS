@@ -9,7 +9,7 @@
       <div class="col-4"></div>
     </div>
 
-    <%= form_with model: @user, url:new_user_registration_path do |f| %>
+    <%= form_with model: @user, url:user_registration_path, method: :post do |f| %>
       <div class="row">
         <div class="col-3 offset-3 bg-white">
           <div class="h5 mt-4 pt-5 text-center">なまえ</div>
@@ -29,10 +29,10 @@
             <%= f.text_field :name, autofocus: true %>
           </div>
           <div class="mt-4">
-            <%= f.text_field :name_id, autofocus: true %>
+            <%= f.text_field :name_id %>
           </div>
           <div class="mt-4">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <%= f.email_field :email, autocomplete: "email" %>
           </div>
           <div class="mt-4">
             <%= f.password_field :password, autocomplete: "new-password" %>
