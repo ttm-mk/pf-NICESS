@@ -15,14 +15,52 @@
 
       <div class="row">
         <div class="col-9"></div>
-        <div class="col-3">
-          <nav class="navbar navbar-expend-lg navbar-light fixed-right">
-            <div class="h2">NICESS</div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
-                           aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+        <div class="col-3 p-3">
+          <div class="dropdown">
+            <button class="btn btn-lg dropdown-toggle" type="button" id="dropdownMenu" aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">
+              NICESS
             </button>
-          </nav>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+              
+              <% if user_signed_in? %>
+                <li class="dropdown-item">
+                  <%= link_to "TOP", root_path, class: 'nav-link' %>
+                </li>
+                <li class="dropdown-item">
+                  <%= link_to "ABOUT", about_path, class: 'nav-link' %>
+                </li>
+                <li class="dropdown-item">NOTICE</li>
+                <li class="dropdown-item">MY PAGE</li>
+                <li class="dropdown-item">MY CART</li>
+                <li class="dropdown-item">
+                  <%= link_to "LOG OUT", destroy_user_session_path, method: :delete, class: 'nav-link' %>
+                </li>
+                
+              <% elsif admin_signed_in? %>
+                <li class="dropdown-item">ユーザー一覧</li>
+                <li class="dropdown-item">
+                  <%= link_to "LOG OUT", destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+                </li>
+              
+              <% else %>
+                <li class="dropdown-item">
+                  <%= link_to "TOP", root_path, class: 'nav-link' %>
+                </li>
+                <li class="dropdown-item">
+                  <%= link_to "ABOUT", about_path, class: 'nav-link' %>
+                </li>
+                <li class="dropdown-item">
+                  <%= link_to "NEW USER", new_user_registration_path, class: 'nav-link' %>
+                </li>
+                <li class="dropdown-item">
+                  <%= link_to "LOG IN", new_user_session_path, class: 'nav-link' %>
+                </li>
+                
+              <% end %>
+              
+            </ul>
+          </div>
+          
         </div>
       </div>
 
@@ -32,4 +70,5 @@
   <body>
     <%= yield %>
   </body>
+  
 </html>
