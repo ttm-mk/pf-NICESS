@@ -28,7 +28,8 @@
       <div class="col-12 text-center">
         <div class="h2">まずはゲストログインをして<br>試してみてください！</div>
         <div>
-          こちらからどうぞ！
+          <%= link_to "こちら", user_guest_sign_in_path, method: :post, class: 'h5 text-light' %>
+          からどうぞ！
         </div>
         <div>
           NICESSの詳しい内容は
