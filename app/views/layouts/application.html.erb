@@ -30,7 +30,9 @@
                   <%= link_to "ABOUT", about_path, class: 'nav-link' %>
                 </li>
                 <li class="dropdown-item">NOTICE</li>
-                <li class="dropdown-item">MY PAGE</li>
+                <li class="dropdown-item">
+                  <%= link_to "MY PAGE", user_mypage_path(current_user), class: 'nav-link' %>
+                </li>
                 <li class="dropdown-item">MY CART</li>
                 <li class="dropdown-item">
                   <%= link_to "LOG OUT", destroy_user_session_path, method: :delete, class: 'nav-link' %>
