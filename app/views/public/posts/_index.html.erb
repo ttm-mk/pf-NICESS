@@ -1,0 +1,16 @@
+<% posts.each do |post| %>
+
+  <div class="border">
+    
+    <div class="p-4">
+      <div class="mt-2 mb-4">
+        <%= post.user_id.name %>
+      </div>
+      <div>
+        <%= post.text %>
+      </div>
+    </div>
+    
+  </div>
+
+<% end %>

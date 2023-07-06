@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   end
   
   scope module: :public do
+    get 'posts?user_id=:user_id' => 'posts#index'
     resources :posts, only: [:create]
   end
 
