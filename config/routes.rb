@@ -32,13 +32,13 @@ Rails.application.routes.draw do
     patch 'resign' => 'users#resign'
     resources :users, only: [:show, :update]
   end
-  
+
   scope module: :public do
     get 'posts?user_id=:user_id' => 'posts#index'
     resources :posts, only: [:create]
   end
 
-  
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
