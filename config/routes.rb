@@ -32,6 +32,10 @@ Rails.application.routes.draw do
     patch 'resign' => 'users#resign'
     resources :users, only: [:show, :update]
   end
+  
+  scope module: :public do
+    resources :posts, only: [:create]
+  end
 
   
 
