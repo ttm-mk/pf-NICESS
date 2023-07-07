@@ -26,7 +26,6 @@ Rails.application.routes.draw do
 
   # user
   scope module: :public do
-    get 'users/mypage' => 'users#mypage'
     get 'users/mypage/edit' => 'users#edit'
     get 'confirm' => 'users#confirm'
     patch 'resign' => 'users#resign'

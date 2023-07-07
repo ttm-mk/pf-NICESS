@@ -78,7 +78,7 @@
             <!--タブ内容-->
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
-                <%= render 'public/posts/index' %>
+                <%= render 'public/posts/index', posts: @posts %>
               </div>
               <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
                 画像あり投稿一覧表示
