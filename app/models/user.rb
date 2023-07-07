@@ -6,8 +6,8 @@ class User < ApplicationRecord
          
   
   has_many :posts, dependent: :destroy
-
-
+  
+  validates :name_id, uniqueness: true
 
   def self.guest
     find_or_create_by!(email: 'guest@sample.com') do |user|
