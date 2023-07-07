@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="card mt-5 mx-auto" style="width: 35rem;">
+      <div class="card-header">
+        マイ情報
+      </div>
+      <div class="card-body">
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-12 pb-3">
+              <%= image_tag user.get_user_icon %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-4 pb-3">
+              なまえ
+            </div>
+            <div class="col-8 pb-3">
+              <%= user.name %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-4 pb-3">
+              ユーザーid
+            </div>
+            <div class="col-8 pb-3">
+              <%= user.name_id %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-4 pb-3">
+              プロフィール
+            </div>
+            <div class="col-8 pb-3">
+              <%= user.profile %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-4 pb-3">
+              メールアドレス
+            </div>
+            <div class="col-8 pb-3">
+              <%= user.email %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <a class="btn btn-success" href="">編集する</a>
+      </div>
+    </div>
+  </div>
+</div>
