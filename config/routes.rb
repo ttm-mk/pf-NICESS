@@ -29,12 +29,14 @@ Rails.application.routes.draw do
     get 'users/mypage/edit' => 'users#edit'
     get 'confirm' => 'users#confirm'
     patch 'resign' => 'users#resign'
-    resources :users, only: [:show, :update]
-  end
+    resources :users, only: [:show, :update] do
+      # Shopのルーティングこのへん
 
-  scope module: :public do
-    get 'posts?user_id=:user_id' => 'posts#index'
-    resources :posts, only: [:create]
+      resources :posts do
+        resources :comments, only: [:create, :destroy]
+      end
+    end
+    # get 'posts?user_id=:user_id' => 'posts#index'
   end
 
 

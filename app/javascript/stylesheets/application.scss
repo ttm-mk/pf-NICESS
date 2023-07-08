@@ -1,1 +1,7 @@
 @use '~bootstrap/scss/bootstrap';
+@use 'swiper/swiper-bundle.min';
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  display: none;
+}

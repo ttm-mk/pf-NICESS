@@ -1,0 +1,13 @@
+<div class="container">
+  <h2><%= @user.name %></h2>
+
+  <h3>投稿</h3>
+  <% @user.posts.each do |post| %>
+    <div>
+      <%= simple_format(post.text) %>
+      <%= link_to user_post_path(params[:user_id], post) do %>
+        <i class="fas fa-angle-double-right"></i> Show
+      <% end %>
+    </div>
+  <% end %>
+</div>

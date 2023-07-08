@@ -1,29 +1,31 @@
  <% posts.each do |post| %>
- <div class="row m-3">
-   
-    <div class="border rounded bg-white">
-      <div class="p-4">
-        <div class="mt-1 mb-4 wm-100">
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="mt-1 mb-4">
           <i class="far fa-circle"></i>
           <%= post.user.name %>
         </div>
         <div class="px-4">
           <%= post.text %>
         </div>
-      </div>
-  
-      <div class="bg-white px-4 pb-2">
-        <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
-        <i class="far fa-comment-alt pl-4"></i>
-        <i class="far fa-heart pl-3"></i>
-      </div>
-      
-      <% if post.image.present? %>
-        <div>
-          <%= post.image %>
-        </div>
+        <% if post.image.present? %>
+          <div>
+            <%= image_tag post.image, class: 'img-fluid' %>
+          </div>
       <% end %>
+      </div>
+
+      <div class="card-footer">
+        <div class="d-block d-md-flex justify-content-between">
+          <div>
+            <i class="far fa-comment-alt mr-3"></i>
+            <i class="far fa-heart"></i>
+          </div>
+          <!-- TODO: あとで確認 -->
+          <div class="text-right text-md-left">
+            <%= post.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M') %>
+          </div>
+        </div>
+      </div>
     </div>
-    
- </div>
 <% end %>

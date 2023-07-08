@@ -1,33 +1,36 @@
 <div class="container">
   <div class="row">
+    <div class="col-12 col-lg-8 order-1 order-lg-0">
+      <!-- 投稿 -->
+      <div>
+        <%= form_with model: @post, url: user_posts_path(params[:id]), method: :post do |f| %>
+          <div class="form-group">
+            <%= f.text_area :text, rows: 5, class: 'form-control' %>
+          </div>
 
-    <div class="col-7">
-      <!--投稿スペース-->
-      <div class="mt-4 mb-5">
-        <%= form_with model: @post, url:posts_path, method: :post do |f| %>
-          <div><%= f.text_area :text, size: "50", class: 'form-control' %></div>
-          <div class="mr-5 my-2">
-            <%= f.file_field :image, accept: 'image/*' %>
-            <%= f.submit '投稿する', class: 'btn btn-light' %>
+          <div class="row">
+            <div class="col-12 col-md-8">
+              <div class="form-group">
+                <%= f.file_field :image, accept: 'image/*' %>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="form-group">
+                <%= f.submit '投稿する', class: 'btn btn-light btn-block' %>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>
-
-
-      <!--タブ-->
+      <!-- タブ -->
       <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item bg-white">
+        <li class="nav-item w-50">
           <a class="nav-link active" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-selected="true">
             投稿
           </a>
         </li>
-        <!--<li class="nav-item bg-white">-->
-        <!--  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-selected="false">-->
-        <!--    プロフィール-->
-        <!--  </a>-->
-        <!--</li>-->
         <% if @user == current_user %>
-          <li class="nav-item bg-white">
+          <li class="nav-item w-50">
             <a class="nav-link" id="mypage-tab" data-toggle="tab" href="#mypage" role="tab" aria-selected="false">
               マイ情報
             </a>
@@ -35,97 +38,103 @@
         <% end %>
       </ul>
 
-      <!--タブ内容-->
+      <!-- タブコンテンツ -->
       <div class="tab-content" id="myTabContent">
-        <!--post-->
-        <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
-          <%= render 'public/posts/index', posts: @posts %>
+      <!--post-->
+      <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
+        <%= render 'public/posts/index', posts: @user.posts.reverse.take(3) %>
+        <div class="text-right">
+          <%= link_to user_posts_path(params[:id]) do %>
+            <i class="fas fa-angle-double-right"></i> More
+          <% end %>
         </div>
-        <!--profile-->
-        <!--<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">-->
-        <!--  < %= render 'public/users/profile', user: @user %>-->
-        <!--</div>-->
-        <!--mypage-->
-        <div class="tab-pane fade" id="mypage" role="tabpanel" aria-labelledby="mypage-tab">
-          <%= render 'public/users/mypage', user: @user %>
-        </div>
+      </div>
+      <div class="tab-pane fade" id="mypage" role="tabpanel" aria-labelledby="mypage-tab">
+        <%= render 'public/users/mypage', user: @user %>
       </div>
     </div>
 
-<!--right-->
-    <div class="col-4 offset-1">
-      <div class="card my-4" style="width: 15rem, height: 20rem;">
+    </div>
+    <div class="col-12 col-lg-4 mb-5 mb-lg-0 order-0 order-lg-1">
+      <div class="card">
         <div class="card-body">
-          <h5 class="card-title">
-            プロフィール
-            <a href="#" class="btn btn-primary ml-3">フォローする</a>
-          </h5>
-
-          <p class="card-text">
-            <div class="h1">
+          <div class="row">
+            <div class="col-12 col-md-4">
               <%= image_tag @user.get_user_icon %>
             </div>
-            <div class="mt-3">
-              <%= @user.name %>
-            </div>
-            <div class="mt-3">
-              プロフィール
-              <div class="pl-5">
-                <%= @user.profile %>
-              </div>
-            </div>
-          </p>
-        </div>
-      </div>
-      <!--ショップスペース-->
-      <!--< % if shop_id_present? %>-->
-        <strong>ショップ</strong>
-        <!--< %= @items.each do |item| %>-->
-          <div class="pb-3">
-            <div class="card" style="width: 20rem;">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg"
-                          preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
-                <title>Placeholder</title>
-                <rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">商品画像</text>
-              </svg>
-
-              <div class="card-body">
-                <div class="card-title">
-                  色紙セット
-                </div>
-
-                <div class="card-text">
-                  <div class="pt-3">
-                    テーマ「鋼」の色紙3枚セット。<br>
-                    ・消えない痕跡<br>
-                    ・腐敗<br>
-                    ・軌跡<br>
-                    各サイズ(20×20)<br>
-                  </div>
-                  <div class="pt-3">
-                    <div class="pt-2">
-                      価格
-                    </div>
-                    <div>100円</div>
-                  </div>
-                  <div class="btn btn-primary mt-3 form-control">
-                    詳細
-                  </div>
-                </div>
-              </div>
-
+            <div class="col-12 col-md-8 d-flex justify-content-center align-items-center">
+              <h6 class="card-title">
+                <%= @user.name %>
+              </h6>
             </div>
           </div>
-        <!--< % end %>-->
-      <!--< % end %>-->
+          <% if @user.profile.present? %>
+            <div class="mt-3">
+              <%= simple_format(@user.profile) %>
+            </div>
+          <% end %>
+        </div>
+    </div>
 
-      <!--画廊スペース-->
-      <div class="bg-white m-3">
-        <div>ここに画廊</div>
+    <h5 class="mt-3">ショップ</h5>
+
+    <!-- Slider main container -->
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <% (1..10).each do |item| %>
+        <div class="swiper-slide">
+
+          <div class="card">
+            <!-- svgはimage_tagに最終的に書き換える -->
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg"
+                        preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
+              <title>Placeholder</title>
+              <rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">商品画像</text>
+            </svg>
+            <!-- ここまでsvg -->
+
+            <div class="card-body px-5">
+              <div class="card-title">
+                色紙セット<%= item %>
+              </div>
+
+              <div class="card-text">
+                <div class="pt-3">
+                  テーマ「鋼」の色紙3枚セット。<br>
+                  ・消えない痕跡<br>
+                  ・腐敗<br>
+                  ・軌跡<br>
+                  各サイズ(20×20)<br>
+                </div>
+                <div class="pt-3">
+                  <div class="pt-2">
+                    価格
+                  </div>
+                  <div>100円</div>
+                </div>
+                <div class="btn btn-primary mt-3 form-control">
+                詳細
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+      </div>
+
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev fa-fw fa-2x">
+        <i class="fas fa-arrow-circle-left"></i>
+      </div>
+      <div class="swiper-button-next fa-fw fa-2x">
+        <i class="fas fa-arrow-circle-right"></i>
       </div>
     </div>
-    </div>
-
-
   </div>
 </div>
