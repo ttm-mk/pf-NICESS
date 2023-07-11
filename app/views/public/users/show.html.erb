@@ -24,13 +24,28 @@
       </div>
       <!-- タブ -->
       <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item w-50">
+        <li class="nav-item w-25 text-center">
           <a class="nav-link active" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-selected="true">
             投稿
           </a>
         </li>
+        <li class="nav-item w-25 text-center">
+          <a class="nav-link" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-selected="true">
+            画廊
+          </a>
+        </li>
+        <li class="nav-item w-25 text-center">
+          <a class="nav-link" id="favorite-tab" data-toggle="tab" href="#favorite" role="tab" aria-selected="true">
+            いいね
+          </a>
+        </li>
+        <li class="nav-item w-25 text-center">
+          <a class="nav-link" id="follow-tab" data-toggle="tab" href="#follow" role="tab" aria-selected="true">
+            フォロー
+          </a>
+        </li>
         <% if @user == current_user %>
-          <li class="nav-item w-50">
+          <li class="nav-item w-100 text-center">
             <a class="nav-link" id="mypage-tab" data-toggle="tab" href="#mypage" role="tab" aria-selected="false">
               マイ情報
             </a>
@@ -41,20 +56,31 @@
       <!-- タブコンテンツ -->
       <div class="tab-content" id="myTabContent">
       <!--post-->
-      <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
-        <%= render 'public/posts/index', posts: @user.posts.reverse.take(3) %>
-        <div class="text-right">
-          <%= link_to user_posts_path(params[:id]) do %>
-            <i class="fas fa-angle-double-right"></i> More
-          <% end %>
+        <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
+          <%= render 'public/posts/index', posts: @user.posts.reverse.take(3) %>
+          <div class="text-right">
+            <%= link_to user_posts_path(params[:id]) do %>
+              <i class="fas fa-angle-double-right"></i> More
+            <% end %>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
+          ユーザーの画像付き投稿一覧
+        </div>
+        <div class="tab-pane fade" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
+          ユーザーのいいねした投稿一覧
+        </div>
+        <div class="tab-pane fade" id="follow" role="tabpanel" aria-labelledby="follow-tab">
+          ユーザーのフォロイー一覧
+        </div>
+        <div class="tab-pane fade" id="mypage" role="tabpanel" aria-labelledby="mypage-tab">
+          <%= render 'public/users/mypage', user: @user %>
         </div>
       </div>
-      <div class="tab-pane fade" id="mypage" role="tabpanel" aria-labelledby="mypage-tab">
-        <%= render 'public/users/mypage', user: @user %>
-      </div>
+      
     </div>
-
-    </div>
+    
+    <!--プロフィール-->
     <div class="col-12 col-lg-4 mb-5 mb-lg-0 order-0 order-lg-1">
       <div class="card">
         <div class="card-body">

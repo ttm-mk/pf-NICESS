@@ -56,50 +56,59 @@
     <% else %>
       <div class="row">
 
-        <div class="col-6 my-3">
+        <div class="col-7 my-3">
           <div class="my-2">
+            
+            <%= form_with url:root_path, method: :get, local: true do |f| %>
+              <div class="form-group mt-3 mb-5">
+                <%= f.text_field :search, class: "w-50", placeholder: "キーワードで投稿検索をする" %>
+                <%= f.button :type => 'submit', class: 'btn btn-light' do %>
+                  <i class="fas fa-search"></i>検索
+                <% end %>
+              </div>
+            <% end %>
 
             <!--タブ-->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item bg-white">
+              <li class="nav-item bg-white w-25 text-center">
                 <a class="nav-link active" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-selected="true">投稿</a>
               </li>
-              <li class="nav-item bg-white">
+              <li class="nav-item bg-white w-25 text-center">
                 <a class="nav-link" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-selected="false">画廊</a>
               </li>
-              <li class="nav-item bg-white">
-                <a class="nav-link" id="favorite-tab" data-toggle="tab" href="#favorite" role="tab" aria-selected="false">いいね</a>
-              </li>
-              <li class="nav-item bg-white">
-                <a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-selected="false">ユーザー</a>
+              <li class="nav-item bg-white w-25 text-center">
+                <a class="nav-link" id="shop-tab" data-toggle="tab" href="#shop" role="tab" aria-selected="false">ショップ</a>
               </li>
             </ul>
 
             <!--タブ内容-->
             <div class="tab-content" id="myTabContent">
+              <!--post-->
               <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
                 <%= render 'public/posts/index', posts: @posts %>
               </div>
+              <!--image-->
               <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
                 画像あり投稿一覧表示
               </div>
-              <div class="tab-pane fade" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
-                いいね投稿一覧表示
-              </div>
-              <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
-                フォローしているユーザー一覧表示
+              <!--shop-->
+              <div class="tab-pane fade" id="shop" role="tabpanel" aria-labelledby="shop-tab">
+                ショップ保有ユーザー一覧
               </div>
             </div>
 
           </div>
         </div>
 
-        <div class="col-5 offset-1">
+        <div class="col-5">
           <!--投稿スペース-->
+  
           <div class="my-5 ml-3">
-            <%= form_with model: @post, url:posts_path, method: :post do |f| %>
-              <div><%= f.text_area :text, size: "50" %></div>
-              <div>
+            <%= form_with model: @post, url:user_posts_path(current_user), method: :post do |f| %>
+             <div class="form-group">
+               <%= f.text_area :text, rows: 5, class: 'form-control' %>
+             </div>
+              <div class="form-group">
                 <%= f.file_field :image, accept: 'image/*' %>
                 <%= f.submit '投稿する', class: 'btn btn-light' %>
               </div>
