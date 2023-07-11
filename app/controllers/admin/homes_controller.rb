@@ -1,8 +1,7 @@
 class Admin::HomesController < ApplicationController
   
 def top
-  # @users = User.all
-  # @user = User.find(params[:id])
+  @users = User.all
 end
   
 end

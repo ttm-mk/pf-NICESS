@@ -1,45 +1,47 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12 text-center">
-       ユーザー情報詳細
-    </div>
-  </div>
-</div>
-
-
-
-            <div class="col-3">
-              <div class="mb-3">なまえ</div>
-              <div class="mb-3">ユーザーID</div>
-              <div class="mb-3">プロフィール</div>
-              <div class="mb-3">ショップ名</div>
-              <div class="mb-3">ショップ情報</div>
-              <div class="mb-3">メールアドレス</div>
-              <div class="mb-3">ステータス</div>
-            </div>
-            <div class="col-6">
-              <div class="mb-3">なまえ</div>
-              <div class="mb-3">ユーザーID</div>
-              <div class="mb-3">プロフィール</div>
-              <div class="mb-3">ショップ名</div>
-              <div class="mb-3">ショップ情報</div>
-              <div class="mb-3">メールアドレス</div>
-              <div class="mb-3">ステータス</div>
-            </div>
-            <div class="col-3">
-              <div class="">icon</div>
-              <
-            </div>
-          </div>
+  <div class="card">
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="m-5 h2">
+         <strong>ユーザー情報詳細</strong>
         </div>
+      </div>
+
+      <div class="row mx-auto">
+        <div class="col-12">
+          <table class="table border table-bordered mb-5">
+            <thead>
+              <tr>
+                <th class="border-dark px-5">なまえ</th>
+                <th class="border-dark px-5">ユーザーID</th>
+                <th class="border-dark px-5">ショップ名</th>
+                <th class="border-dark px-5">メールアドレス</th>
+                <th class="border-dark">ステータス</th>
+                <th class="border-dark"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <td class="border-dark"><%= user.name %></td>
+                  <td class="border-dark"><%= user.name_id %></td>
+                  <td class="border-dark">
+                    <%# if user.shop.present? %>
+                      <%#= user.shop.name %>
+                    <%# end %>
+                  </td>
+                  <td class="border-dark"><%= user.email %></td>
+                  <td class="border-dark"><%= user.is_deleted ? '退会' : ' 有効' %></td>
+                  <td class="border-dark"><%= link_to "詳細", admin_user_path(user), class: 'btn btn-primary' %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
   </div>
+
 </div>
 
-
-
-
-
-
-
-<%#= link_to "show", url:admin_user_path(@user), class: 'btn btn-primary' %>

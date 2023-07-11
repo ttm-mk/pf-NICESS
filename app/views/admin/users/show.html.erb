@@ -1,32 +1,46 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
+
       <div class="card bg-white">
         <div class="card-header">
           ユーザー情報詳細
         </div>
+
         <div class="card-body">
           <div class="row">
             <div class="col-3">
               <div class="mb-3">なまえ</div>
               <div class="mb-3">ユーザーID</div>
-              <div class="mb-3">プロフィール</div>
               <div class="mb-3">ショップ名</div>
-              <div class="mb-3">ショップ情報</div>
               <div class="mb-3">メールアドレス</div>
               <div class="mb-3">ステータス</div>
             </div>
-            <div class="col-9">
-              <div class="mb-3">なまえ</div>
-              <div class="mb-3">ユーザーID</div>
-              <div class="mb-3">プロフィール</div>
-              <div class="mb-3">ショップ名</div>
-              <div class="mb-3">ショップ情報</div>
-              <div class="mb-3">メールアドレス</div>
-              <div class="mb-3">ステータス</div>
+
+            <div class="col-6">
+              <div class="mb-3"><%= @user.name %></div>
+              <div class="mb-3"><%= @user.name_id %></div>
+              <div class="mb-3"><%#= @user.shop.name %>ショップのなまえ</div>
+              <div class="mb-3"><%= @user.email %></div>
+              <div class="mb-3"><%= @user.is_deleted ? '退会' : '有効' %></div>
+            </div>
+            <div class="col-3">
+              <div class="m-5">
+                <%= image_tag @user.get_user_icon %>
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="card-footer">
+          <div class="p-3">
+            <%= link_to "編集する", edit_admin_user_path, class: 'btn btn-success' %>
+          </div>
+        </div>
+
+      </div>
+      <div class="py-3">
+        <%= link_to "戻る", admin_path %>
       </div>
     </div>
   </div>
