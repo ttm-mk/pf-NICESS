@@ -57,7 +57,7 @@
       <div class="tab-content" id="myTabContent">
       <!--post-->
         <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
-          <%= render 'public/posts/index', posts: @user.posts.reverse.take(3) %>
+          <%= render 'public/posts/index', posts: @user.posts.reverse.take(3), user: @user %>
           <div class="text-right">
             <%= link_to user_posts_path(params[:id]) do %>
               <i class="fas fa-angle-double-right"></i> More
