@@ -65,10 +65,10 @@
           </div>
         </div>
         <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
-          ユーザーの画像付き投稿一覧
+          <%= render 'public/posts/image', posts: @user.posts.reverse, user: @user %>
         </div>
         <div class="tab-pane fade" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
-          ユーザーのいいねした投稿一覧
+          <%= render 'public/posts/favorite', posts: @posts.reverse, user: @user %>
         </div>
         <div class="tab-pane fade" id="follow" role="tabpanel" aria-labelledby="follow-tab">
           ユーザーのフォロイー一覧

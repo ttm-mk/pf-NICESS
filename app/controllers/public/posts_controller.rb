@@ -2,6 +2,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @user = User.find_by(name_id: params[:user_id])
+    @post = Post.new
   end
 
   def create

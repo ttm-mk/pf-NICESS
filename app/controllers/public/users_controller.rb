@@ -5,6 +5,7 @@ class Public::UsersController < ApplicationController
     redirect_to root_path, notice: 'ユーザーいません' and return if @user.nil?
     # @posts = @user.posts.all
     @post = Post.new
+    @posts = Post.all
   end
 
   def edit
