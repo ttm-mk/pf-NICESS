@@ -5,64 +5,88 @@
         マイ情報編集
       </div>
       <div class="card-body">
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-12 pb-3">
-              <%= image_tag user.get_user_icon %>
+        <%= form_with model: @user, url:user_path, method: :patch do |f| %>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 col-lg-4 pb-3">
+                <%#= image_tag @user.get_user_icon %>
+              </div>
+              <div class="col-12 col-lg-8 pb-3">
+                <%= f.file_field :user_icon, accept: "image/*" %>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-4 pb-3">
-              なまえ
-            </div>
-            <div class="col-8 pb-3">
-              <%= user.name %>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-4 pb-3">
-              ユーザーid
-            </div>
-            <div class="col-8 pb-3">
-              <%= user.name_id %>
+  
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 col-lg-4 pb-3">
+                なまえ
+              </div>
+              <div class="col-12 col-lg-8 pb-3">
+                <%= f.text_field :name, class: 'form-control' %>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-4 pb-3">
-              プロフィール
-            </div>
-            <div class="col-8 pb-3">
-              <%= user.profile %>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-4 pb-3">
-              メールアドレス
-            </div>
-            <div class="col-8 pb-3">
-              <%= user.email %>
+  
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 col-lg-4 pb-3">
+                ユーザーid
+              </div>
+              <div class="col-12 col-lg-8 pb-3">
+                <%= f.text_field :name_id, class: 'form-control' %>
+              </div>
             </div>
           </div>
-        </div>
+  
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 col-lg-4 pb-3">
+                プロフィール
+              </div>
+              <div class="col-12 col-lg-8 pb-3">
+                <%= f.text_area :profile, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 col-lg-4 pb-3">
+                ショップ名
+              </div>
+              <div class="col-12 col-lg-8 pb-3">
+                <%= f.text_field :shop_name, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 col-lg-4 pb-3">
+                ショップ説明
+              </div>
+              <div class="col-12 col-lg-8 pb-3">
+                <%= f.text_area :shop_introduction, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 col-lg-4 pb-3">
+                メールアドレス
+              </div>
+              <div class="col-12 col-lg-8 pb-3">
+                <%= f.text_field :email, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="my-4">
+            <%= f.submit "変更を保存", class: 'btn btn-success' %>
+          </div>
+        <% end %>
       </div>
-      <% if user.id == current_user.id %>
-      <div class="card-footer">
-        <%=link_to "編集する", edit_user_path(current_user), class: 'btn btn-success' %>
-      </div>
-      <% end %>
     </div>
   </div>
 </div>

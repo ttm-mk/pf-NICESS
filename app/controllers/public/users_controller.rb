@@ -32,17 +32,16 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    user = User.find_by(name_id: params[:id])
-    user.id = current_user.id
-    if !user.update(user_params)
-      redirect_to root_path
-    else
+    @user = User.find_by(name_id: params[:id])
+    if @user.update(user_params)
       redirect_to user_path(current_user)
+    else
+      redirect_to root_path
     end
   end
 
   def user_params
-    params.require(:user).permit(:name_id, :email)
+    params.require(:user).permit(:name, :name_id, :profile, :email)
   end
 
 end
