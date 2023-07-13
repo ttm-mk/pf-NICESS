@@ -9,6 +9,15 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  # relationshipアソシエーション:TODO
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  # ↑フォロー関係
+
+  has_many :followings, through: "relationships", source: :followed
+  has_many :followers, through: "reverse_of_relationships", source: :follower
+  # ↑一覧用
+
   has_one_attached :user_icon
 
   validates :name_id, uniqueness: true
@@ -24,6 +33,7 @@ class User < ApplicationRecord
     end
   end
 
+# ユーザーアイコン
   def get_user_icon
     unless user_icon.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -31,4 +41,20 @@ class User < ApplicationRecord
     end
     user_icon.variant(resize_to_limit: [100, 100]).processed
   end
+
+  # TODO
+  # フォロー機能
+  def follow(user_id)
+    relationships.create(followed_id: user_id)
+  end
+
+  def unfollow(user_id)
+    relationships.find_by(followed_id: user_id).destroy
+  end
+
+  def following?(user)
+    followings.include?(user)
+  end
+
+
 end

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <% if following_users.exists? %>
+
+        <% following_users.each do |following_user| %>
+          <div class="card bg-white">
+            <div class="card-body">
+              <div class="form-group">
+                <%= link_to user_path(following_user.name_id) do %>
+                  <%= image_tag following_user.get_user_icon %>
+                <% end %>
+                <%= following_user.name %>
+              </div>
+              <div class="form-group">
+                <%= following_user.profile %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+      <% else %>
+        <div class="my-5 text-center">
+          ユーザーはいません
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>

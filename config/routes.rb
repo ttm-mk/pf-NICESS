@@ -27,12 +27,12 @@ Rails.application.routes.draw do
 
   # user
   scope module: :public do
-    get 'users/mypage/edit' => 'users#edit'
     get 'confirm' => 'users#confirm'
     patch 'resign' => 'users#resign'
-    resources :users, only: [:show, :update] do
+    resources :users, only: [:show, :edit, :update] do
       # Shopのルーティングこのへん
-
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
       resources :posts do
         resources :comments, only: [:create, :destroy]
         resource :favorites, only: [:create, :destroy]
