@@ -26,15 +26,21 @@ class Public::UsersController < ApplicationController
   end
 
   def confirm
+    # @user = User.find(params[:id])
   end
 
   def resign
+    user = current_user
+    user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+    
   end
 
   def update
     @user = User.find_by(name_id: params[:id])
     if @user.update(user_params)
-      redirect_to user_path(current_user)
+      redirect_to user_path(@user.name_id)
     else
       redirect_to root_path
     end

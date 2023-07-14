@@ -27,8 +27,8 @@ Rails.application.routes.draw do
 
   # user
   scope module: :public do
-    get 'confirm' => 'users#confirm'
-    patch 'resign' => 'users#resign'
+    get 'user/confirm' => 'users#confirm'
+    patch 'user/resign' => 'users#resign'
     resources :users, only: [:show, :edit, :update] do
       # Shopのルーティングこのへん
       resource :relationships, only: [:create, :destroy]

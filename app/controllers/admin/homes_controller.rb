@@ -1,5 +1,5 @@
 class Admin::HomesController < ApplicationController
-  before_action :authentication_admin!
+  before_action :authenticate_admin!
   
 def top
   @users = User.all
