@@ -8,7 +8,7 @@
           <%= post.user.name %>
         </div>
         <div class="px-4">
-          <%= post.text %>
+          <%= simple_format(post.text) %>
         </div>
         <% if post.image.present? %>
           <div>

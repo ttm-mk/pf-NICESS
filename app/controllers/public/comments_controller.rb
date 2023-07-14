@@ -10,7 +10,7 @@ class Public::CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
-    redirect_to root_path, notice: '違うです' and return unless current_user.id == comment.user_id
+    redirect_to root_path, notice: 'ユーザーが異なるため、削除出来ません。' and return unless current_user.id == comment.user_id
     comment.destroy
     redirect_to user_post_path(params[:user_id], params[:post_id])
   end

@@ -1,23 +1,107 @@
 <div class="container">
-  <h2>Show</h2>
-  <%= simple_format(@post.text) %>
-  <hr>
-  <% @post.comments.reverse.each do |comment| %>
-    <div>
-      <%= comment.user.name %>
-      <%= simple_format(comment.text) %>
-      <%= link_to user_post_comment_path(params[:user_id], params[:id], comment), method: :delete, data: {confirm: '削除しますか？'} do %>
-        <i class="fas fa-trash-alt"></i>
+  
+  <!--post-->
+  <div class="row">
+    <div class="col-12 col-lg-9">
+      <div class="card">
+        
+        <div class="card-body">
+          <div class="pb-3">
+            <%= image_tag @post.user.get_user_icon %>
+            <%= @post.user.name %>
+          </div>
+          <div class="">
+            <%= simple_format(@post.text) %>
+          </div>
+          <% if @post.image.present? %>
+            <div>
+              <%= image_tag @post.image, class: 'img-fluid' %>
+            </div>
+          <% end %>
+        </div>
+              
+        <div class="card-footer">
+          <div class="d-block d-md-flex justify-content-between">
+            <div>
+              <i class="far fa-comment-alt mr-3"></i>
+              <%= @post.comments.count %>
+  
+              <% if @post.favorite_by?(current_user) %>
+                <%= link_to user_post_favorites_path(current_user.id, @post), method: :delete do %>
+                  <i class="fas fa-heart"></i>
+                <% end %>
+                <%= @post.favorites.count %>いいね
+  
+              <% else %>
+                <%= link_to user_post_favorites_path(current_user.id, @post), method: :post do %>
+                  <i class="far fa-heart"></i>
+                <% end %>
+                <%= @post.favorites.count %>いいね
+  
+              <% end %>
+              
+              <% if @post.user.id == current_user.id %>
+                <%= link_to user_post_path(params[:user_id], params[:id]), method: :delete, data: {confirm: '本当に削除しますか？'} do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              <% end %>
+            </div>
+            <!-- TODO: あとで確認 -->
+            <div class="text-right text-md-left">
+              <%= @post.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M') %>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    <div class="col-lg-3"></div>
+  </div>
+  
+  <!--comment-->
+  <div class="row">
+    <div class="col-12">
+      <% @post.comments.reverse.each do |comment| %>
+        <div>
+          <%= comment.user.name %>
+          <%= simple_format(comment.text) %>
+          <%= link_to user_post_comment_path(params[:user_id], params[:id], comment), method: :delete, data: {confirm: '削除しますか？'} do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </div>
+      <% end %>
+      <hr>
+      <%= form_with model: @comment, url: user_post_comments_path(params[:user_id], @post) do |f| %>
+        <div class="form-group">
+          <%= f.text_area :text, rows: 5, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "コメントを送信", class: 'btn btn-primary' %>
+        </div>
       <% end %>
     </div>
-  <% end %>
-  <hr>
-  <%= form_with model: @comment, url: user_post_comments_path(params[:user_id], @post) do |f| %>
-    <div class="form-group">
-      <%= f.text_area :text, rows: 5, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.submit %>
-    </div>
-  <% end %>
+  </div>
 </div>
+<!--  <h2>Show</h2>-->
+<!--  <%#= simple_format(@post.text) %>-->
+<!--  <hr>-->
+<!--  <%# @post.comments.reverse.each do |comment| %>-->
+<!--    <div>-->
+<!--      <%#= comment.user.name %>-->
+<!--      <%#= simple_format(comment.text) %>-->
+<!--      <%#= link_to user_post_comment_path(params[:user_id], params[:id], comment), method: :delete, data: {confirm: '削除しますか？'} do %>-->
+<!--        <i class="fas fa-trash-alt"></i>-->
+<!--      <%# end %>-->
+<!--    </div>-->
+<!--  <%# end %>-->
+<!--  <hr>-->
+<!--  <%#= form_with model: @comment, url: user_post_comments_path(params[:user_id], @post) do |f| %>-->
+<!--    <div class="form-group">-->
+<!--      <%#= f.text_area :text, rows: 5, class: 'form-control' %>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <%#= f.submit %>-->
+<!--    </div>-->
+<!--  <%# end %>-->
+<!--</div>-->
+
