@@ -5,10 +5,10 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   has_one_attached :image
-  
-  
-  def favorite_by?(user)
-    favorites.exists?(user_id: user_id)
-  end
 
+# TODO
+  def favorite_by?(favorited_user)
+    return false unless favorited_user
+    favorites.exists?(user_id: favorited_user.id)
+  end
 end

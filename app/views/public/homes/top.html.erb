@@ -84,11 +84,11 @@
             <div class="tab-content" id="myTabContent">
               <!--post-->
               <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
-                <%= render 'public/posts/index', posts: @posts.reverse %>
+                <%= render 'public/posts/index', posts: @posts.reverse, user: @user %>
               </div>
               <!--image-->
               <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
-                <%= render 'public/posts/image', posts: @posts.reverse, user: params[:user_id] %>
+                <%= render 'public/posts/image', posts: @posts.reverse %>
               </div>
               <!--shop-->
               <div class="tab-pane fade" id="shop" role="tabpanel" aria-labelledby="shop-tab">

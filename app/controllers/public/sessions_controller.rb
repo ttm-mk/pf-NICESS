@@ -3,6 +3,7 @@
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :user_state, only: [:create]
 
 
   def after_sign_in_path_for(resource)
@@ -33,7 +34,7 @@ class Public::SessionsController < Devise::SessionsController
 
     return if !@user
 
-    if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == true)
+    if (@user.valid_password?(params[:user][:password]) || (@user.is_deleted == true))
       redirect_to new_user_registration_path
     end
   end
