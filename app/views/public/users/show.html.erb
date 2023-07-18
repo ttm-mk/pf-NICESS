@@ -55,7 +55,7 @@
 
       <!-- タブコンテンツ -->
       <div class="tab-content" id="myTabContent">
-      <!--post-->
+      <!--投稿-->
         <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
           <%= render 'public/posts/index', posts: @user.posts.reverse.take(3), user: @user %>
           <div class="text-right">
@@ -64,15 +64,19 @@
             <% end %>
           </div>
         </div>
+        <!--画像あり投稿-->
         <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
           <%= render 'public/posts/image', posts: @user.posts.reverse, user: @user %>
         </div>
+        <!--いいね-->
         <div class="tab-pane fade" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
           <%= render 'public/posts/favorite', posts: @posts.reverse, user: @user %>
         </div>
+        <!--フォロー-->
         <div class="tab-pane fade" id="follow" role="tabpanel" aria-labelledby="follow-tab">
           <%= render 'public/relationships/relationship',  following_users: @following_users %>
         </div>
+        <!--マイ情報-->
         <div class="tab-pane fade" id="mypage" role="tabpanel" aria-labelledby="mypage-tab">
           <%= render 'public/users/mypage', user: @user %>
         </div>

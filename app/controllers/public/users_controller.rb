@@ -13,10 +13,9 @@ class Public::UsersController < ApplicationController
 
 
   def show
+    @users = User.all
     @user = User.find_by(name_id: params[:id])
     redirect_to root_path, notice: 'ユーザーはいません' and return if @user.nil?
-    @following_users = @user.followings
-    # @posts = @user.posts.all
     @post = Post.new
     @posts = Post.all
   end
@@ -26,7 +25,6 @@ class Public::UsersController < ApplicationController
   end
 
   def confirm
-    # @user = User.find(params[:id])
   end
 
   def resign

@@ -20,30 +20,30 @@
         <div class="col-3"></div>
       </div>
 
-      <div class="row">
+      <div class="row m-5">
         <div class="col-12">
           <div class="text-center">画像</div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row mb-5">
         <div class="col-12 text-center">
           <div class="h2">まずはゲストログインをして<br>試してみてください！</div>
-          <div>
+          <div class="p-3">
             <%= link_to "こちら", user_guest_sign_in_path, method: :post, class: 'h5 text-light' %>
             からどうぞ！
           </div>
-          <div>
+          <div class="p-3">
             NICESSの詳しい内容は
             <%= link_to "ABOUT", about_path, class: 'h5 text-light' %>
             をご覧ください。
           </div>
-          <div>
+          <div class="p-3">
             新規登録は
             <%= link_to "こちら", new_user_registration_path, class: 'h5 text-light' %>
             から
           </div>
-          <div>
+          <div class="p-3">
             ログインは
             <%= link_to "こちら", new_user_session_path, class: 'h5 text-light' %>
             から
@@ -76,21 +76,69 @@
                 <a class="nav-link" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-selected="false">画廊</a>
               </li>
               <li class="nav-item bg-white w-25 text-center">
+                <a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-selected="false">ユーザー</a>
+              </li>
+              <li class="nav-item bg-white w-25 text-center">
                 <a class="nav-link" id="shop-tab" data-toggle="tab" href="#shop" role="tab" aria-selected="false">ショップ</a>
               </li>
             </ul>
 
             <!--タブ内容-->
             <div class="tab-content" id="myTabContent">
-              <!--post-->
+              <!--投稿-->
               <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
                 <%= render 'public/posts/index', posts: @posts.reverse, user: @user %>
               </div>
-              <!--image-->
+              <!--画像投稿-->
               <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
                 <%= render 'public/posts/image', posts: @posts.reverse %>
+                <% if !@post.image.present? %>
+                  <div class="m-4">
+                    画像投稿はありません。
+                  </div>
+                <% end %>
               </div>
-              <!--shop-->
+              <!--ユーザー-->
+              <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
+                <%= form_with url:root_path, method: :get, local: true do |f| %>
+                  <div class="form-group ml-3 mt-3">
+                    <%= f.text_field :seek, class: 'w-50', placeholder: "ユーザー検索" %>
+                    <%= f.button :type => 'submit', class: 'btn btn-primary' do %>
+                      <i class="fas fa-search"></i>検索
+                    <% end %>
+                  </div>
+                <% end %>
+                 <div class="row">
+                  <div class="col-12">
+                    <% if @users.present? %>
+              
+                      <% @users.each do |user| %>
+                        <div class="card bg-white">
+                          <div class="card-body">
+                            <div class="form-group">
+                              <%= link_to user_path(user.name_id) do %>
+                                <%= image_tag user.get_user_icon %>
+                              <% end %>
+                              <%= user.name %>
+                            </div>
+                            <div class="form-group">
+                              <%= user.profile %>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+              
+                    <% else %>
+                      <div class="my-5 text-center">
+                        ユーザーはいません
+                      </div>
+              
+                    <% end %>
+              
+                  </div>
+                </div>
+              </div>
+              <!--ショップ-->
               <div class="tab-pane fade" id="shop" role="tabpanel" aria-labelledby="shop-tab">
                 ショップ保有ユーザー一覧
               </div>
