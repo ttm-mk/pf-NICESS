@@ -34,7 +34,7 @@ class Public::SessionsController < Devise::SessionsController
 
     return if !@user
 
-    if (@user.valid_password?(params[:user][:password]) || (@user.is_deleted == true))
+    if (@user.valid_password?(params[:user][:password]) && (@user.is_deleted == true))
       redirect_to new_user_registration_path
     end
   end

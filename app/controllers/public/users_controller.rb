@@ -18,6 +18,9 @@ class Public::UsersController < ApplicationController
     redirect_to root_path, notice: 'ユーザーはいません' and return if @user.nil?
     @post = Post.new
     @posts = Post.all
+    # いいね取得
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
   end
 
   def edit
@@ -45,7 +48,7 @@ class Public::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :name_id, :profile, :email)
+    params.require(:user).permit(:name, :name_id, :profile, :email, :user_icon)
   end
 
 end

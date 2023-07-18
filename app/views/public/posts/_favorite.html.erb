@@ -1,10 +1,10 @@
-<% posts.each do |post| %>
-  <% if post.favorites.present? %>
+<% favorite_posts.each do |post| %>
+  <%# if favorites.present? %>
     <div class="card mb-3">
       <div class="card-body">
         <div class="mt-1 mb-4">
           <%= link_to user_path(post.user.name_id) do %>
-            <%= image_tag post.user.get_user_icon, size: '50' %>
+            <%= image_tag post.user.get_user_icon(100, 100), size: '50' %>
           <% end %>
           <%= post.user.name %>
         </div>
@@ -12,9 +12,9 @@
           <%= post.text %>
         </div>
         <% if post.image.present? %>
-          <div>
-            <%= image_tag post.image, class: 'img-fluid' %>
-          </div>
+        <div>
+          <%= image_tag post.image, class: 'img-fluid' %>
+        </div>
         <% end %>
       </div>
 
@@ -24,14 +24,14 @@
             <i class="far fa-comment-alt mr-3"></i>
             <%= post.comments.count %>
 
-            <% if post.favorite_by?(user) %>
-              <%= link_to user_post_favorites_path(user, post), method: :delete do %>
+            <% if post.favorite_by?(current_user) %>
+              <%= link_to user_post_favorites_path(current_user.id, post), method: :delete do %>
                 <i class="fas fa-heart"></i>
               <% end %>
               <%= post.favorites.count %>いいね
 
             <% else %>
-              <%= link_to user_post_favorites_path(user, post), method: :post do %>
+              <%= link_to user_post_favorites_path(current_user.id, post), method: :post do %>
                 <i class="far fa-heart"></i>
               <% end %>
               <%= post.favorites.count %>いいね
@@ -46,6 +46,6 @@
       </div>
     </div>
     
-  <% end %>
+  <%# end %>
   
 <% end %>

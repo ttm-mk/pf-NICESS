@@ -92,11 +92,6 @@
               <!--画像投稿-->
               <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
                 <%= render 'public/posts/image', posts: @posts.reverse %>
-                <% if !@post.image.present? %>
-                  <div class="m-4">
-                    画像投稿はありません。
-                  </div>
-                <% end %>
               </div>
               <!--ユーザー-->
               <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
@@ -108,6 +103,9 @@
                     <% end %>
                   </div>
                 <% end %>
+                <div class="m-4">
+                  いいねしている投稿はありません。
+                </div>
                  <div class="row">
                   <div class="col-12">
                     <% if @users.present? %>
@@ -117,7 +115,7 @@
                           <div class="card-body">
                             <div class="form-group">
                               <%= link_to user_path(user.name_id) do %>
-                                <%= image_tag user.get_user_icon %>
+                                <%= image_tag user.get_user_icon(100,100) %>
                               <% end %>
                               <%= user.name %>
                             </div>

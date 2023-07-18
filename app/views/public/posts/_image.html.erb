@@ -4,7 +4,7 @@
       <div class="card-body">
         <div class="mt-1 mb-4">
           <%= link_to user_path(post.user.name_id) do %>
-            <%= image_tag post.user.get_user_icon, size: '50' %>
+            <%= image_tag post.user.get_user_icon(100,100) %>
           <% end %>
           <%= post.user.name %>
         </div>
@@ -45,6 +45,14 @@
         </div>
       </div>
     </div>
-    
+
   <% end %>
 <% end %>
+
+<!--<%# unless user.posts.image.attached? %>-->
+<!--  <div class="m-4">-->
+<!--    画像投稿はありません。-->
+<!--  </div>-->
+<!--<%# end %>-->
+
+

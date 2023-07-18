@@ -32,15 +32,15 @@ class User < ApplicationRecord
       # ネームIDをランダムに作成
     end
   end
-  
+
 
 # ユーザーアイコン
-  def get_user_icon
+  def get_user_icon(width, height)
     unless user_icon.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       user_icon.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    user_icon.variant(resize_to_limit: [100, 100]).processed
+    user_icon.variant(resize_to_limit: [width, height]).processed
   end
 
   # TODO

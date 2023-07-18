@@ -70,7 +70,7 @@
         </div>
         <!--いいね-->
         <div class="tab-pane fade" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
-          <%= render 'public/posts/favorite', posts: @posts.reverse, user: @user %>
+          <%= render 'public/posts/favorite', favorite_posts: @favorite_posts.reverse %>
         </div>
         <!--フォロー-->
         <div class="tab-pane fade" id="follow" role="tabpanel" aria-labelledby="follow-tab">
@@ -90,7 +90,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12 col-md-4">
-              <%= image_tag @user.get_user_icon %>
+              <%= image_tag @user.get_user_icon(100,100) %>
             </div>
             <div class="col-12 col-md-8 d-flex justify-content-center align-items-center">
               <h6 class="card-title">
