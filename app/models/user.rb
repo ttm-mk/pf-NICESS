@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  belongs_to :shop, dependent: :destroy
+  
 
   # relationshipアソシエーション:TODO
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
@@ -22,6 +24,7 @@ class User < ApplicationRecord
 
   validates :name_id, uniqueness: true
 
+# ゲスト関係：TODO
   def self.guest
     find_or_create_by!(email: 'guest@sample.com') do |user|
       user.password = SecureRandom.urlsafe_base64
@@ -32,7 +35,7 @@ class User < ApplicationRecord
       # ネームIDをランダムに作成
     end
   end
-
+  
 
 # ユーザーアイコン
   def get_user_icon(width, height)

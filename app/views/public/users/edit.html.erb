@@ -8,15 +8,15 @@
         <%= form_with model: @user, url:user_path, method: :patch do |f| %>
           <div class="form-group">
             <div class="row">
-              <div class="col-12 col-lg-4 pb-3">
+              <!--<div class="col-12 col-lg-4 pb-3">-->
                 <%#= image_tag @user.get_user_icon %>
-              </div>
+              <!--</div>-->
               <div class="col-12 col-lg-8 pb-3">
                 <%= f.file_field :user_icon, accept: "image/*" %>
               </div>
             </div>
           </div>
-  
+
           <div class="form-group">
             <div class="row">
               <div class="col-12 col-lg-4 pb-3">
@@ -27,7 +27,7 @@
               </div>
             </div>
           </div>
-  
+
           <div class="form-group">
             <div class="row">
               <div class="col-12 col-lg-4 pb-3">
@@ -38,7 +38,7 @@
               </div>
             </div>
           </div>
-  
+
           <div class="form-group">
             <div class="row">
               <div class="col-12 col-lg-4 pb-3">
@@ -49,29 +49,31 @@
               </div>
             </div>
           </div>
-          
-          <div class="form-group">
-            <div class="row">
-              <div class="col-12 col-lg-4 pb-3">
-                ショップ名
-              </div>
-              <div class="col-12 col-lg-8 pb-3">
-                <%= f.text_field :shop_name, class: 'form-control' %>
-              </div>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <div class="row">
-              <div class="col-12 col-lg-4 pb-3">
-                ショップ説明
-              </div>
-              <div class="col-12 col-lg-8 pb-3">
-                <%= f.text_area :shop_introduction, class: 'form-control' %>
+
+          <% if @user.shop.present? %>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4 pb-3">
+                  ショップ名
+                </div>
+                <div class="col-12 col-lg-8 pb-3">
+                  <%= f.text_field :shop_name, class: 'form-control' %>
+                </div>
               </div>
             </div>
-          </div>
-  
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4 pb-3">
+                  ショップ説明
+                </div>
+                <div class="col-12 col-lg-8 pb-3">
+                  <%= f.text_area :shop_introduction, class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
           <div class="form-group">
             <div class="row">
               <div class="col-12 col-lg-4 pb-3">
@@ -87,6 +89,41 @@
           </div>
         <% end %>
       </div>
+
+      <% if !@user.shop.present? %>
+        <div class="form-group p-4">
+          <div class="h4">ショップ新規登録</div>
+        </div>
+        <%= form_with model: @shop, url: user_shop_path(@user), method: :post do |f| %>
+          <div class="form-group px-4">
+            <div class="row">
+              <div class="col-12 col-lg-4 pb-3">
+                ショップ名
+              </div>
+              <div class="col-12 col-lg-8 pb-3">
+                <%= f.text_field :name, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group px-4">
+            <div class="row">
+              <div class="col-12 col-lg-4 pb-3">
+                ショップ説明
+              </div>
+              <div class="col-12 col-lg-8 pb-3">
+                <%= f.text_area :introduction, rows: 5, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 pb-3">
+                <%= f.submit "ショップ新規作成", class: 'btn btn-primary mx-4' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

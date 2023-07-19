@@ -27,6 +27,7 @@ class Public::UsersController < ApplicationController
 
   def edit
     @user = User.find_by(name_id: params[:id])
+    @shop = Shop.new
   end
 
   def confirm
@@ -42,6 +43,14 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find_by(name_id: params[:id])
+    
+    if @user.shop.present?
+      @shop = @user.shop.id
+      @shop.name = params[:shop_name]
+      @shop.introduction = params[:shop_introcution]
+      @shop.update(shop_params)
+    end
+    
     if @user.update(user_params)
       redirect_to user_path(@user.name_id)
     else
@@ -51,6 +60,10 @@ class Public::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :name_id, :profile, :email, :user_icon)
+  end
+  
+  def shop_params
+    params.require(:user).permit(:shop_name, :shop_introduction)
   end
 
 end

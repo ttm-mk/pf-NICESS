@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     get 'user/confirm' => 'users#confirm'
     patch 'user/resign' => 'users#resign'
     resources :users, only: [:show, :edit, :update] do
-      # Shopのルーティングこのへん
+      resource :shop, only: [:index, :create, :update]
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       resources :posts do
