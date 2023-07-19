@@ -21,6 +21,8 @@ class Public::UsersController < ApplicationController
     # いいね取得
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
+    # フォローユーザー取得
+    @following_users = @user.followings
   end
 
   def edit
