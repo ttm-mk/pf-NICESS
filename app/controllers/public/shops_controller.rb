@@ -1,6 +1,8 @@
 class Public::ShopsController < ApplicationController
 
   def index
+    @user = User.find_by(id: params[:name_id])
+    @shop = @user.shop
   end
 
   def new

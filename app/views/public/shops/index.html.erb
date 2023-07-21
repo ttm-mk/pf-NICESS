@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    
+    <!--カテゴリ-->
+    <div class="col-3">
+      <div class="form-group">
+        <div class="p-3">
+          カテゴリー一覧
+        </div>
+        <div class="mx-auto">
+          <div class="p-2">イラスト</div>
+          <div class="p-2">漫画</div>
+          <div class="p-2">セット</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="card">
+          <div class="card-body">
+            <%= @shop.introduction %>
+          </div>
+        </div>
+      </div>
+      
+      <!--ショップ管理者メニュー-->
+      <% if @shop.user_id = current_user.id %>
+        <div class="form-group">
+          <div class="m-3 h4">
+            管理者メニュー
+          </div>
+          <ul>
+            <li>
+              <%= link_to "商品一覧", user_shop_path(current_user.name_id) %>
+            </li>
+            <li>
+              商品新規登録
+              <%#= link_to "商品新規登録", new_user_shop_item_path(current_user) %>
+            </li>
+            <li>
+              注文一覧
+              <%#= link_to "注文一覧", user_shop_orders_path(current_user) %>
+            </li>
+            <li>
+              カテゴリー管理
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    
+    <!--商品一覧-->
+    <div class="col-9">
+      <div class="card bg-white">
+        <div class="card-body">
+          <div class="">画像</div>
+          <div class="">アビリティア1巻</div>
+          <div class="">700円</div>
+          <div class="">
+            <%= link_to "詳細を見る", user_shop_path(current_user.name_id), class: 'btn btn-primary px-3' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
