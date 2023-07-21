@@ -51,7 +51,7 @@ class Public::UsersController < ApplicationController
       @shop.update(shop_params)
     end
     
-    if @user.update(user_params)
+    if @user.update!(user_params)
       redirect_to user_path(@user.name_id)
     else
       redirect_to root_path
