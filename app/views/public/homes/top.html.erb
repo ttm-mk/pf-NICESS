@@ -106,7 +106,7 @@
                  <div class="row">
                   <div class="col-12">
                     <% if @users.present? %>
-              
+
                       <% @users.each do |user| %>
                         <div class="card bg-white">
                           <div class="card-body">
@@ -122,20 +122,20 @@
                           </div>
                         </div>
                       <% end %>
-              
+
                     <% else %>
                       <div class="my-5 text-center">
                         ユーザーはいません
                       </div>
-              
+
                     <% end %>
-              
+
                   </div>
                 </div>
               </div>
               <!--ショップ-->
               <div class="tab-pane fade" id="shop" role="tabpanel" aria-labelledby="shop-tab">
-                ショップ保有ユーザー一覧
+                <%= render 'public/shops/shop', shops: @shops %>
               </div>
             </div>
 

@@ -3,6 +3,7 @@ class Public::ShopsController < ApplicationController
   def show
     @user = User.find_by(name_id: params[:user_id])
     @shop = @user.shop
+    @items = @shop.items.all
   end
 
   def new
@@ -15,7 +16,7 @@ class Public::ShopsController < ApplicationController
     @user = User.find(params[:user_id])
     @shop.user_id = @user.id
     if @shop.save
-      redirect_to user_shop_path(@user.name_id)
+      redirect_to user_shop_path(@shop)
     else
       user_path(current_user.name_id)
     end

@@ -3,7 +3,8 @@ class Public::HomesController < ApplicationController
     @users = User.all
     @post = Post.new
     @posts = Post.all
-    
+    @shops = Shop.all
+
     if params[:search] || params[:seek].present?
       @posts = Post.where('text LIKE ?', "%#{params[:search]}%")
       @users = User.where('name LIKE ?', "%#{params[:seek]}%")

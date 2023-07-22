@@ -115,7 +115,13 @@
         </div>
     </div>
 
-    <h5 class="mt-3">ショップ</h5>
+    <h5 class="mt-3">
+      <% if @user.shop.present? %>
+        <%= link_to "ショップ", user_shop_path(@user.name_id) %>
+      <% else %>
+        ショップ
+      <% end %>
+    </h5>
 
     <!-- Slider main container -->
     <div class="swiper">

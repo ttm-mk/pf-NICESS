@@ -58,18 +58,21 @@
           </div>
         </div>
       </div>
-      <% if user.id == current_user.id %>
       <div class="card-footer">
         <div class="py-2">
           <%= link_to "編集する", edit_user_path(user.name_id), class: 'btn btn-success' %>
-          <%= link_to "ショップをつくる", user_shop_new_path(user), class: 'btn btn-primary ml-4' %>
+          
+          <% if user.shop.present? %>
+            <%= link_to "マイショップ", user_shop_path(user.name_id), class: 'btn btn-primary ml-4' %>
+          <% else %>
+            <%= link_to "ショップをつくる", user_shop_new_path(user), class: 'btn btn-primary ml-4' %>
+          <% end %>
         </div>
         <div class="py-2">
           <%= link_to "退会する", user_confirm_path(current_user), class: 'btn btn-danger' %>
         </div>
       </div>
 
-      <% end %>
     </div>
   </div>
 </div>

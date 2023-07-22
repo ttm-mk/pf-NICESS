@@ -30,9 +30,11 @@ Rails.application.routes.draw do
     get 'user/confirm' => 'users#confirm'
     patch 'user/resign' => 'users#resign'
     resources :users, only: [:show, :edit, :update] do
-      get 'shop/new' => 'shops#new'
-      post '/shop' => 'shops#create'
-      resource :shop, only: [:show, :update]
+      # get 'shop/new' => 'shops#new'
+      # post '/shop' => 'shops#create'
+      resource :shop, only: [:new, :create, :show, :update] do
+        resources :items, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+      end
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       resources :posts do
