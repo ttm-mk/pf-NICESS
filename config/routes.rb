@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update] do
       get 'shop/new' => 'shops#new'
       post '/shop' => 'shops#create'
-      resource :shop, only: [:index, :update]
+      resource :shop, only: [:show, :update]
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       resources :posts do

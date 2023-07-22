@@ -48,7 +48,7 @@ class Public::UsersController < ApplicationController
       @shop = @user.shop.id
       @shop.name = params[:shop_name]
       @shop.introduction = params[:shop_introcution]
-      @shop.update(shop_params)
+      redirect_to root_path if !@shop.update(shop_params)
     end
     
     if @user.update!(user_params)

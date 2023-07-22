@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  belongs_to :shop, optional: true, dependent: :destroy
-  
+  has_one :shop, dependent: :destroy
+
 
   # relationshipアソシエーション:TODO
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
@@ -35,7 +35,7 @@ class User < ApplicationRecord
       # ネームIDをランダムに作成
     end
   end
-  
+
 
 # ユーザーアイコン
   def get_user_icon(width, height)
