@@ -1,50 +1,9 @@
 <div class="container">
   <div class="row">
-
-    <!--カテゴリ-->
+    
+    <!--サイドバー-->
     <div class="col-2">
-      <div class="form-group text-center">
-        <div class="p-3">
-          カテゴリー一覧
-        </div>
-        <div class="mx-auto">
-          <div class="p-2">イラスト</div>
-          <div class="p-2">漫画</div>
-          <div class="p-2">セット</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="card" style="height: 15rem;">
-          <div class="card-body">
-            <%= @shop.introduction %>
-          </div>
-        </div>
-      </div>
-
-      <!--ショップ管理者メニュー-->
-      <% if @shop.user_id == current_user.id %>
-        <div class="form-group text-center">
-          <!--<div class="p-4">-->
-            <strong>管理者メニュー</strong>
-          <!--</div>-->
-          <ul class="list-unstyled">
-            <li class="pt-4 pb-3">
-              <%= link_to "商品一覧", user_shop_items_path(current_user) %>
-            </li>
-            <li class="pb-3">
-              <%= link_to "商品新規登録", new_user_shop_item_path(@shop.id) %>
-            </li>
-            <li class="pb-3">
-              注文一覧
-              <%#= link_to "注文一覧", user_shop_orders_path(current_user) %>
-            </li>
-            <li class="pb-3">
-              カテゴリー管理
-            </li>
-          </ul>
-        </div>
-      <% end %>
+      <%= render 'public/shops/sidebar', shop: @shop %>
     </div>
 
     <!--商品一覧-->

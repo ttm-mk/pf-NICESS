@@ -11,6 +11,8 @@ class Public::ItemsController < ApplicationController
   end
   
   def show
+    @shop = Shop.find(params[:id])
+    @item = Item.find(params[:id])
   end
   
   def edit
