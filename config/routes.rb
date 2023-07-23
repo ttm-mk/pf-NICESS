@@ -42,6 +42,8 @@ Rails.application.routes.draw do
         resource :favorites, only: [:create, :destroy]
       end
     end
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+    resources :cart_items, only: [:show, :create, :update, :destroy]
     # get 'posts?user_id=:user_id' => 'posts#index'
   end
 
