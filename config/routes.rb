@@ -34,6 +34,8 @@ Rails.application.routes.draw do
       # post '/shop' => 'shops#create'
       resource :shop, only: [:new, :create, :show, :update] do
         resources :items, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+        delete 'cart_items/destroy_all'
+        resources :cart_items, only: [:index, :create, :update, :destroy]
       end
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
@@ -42,8 +44,6 @@ Rails.application.routes.draw do
         resource :favorites, only: [:create, :destroy]
       end
     end
-    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
-    resources :cart_items, only: [:show, :create, :update, :destroy]
     # get 'posts?user_id=:user_id' => 'posts#index'
   end
 

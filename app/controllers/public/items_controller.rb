@@ -11,7 +11,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(name_id: params[:user_id])
     @shop = @user.shop
     @item = Item.find(params[:id])
     @cart_item = CartItem.new

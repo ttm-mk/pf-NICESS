@@ -25,6 +25,7 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
 
+              <!--ログイン後-->
               <% if user_signed_in? %>
                 <li class="dropdown-item">
                   <%= link_to "TOP", root_path, class: 'nav-link' %>
@@ -36,17 +37,21 @@
                 <li class="dropdown-item">
                   <%= link_to "PROFILE", user_path(current_user.name_id), class: 'nav-link' %>
                 </li>
-                <li class="dropdown-item">MY CART</li>
+                <li class="dropdown-item">
+                  <%= link_to "MY CART", user_shop_cart_items_path(current_user), class: 'nav-link' %>
+                </li>
                 <li class="dropdown-item">
                   <%= link_to "LOG OUT", destroy_user_session_path, method: :delete, class: 'nav-link' %>
                 </li>
 
+              <!--管理ログイン後-->
               <% elsif admin_signed_in? %>
                 <li class="dropdown-item">ユーザー一覧</li>
                 <li class="dropdown-item">
                   <%= link_to "LOG OUT", destroy_admin_session_path, method: :delete, class: 'nav-link' %>
                 </li>
 
+              <!--ログイン前-->
               <% else %>
                 <li class="dropdown-item">
                   <%= link_to "TOP", root_path, class: 'nav-link' %>

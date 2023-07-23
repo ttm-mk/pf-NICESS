@@ -30,8 +30,8 @@
           <% end %>
         </div>
       </div>
-
-      <%= form_with model: @cart_item, url: cart_item_path(current_user), method: :post do |f| %>
+<%#= p @shop.id, "shopIDをみる" %>
+      <%= form_with model: @cart_item, url: user_shop_cart_items_path(@shop.id), method: :post do |f| %>
         <div class="form-group pt-3">
           <div class="row">
             <div class="col-12 col-lg-11 offset-lg-1 pl-5">
@@ -58,6 +58,7 @@
           <div class="row">
             <div class="col-12 col-lg-9 offset-lg-3">
               <div class="mt-4">
+                <%= f.hidden_field :item_id, :value => @item.id %>
                 <%= f.submit "カートに入れる", class: 'btn btn-lg btn-primary px-4' %>
               </div>
               <div class="pl-5 py-3 ml-2">
