@@ -1,43 +1,55 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 col-lg-3">
-      <div class="p-4 h4">
-        <strong><%= @shop.name %>の商品一覧</strong>
+
+    <div class="col-2">
+      <%= render 'public/shops/sidebar', shop: @shop %>
+    </div>
+
+    <div class="col-10">
+
+      <div class="row">
+        <div class="col-12 col-lg-4">
+          <div class="p-4 h4">
+            <strong><%= @shop.name %>の商品一覧</strong>
+          </div>
+        </div>
+        <div class="col-12 col-lg-8">
+          <div class="p-4">
+            <%= link_to "商品新規作成", new_user_shop_item_path(@shop), class: 'btn btn-primary' %>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="col-12 col-lg-9">
-      <div class="p-4">
-        <%= link_to "商品新規作成", new_user_shop_item_path(@shop), class: 'btn btn-primary' %>
+
+      <div class="row">
+        <div class="col-12">
+          <table class="table border bg-white">
+            <thead>
+              <tr>
+                <th>商品名</th>
+                <th>販売ステータス</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @items.each do |item| %>
+                <tr>
+                  <td>
+                    <%= item.name %>
+                  </td>
+                  <td>
+                    <%= item.is_sale ? '販売中' : '品切れ' %>
+                  </td>
+                  <td>
+                    <%= link_to "詳細", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary' %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
+
     </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-12">
-      <table class="table border bg-white">
-        <thead>
-          <tr>
-            <th>商品名</th>
-            <th>販売ステータス</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @items.each do |item| %>
-            <tr>
-              <td>
-                <%= item.name %>
-              </td>
-              <td>
-                <%= item.is_sale ? '販売中' : '品切れ' %>
-              </td>
-              <td>
-                <%= link_to "詳細", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary' %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+
   </div>
 </div>

@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_one :shop, dependent: :destroy
+  has_one :cart_item, dependent: :destroy
 
 
   # relationshipアソシエーション:TODO

@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <%= render 'public/shops/sidebar', shop: @shop %>
+    </div>
+    <div class="col-10">
+      <div class="card m-5">
+
+        <div class="card-header">
+          商品情報編集
+        </div>
+
+        <%= form_with model: @item, url:user_shop_item_path(@item), method: :patch do |f| %>
+          <div class="card-body">
+
+            <div class="row m-3">
+              <div class="form-group">
+                <div class="col-12">
+                  <%= f.file_field :item_image, accept: 'image/*' %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4 pb-3">
+                  商品名
+                </div>
+                <div class="col-12 col-lg-8 pb-3 pr-5">
+                  <%= f.text_field :name, class: 'form-control', placeholder: "商品名" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  商品説明
+                </div>
+                <div class="col-12 col-lg-8 pr-5">
+                  <%= f.text_area :introduction, rows: 5, class: 'form-control', placeholder: "商品の説明文" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  販売価格
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.text_field :price, placeholder: "100円以上" %> 円(税込)
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  在庫数
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.text_field :stock, placeholder: "0以上入力" %> 個
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  販売ステータス
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.radio_button :is_sale, "true" %>
+                  <%= f.label :is_sale_true, "販売中" %>
+
+                  <%= f.radio_button :is_sale, "false" %>
+                  <%= f.label :is_sale_false, "品切れ" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12">
+                  <%= f.submit "変更を保存", class: 'btn btn-success' %>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
