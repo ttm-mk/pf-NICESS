@@ -57,7 +57,7 @@
               <div class="row text-center">
                 <div class="col-12 text-right">
                   <%#= link_to "ほかの商品を見る", user_shop_path(user.name_id), class: 'btn btn-light' %>
-                  <%= link_to "注文情報を入力", new_user_shop_order_path(@cart_items), class: 'btn btn-lg btn-primary' %>
+                  <%= link_to "注文情報を入力", new_user_shop_order_path(current_user), class: 'btn btn-lg btn-primary' %>
                 </div>
               </div>
             </div>

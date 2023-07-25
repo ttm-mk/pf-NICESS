@@ -2,6 +2,7 @@ class Public::OrdersController < ApplicationController
   
   def new
     @order = Order.new
+    @shop = @order.shop
   end
   
   def index
