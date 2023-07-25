@@ -34,6 +34,10 @@ Rails.application.routes.draw do
       # post '/shop' => 'shops#create'
       resource :shop, only: [:new, :create, :show, :update] do
         resources :items, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+        post '/orders/confirm' => 'orders#confirm'
+        get '/orders/thanks' => 'orders#thanks'
+        get '/user_orders' => 'orders#user_orders'
+        resources :orders, only: [:new, :index, :create, :show, :edit, :update]
       end
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'

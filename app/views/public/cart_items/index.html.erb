@@ -33,7 +33,7 @@
                         <%= cart_item.item.shop.user.name %>さんから
                         <%= cart_item.item.name %>を
                         <%= cart_item.item.price %>円(税込)で購入する
-                        <%= link_to "カートから削除", cart_item_path(cart_item.item.shop_id,cart_item), method: :delete, class: 'btn btn-danger',
+                        <%= link_to "カートから削除", cart_item_path(cart_item), method: :delete, class: 'btn btn-danger',
                             data: {confirm: "カートから削除しますか？"} %>
                       </div>
                     </div>
@@ -55,9 +55,9 @@
             </div>
             <div class="card-footer">
               <div class="row text-center">
-                <div class="col-12">
-                  <%#= link_to "ほかの商品を見る", user_shop_path(@shop.user.id), class: 'btn btn-light' %>
-                  <div class="">注文情報を入力</div>
+                <div class="col-12 text-right">
+                  <%#= link_to "ほかの商品を見る", user_shop_path(user.name_id), class: 'btn btn-light' %>
+                  <%= link_to "注文情報を入力", new_user_shop_order_path(@cart_items), class: 'btn btn-lg btn-primary' %>
                 </div>
               </div>
             </div>

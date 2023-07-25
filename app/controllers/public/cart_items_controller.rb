@@ -2,8 +2,8 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = current_user.cart_items
-    item = Item.where(id: @cart_items.ids)
-    @shop = item.pluck(:shop_id)
+    # @items = Item.where(id: @cart_items.ids)
+    # @shop = item.where(shop_id: item.shop_id)
     # TODO
     # item_ids = Item.where(shop_id: @shop.id).pluck(:id)
     # @cart_items = current_user.cart_items.where(item_id: item_ids)
