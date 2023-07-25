@@ -28,6 +28,10 @@
               <!--ログイン後-->
               <% if user_signed_in? %>
                 <li class="dropdown-item">
+                  <%= image_tag current_user.get_user_icon(50,50) %><br>
+                  <%= current_user.name %>
+                </li>
+                <li class="dropdown-item">
                   <%= link_to "TOP", root_path, class: 'nav-link' %>
                 </li>
                 <li class="dropdown-item">
@@ -38,7 +42,7 @@
                   <%= link_to "PROFILE", user_path(current_user.name_id), class: 'nav-link' %>
                 </li>
                 <li class="dropdown-item">
-                  <%= link_to "MY CART", user_shop_cart_items_path(current_user), class: 'nav-link' %>
+                  <%= link_to "MY CART", cart_items_path(current_user), class: 'nav-link' %>
                 </li>
                 <li class="dropdown-item">
                   <%= link_to "LOG OUT", destroy_user_session_path, method: :delete, class: 'nav-link' %>

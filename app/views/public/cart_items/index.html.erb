@@ -8,10 +8,10 @@
       <div class="form-group">
         <div class="row">
           <div class="col-3 h4">
-            <strong>カート商品 (<%= @shop.user.name %>のお店で売っている商品だけ)</strong>
+            <strong>カート商品 (<%#= @shop.user.name %>のお店で売っている商品だけ)</strong>
           </div>
           <div class="col-9 text-right">
-            <%= link_to "カートを空にする", cart_items_destroy_all_user_shop_path(@cart_items), method: :destroy_all, class: 'btn btn-danger',
+            <%= link_to "カートを空にする", cart_items_destroy_all_path(@cart_items), method: :destroy_all, class: 'btn btn-danger',
                 data: {confirm: "カート内商品をすべて削除しますか？"} %>
           </div>
         </div>
@@ -33,14 +33,15 @@
                         <%= cart_item.item.shop.user.name %>さんから
                         <%= cart_item.item.name %>を
                         <%= cart_item.item.price %>円(税込)で購入する
-                        <%= link_to "カートから削除", user_shop_cart_item_path(cart_item.item.shop_id,cart_item), method: :delete, class: 'btn btn-danger',
+                        <%= link_to "カートから削除", cart_item_path(cart_item.item.shop_id,cart_item), method: :delete, class: 'btn btn-danger',
                             data: {confirm: "カートから削除しますか？"} %>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-12 col-lg-6">
-                      <%= form_with model: cart_item, url: user_shop_cart_item_path(cart_item.item.shop_id,cart_item), method: :patch do |f| %>
+                      <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
+                        <%= f.hidden_field :item_id, :value => cart_item.item_id %>
                         <%= f.select :amount, *[1..5] %>
                         <%= f.submit "数量変更", class: 'btn btn-light' %>
                       <% end %>
@@ -52,9 +53,18 @@
                 </div>
               <% end %>
             </div>
+            <div class="card-footer">
+              <div class="row text-center">
+                <div class="col-12">
+                  <%#= link_to "ほかの商品を見る", user_shop_path(@shop.user.id), class: 'btn btn-light' %>
+                  <div class="">注文情報を入力</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
 
     </div>
   </div>

@@ -16,7 +16,7 @@ class Public::ShopsController < ApplicationController
     @user = User.find(params[:user_id])
     @shop.user_id = @user.id
     if @shop.save
-      redirect_to user_shop_path(@shop)
+      redirect_to user_shop_path(@shop.user.name_id)
     else
       user_path(current_user.name_id)
     end

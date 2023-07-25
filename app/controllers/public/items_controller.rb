@@ -27,7 +27,7 @@ class Public::ItemsController < ApplicationController
     @item = Item.new(shop_item_params)
     @item.shop_id = current_user.shop.id
     if @item.save
-      redirect_to user_shop_item_path(params[:user_id], @item.id)
+      redirect_to user_shop_item_path(@item.shop.user.name_id, @item.id)
     else
       redirect_to user_shop_items_path(current_user.shop.id)
     end
