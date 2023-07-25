@@ -98,6 +98,8 @@ ActiveRecord::Schema.define(version: 2023_07_25_043210) do
     t.integer "total_payment", null: false
     t.integer "payment_method", null: false
     t.integer "status", default: 0, null: false
+    t.integer "user_id", null: false
+    t.integer "shop_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

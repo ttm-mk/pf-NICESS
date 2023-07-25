@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_one :shop, dependent: :destroy
   has_many :cart_items, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
 
   # relationshipアソシエーション:TODO
