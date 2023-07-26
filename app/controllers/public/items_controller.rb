@@ -11,9 +11,9 @@ class Public::ItemsController < ApplicationController
   end
 
   def show
-    @user = User.find_by(name_id: params[:user_id])
-    @shop = @user.shop
     @item = Item.find(params[:id])
+    @shop = @item.shop
+    @user = @shop.user.name_id
     @cart_item = CartItem.new
   end
 
@@ -37,7 +37,7 @@ class Public::ItemsController < ApplicationController
     item = Item.find(params[:id])
     item.shop_id = current_user.shop.id
     if item.update(shop_item_params)
-      redirect_to user_shop_item_path(item)
+      redirect_to user_shop_item_path(item.shop.user_id)
     else
       user_shop_path(current_user.name_id)
     end

@@ -11,7 +11,7 @@
             <strong>カート商品 (<%#= @shop.user.name %>のお店で売っている商品だけ)</strong>
           </div>
           <div class="col-9 text-right">
-            <%= link_to "カートを空にする", cart_items_destroy_all_path(@cart_items), method: :destroy_all, class: 'btn btn-danger',
+            <%= link_to "カートを空にする", cart_items_destroy_all_path(current_user), method: :delete, class: 'btn btn-danger',
                 data: {confirm: "カート内商品をすべて削除しますか？"} %>
           </div>
         </div>

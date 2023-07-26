@@ -47,6 +47,12 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
+    @cart_items = current_user.cart_items.all
+    if @cart_items.destroy_all
+      redirect_to cart_items_path(current_user)
+    else
+      redirect_to root_path
+    end
   end
 
 
