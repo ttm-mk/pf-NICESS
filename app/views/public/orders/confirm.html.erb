@@ -1,0 +1,218 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+
+        <div class="card-header">
+          注文情報確認
+        </div>
+
+        <!--情報入力-->
+        <%= form_with model: @order, url: user_shop_orders_path, method: :post do |f| %>
+          <div class="card-body">
+
+            <div class="form-group">
+              <h4>
+                <strong>商品情報</strong>
+              </h4>
+              <hr>
+            </div>
+
+            <% @cart_items.each do |cart_item| %>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-12 col-lg-2">
+                    商品名
+                  </div>
+                  <div class="col-12 col-lg-10">
+                    <%= cart_item.item.name %>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-12 col-lg-2">
+                    金額
+                  </div>
+                  <div class="col-12 col-lg-10">
+                    <%= cart_item.item.price %>円(税込)
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-12 col-lg-2">
+                    購入数
+                  </div>
+                  <div class="col-12 col-lg-10">
+                    <%= cart_item.amount %>点
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-12">
+                    小計
+                    <h5>
+                      <%= cart_item.item.price * cart_item.amount %>
+                      <span class="h6">円</span>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+
+            <% end %>
+
+
+            <div class="form-group">
+              <h4>
+                <strong>お客様情報</strong>
+              </h4>
+              <hr>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  氏名
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.hidden_field :client_name, :value => @order.client_name %>
+                  <%= @order.client_name %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  電話番号(ハイフンなし)
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.hidden_field :client_phone_number, :value => @order.client_phone_number %>
+                  <%= @order.client_phone_number %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row mb-5">
+                <div class="col-12 col-lg-4">
+                  メールアドレス
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.hidden_field :client_email, :value => @order.client_email %>
+                  <%= @order.client_email %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <hr>
+              <h4>
+                <strong>配送先情報</strong>
+              </h4>
+              <hr>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  配送先郵便番号(ハイフンなし)
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.hidden_field :delivery_post_code, :value => @order.delivery_post_code %>
+                  <%= @order.delivery_post_code %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  配送先住所
+                </div>
+                <div class="col-12 col-lg-8 pr-5">
+                  <%= f.hidden_field :delivery_address, :value => @order.delivery_address %>
+                  <%= @order.delivery_address %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row mb-5">
+                <div class="col-12 col-lg-4">
+                  配送先氏名
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.hidden_field :delivery_name, :value => @order.delivery_name %>
+                  <%= @order.delivery_name %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <hr>
+              <h4>
+                <strong>支払い方法</strong>
+              </h4>
+              <hr>
+            </div>
+
+            <div class="form-group">
+              <div class="row mb-5">
+                <div class="col-12">
+                  <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+                  <%= @order.payment_method_i18n %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+                <hr>
+                <h4>
+                  <strong>請求金額</strong>
+                </h4>
+                <hr>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-2">
+                  送料
+                </div>
+                <div class="col-12 col-lg-10">
+                  <%= f.hidden_field :postage, :value => @postage %>
+                  <%= @postage %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-2">
+                  合計
+                </div>
+                <div class="col-12 col-lg-10">
+                  <%= f.hidden_field :total_payment, :value => @total_payment %>
+                  <%= @total_payment %>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="card-footer text-center">
+            <div class="mt-3">
+              <%= f.submit "注文を確定する", class: 'btn btn-lg btn-primary text@-center px-5' %>
+            </div>
+            <div class="pt-4">
+              <%= link_to "注文情報入力に戻る", new_user_shop_order_path(current_user), class: 'text-right' %>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
