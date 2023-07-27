@@ -1,0 +1,211 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="p-5 text-center">
+        ご注文ありがとうございました！
+      </h3>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        
+        <div class="card-header">
+          <h5>注文情報</h5>
+        </div>
+        
+        <div class="card-body">
+          
+          <div class="form-group">
+            <h4>
+              <strong>商品情報</strong>
+            </h4>
+            <hr>
+          </div>
+          
+          <% @order.order_detail.items.each do |order_item| %>
+            
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-12 col-lg-2">
+                    商品名
+                  </div>
+                  <div class="col-12 col-lg-10">
+                    <%= order_item.name %>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-12 col-lg-2">
+                    金額
+                  </div>
+                  <div class="col-12 col-lg-10">
+                    <%= order_item.price %>円(税込)
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-12 col-lg-2">
+                    購入数
+                  </div>
+                  <div class="col-12 col-lg-10">
+                    <%= order_item.order_detail.amount %>点
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-12">
+                    小計
+                    <h5>
+                      <%= order_item.price * order_item.order_detail.amount %>
+                      <span class="h6">円</span>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+
+            <div class="form-group">
+              <hr>
+              <h4>
+                <strong>お客様情報</strong>
+              </h4>
+              <hr>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  氏名
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= @order.client_name %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  電話番号(ハイフンなし)
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= @order.client_phone_number %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row mb-5">
+                <div class="col-12 col-lg-4">
+                  メールアドレス
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= @order.client_email %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <hr>
+              <h4>
+                <strong>配送先情報</strong>
+              </h4>
+              <hr>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  配送先郵便番号(ハイフンなし)
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= @order.delivery_post_code %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  配送先住所
+                </div>
+                <div class="col-12 col-lg-8 pr-5">
+                  <%= @order.delivery_address %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row mb-5">
+                <div class="col-12 col-lg-4">
+                  配送先氏名
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= @order.delivery_name %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+            <div class="form-group">
+              <hr>
+              <h4>
+                <strong>支払い方法</strong>
+              </h4>
+              <hr>
+            </div>
+
+            <div class="form-group">
+              <div class="row mb-5">
+                <div class="col-12">
+                  <%= @order.payment_method_i18n %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+                <hr>
+                <h4>
+                  <strong>請求金額</strong>
+                </h4>
+                <hr>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-2">
+                  送料
+                </div>
+                <div class="col-12 col-lg-10">
+                  <%= @order.postage %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-2">
+                  合計
+                </div>
+                <div class="col-12 col-lg-10">
+                  <%= @order.total_payment %>
+                </div>
+              </div>
+            </div>
+
+        </div>
+        
+        <div class="card-footer">
+          <%= link_to "買い物をしたショップに戻る", user_shop_path(@order.shop.user.name_id), class: 'btn btn-primary m-4 px-3' %>
+          <%= link_to "注文履歴を見る", user_shop_user_orders_path(current_user), class: 'btn btn-success px-3' %>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+</div>
