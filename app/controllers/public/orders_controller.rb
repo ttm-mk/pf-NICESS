@@ -33,7 +33,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def user_orders
-    @user_orders = current_user.orders
+    # order_detailからもってきているよ
+    @user_orders = OrderDetail.where(order_id: current_user)
+    @shop = current_user.shop
+    @postage = 360
   end
 
   def create

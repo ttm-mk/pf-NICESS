@@ -203,7 +203,7 @@
         
         <div class="card-footer text-center">
           <%= link_to "買い物をしたショップに戻る", user_shop_path(@order.shop.user.name_id), class: 'btn btn-primary m-4 px-3' %>
-          <%= link_to "注文履歴を見る", user_shop_orders_path(current_user), class: 'btn btn-success px-3' %>
+          <%= link_to "注文履歴を見る", user_orders_user_shop_path(current_user), class: 'btn btn-success px-3' %>
         </div>
         
       </div>
