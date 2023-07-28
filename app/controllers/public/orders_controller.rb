@@ -29,7 +29,7 @@ class Public::OrdersController < ApplicationController
 
   def thanks
     @order = Order.find(params[:format])
-    # @order_detail = @order.order_detail
+    @order_details = @order.order_details
   end
 
   def user_orders

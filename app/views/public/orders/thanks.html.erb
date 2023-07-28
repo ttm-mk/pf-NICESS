@@ -9,7 +9,7 @@
   
   <div class="row">
     <div class="col-12">
-      <div class="card">
+      <div class="card mb-5">
         
         <div class="card-header">
           <h5>注文情報</h5>
@@ -24,7 +24,7 @@
             <hr>
           </div>
           
-          <% @order.order_detail.items.each do |order_item| %>
+          <% @order_details.each do |order_detail| %>
             
               <div class="form-group">
                 <div class="row">
@@ -32,7 +32,7 @@
                     商品名
                   </div>
                   <div class="col-12 col-lg-10">
-                    <%= order_item.name %>
+                    <%= order_detail.item.name %>
                   </div>
                 </div>
               </div>
@@ -42,7 +42,7 @@
                     金額
                   </div>
                   <div class="col-12 col-lg-10">
-                    <%= order_item.price %>円(税込)
+                    <%= order_detail.item.price %>円(税込)
                   </div>
                 </div>
               </div>
@@ -52,18 +52,19 @@
                     購入数
                   </div>
                   <div class="col-12 col-lg-10">
-                    <%= order_item.order_detail.amount %>点
+                    <%= order_detail.amount %>点
                   </div>
                 </div>
               </div>
+              
               <div class="form-group">
                 <div class="row">
-                  <div class="col-12">
+                  <div class="col-12 col-lg-1 offset-lg-9">
                     小計
-                    <h5>
-                      <%= order_item.price * order_item.order_detail.amount %>
-                      <span class="h6">円</span>
-                    </h5>
+                  </div>
+                  <div class="col-12 col-lg-2 h5">
+                    <%= order_detail.item.price * order_detail.amount %>
+                    <span class="h6">円</span>
                   </div>
                 </div>
               </div>
@@ -185,23 +186,24 @@
                 </div>
               </div>
             </div>
-
-            <div class="form-group">
+            
+            <hr>
+            <div class="form-group text-right">
               <div class="row">
-                <div class="col-12 col-lg-2">
-                  合計
+                <div class="col-8 col-lg-2 offset-lg-8">
+                  <h3>合計</h3>
                 </div>
-                <div class="col-12 col-lg-10">
-                  <%= @order.total_payment %>
+                <div class="col-4 col-lg-2">
+                  <h3><%= @order.total_payment %>円</h3>
                 </div>
               </div>
             </div>
 
         </div>
         
-        <div class="card-footer">
+        <div class="card-footer text-center">
           <%= link_to "買い物をしたショップに戻る", user_shop_path(@order.shop.user.name_id), class: 'btn btn-primary m-4 px-3' %>
-          <%= link_to "注文履歴を見る", user_shop_user_orders_path(current_user), class: 'btn btn-success px-3' %>
+          <%= link_to "注文履歴を見る", user_shop_orders_path(current_user), class: 'btn btn-success px-3' %>
         </div>
         
       </div>
