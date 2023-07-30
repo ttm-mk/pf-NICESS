@@ -10,6 +10,10 @@ class Public::ShopsController < ApplicationController
     @user = User.find_by(id: params[:user_id])
     @shop = Shop.new
   end
+  
+  def edit
+    @shop = current_user.shop
+  end
 
   def create
     @shop = Shop.new(shop_params)
@@ -23,6 +27,12 @@ class Public::ShopsController < ApplicationController
   end
 
   def update
+    shop = current_user.shop
+    shop.user_id = current_user.id
+    if shop.update(shop_params)
+      redirect_to user_shop_path(shop.user.name_id)
+    end
+    
   end
 
 

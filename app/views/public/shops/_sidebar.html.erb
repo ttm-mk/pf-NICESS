@@ -13,6 +13,10 @@
   <div class="card" style="height: 15rem;">
     <div class="card-body">
       <%= @shop.introduction %>
+      
+      <% if @shop.user == current_user %>
+        <%= link_to "編集", edit_user_shop_path(current_user), class: 'btn btn-success' %>
+      <% end %>
     </div>
   </div>
 </div>

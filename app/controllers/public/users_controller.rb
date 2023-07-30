@@ -43,14 +43,7 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find_by(name_id: params[:id])
-    
-    if @user.shop.present?
-      @shop = @user.shop.id
-      @shop.name = params[:shop_name]
-      @shop.introduction = params[:shop_introcution]
-      redirect_to root_path if !@shop.update(shop_params)
-    end
-    
+
     if @user.update!(user_params)
       redirect_to user_path(@user.name_id)
     else

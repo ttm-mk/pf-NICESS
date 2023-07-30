@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update] do
       # get 'shop/new' => 'shops#new'
       # post '/shop' => 'shops#create'
-      resource :shop, only: [:new, :create, :show, :update] do
+      resource :shop, only: [:new, :create, :show, :edit, :update] do
         resources :items, only: [:new, :create, :index, :show, :edit, :update, :destroy]
         post '/orders/confirm' => 'orders#confirm'
         get '/orders/thanks' => 'orders#thanks'

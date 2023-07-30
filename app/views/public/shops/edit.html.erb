@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <%= render 'public/shops/sidebar', shop: @shop %>
+    </div>
+    
+    <div class="col-10">
+      <div class="card">
+        <div class="card-header">
+          <h5>ショップ情報編集</h5>
+        </div>
+        <%= form_with model: @shop, url:user_shop_path(@shop, current_user), method: :patch do |f| %>
+          <div class="card-body">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  ショップ名
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.text_field :name %>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  ショップ説明
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.text_area :introduction, rows: 5, class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+            
+            <!--思案中-->
+            <!--<div class="form-group">-->
+            <!--  <div class="row">-->
+            <!--    <div class="col-12 col-lg-4">-->
+            <!--      送料-->
+            <!--    </div>-->
+            <!--    <div class="col-12 col-lg-8">-->
+                  <%#= f.text_field :postage %>
+            <!--    </div>-->
+            <!--  </div>-->
+            <!--</div>-->
+          </div>
+          
+          <div class="card-footer">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12">
+                  <%= f.submit "変更を保存", class: 'btn btn-success' %>
+                </div>
+              </div>
+            </div>
+          </div>
+            
+        <% end %>
+          
+      </div>
+    </div>
+  </div>
+</div>
