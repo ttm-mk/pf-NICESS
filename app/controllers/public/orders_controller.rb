@@ -11,9 +11,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-  end
-
-  def edit
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
+    @shop = current_user.shop
   end
 
   def confirm
@@ -65,6 +65,14 @@ class Public::OrdersController < ApplicationController
   end
 
   def update
+    order = Order.find(params[:id])
+    order.user_id = current_user.id
+    order.shop_id = current_user.shop.id
+    if order.update(order_params)
+      redirect_to user_shop_order_path(order)
+    else
+      redirect_to user_shop_orders_path(current_user.name_id, current_user.shop)
+    end
   end
 
 

@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <%= render "public/shops/sidebar", shop: @shop %>
+    </div>
+
+    <div class="col-10">
+      <h4 class="p-5">
+       <strong>注文詳細</strong>
+      </h4>
+
+      <div class="card">
+        <div class="card-body">
+          <table class="table">
+            <% @order_details.each do |order_detail| %>
+              <tr>
+                <th>購入者</th>
+                <td><%= order_detail.order.client_name %></td>
+              </tr>
+              <tr>
+                <th>購入商品</th>
+                <td>
+                  <%= order_detail.item.name %>　|
+                  <%= order_detail.amount %>点
+                </td>
+              </tr>
+              <tr>
+                <th>購入金額</th>
+                <td>
+                  <%= order_detail.order.total_payment %>円
+                  (送料：<%= order_detail.order.postage %>円)
+                </td>
+              </tr>
+              <tr>
+                <th>注文ステータス</th>
+                <td>
+                  <%= form_with model: @order, url:user_shop_order_path, method: :patch do |f| %>
+                    <%= f.hidden_field :order_id, :value => @order.id %>
+                    <%= f.select :status, Order.statuses_i18n.invert %>
+                    <%#= f.select :status, options_from_collection_for_select(@order, :id, :status_i18n) %>
+                    <%= f.submit "変更する", class: 'btn btn-success ml-4 px-3' %>
+                  <% end %>
+                  <%#= order_detail.order.status_i18n %>
+                </td>
+              </tr>
+              <tr>
+                <th>配送先情報</th>
+                <td>
+                  <div class="row m-4">
+                    <div class="col-3">
+                      郵便番号
+                    </div>
+                    <div class="col-9">
+                      <%= order_detail.order.delivery_post_code %>
+                    </div>
+                  </div>
+                  <div class="row m-4">
+                    <div class="col-3">
+                      住所
+                    </div>
+                    <div class="col-9">
+                      <%= order_detail.order.delivery_address %>
+                    </div>
+                  </div>
+                  <div class="row m-4">
+                    <div class="col-3">
+                      宛名
+                    </div>
+                    <div class="col-9">
+                      <%= order_detail.order.delivery_name %>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+            <% end %>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
