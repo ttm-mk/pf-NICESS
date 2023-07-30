@@ -6,6 +6,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @shop = current_user.shop
+    @orders = @shop.orders
   end
 
   def show

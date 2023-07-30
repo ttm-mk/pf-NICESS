@@ -35,8 +35,7 @@
         <%= link_to "商品新規登録", new_user_shop_item_path(shop.id) %>
       </li>
       <li class="pb-3">
-        注文一覧
-        <%#= link_to "注文一覧", user_shop_orders_path(current_user) %>
+        <%= link_to "注文一覧", user_shop_orders_path(current_user.name_id) %>
       </li>
       <li class="pb-3">
         カテゴリー管理
