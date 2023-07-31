@@ -1,30 +1,34 @@
 <div class="container">
-  <div class="row">
+  <div class="row my-4">
     <div class="col-12 col-lg-8 order-1 order-lg-0">
        <!--投稿 -->
-      <div>
-        <%= form_with model: @post, url: user_posts_path(current_user), method: :post do |f| %>
-          <div class="form-group">
-            <%= f.text_area :text, rows: 3, class: 'form-control' %>
-          </div>
+      <!--<div>-->
+      <!--  <%#= form_with model: @post, url: user_posts_path(current_user), method: :post do |f| %>-->
+      <!--    <div class="form-group">-->
+      <!--      <%#= f.text_area :text, rows: 5, class: 'form-control' %>-->
+      <!--    </div>-->
 
-          <div class="row">
-            <div class="col-12 col-md-8">
-              <div class="form-group">
-                <%= f.file_field :image, accept: 'image/*' %>
-              </div>
-            </div>
-            <div class="col-12 col-md-4">
-              <div class="form-group">
-                <%= f.submit '投稿する', class: 'btn btn-light btn-block' %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
+      <!--    <div class="row">-->
+      <!--      <div class="col-12 col-md-8">-->
+      <!--        <div class="form-group">-->
+      <!--          <%#= f.file_field :image, accept: 'image/*' %>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--      <div class="col-12 col-md-4">-->
+      <!--        <div class="form-group mb-5">-->
+      <!--          <%#= f.submit '投稿する', class: 'btn btn-primary btn-block' %>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--    </div>-->
+      <!--  <%# end %>-->
+      <!--</div>-->
 
       <!--ユーザーの投稿一覧-->
-      <h3><%= @user.name %>の投稿</h3>
+      <h4>
+        <i class="fas fa-scroll"></i>
+        <%= @user.name %>の投稿一覧
+        <i class="fas fa-scroll"></i>
+        </h4>
 
       <% @user.posts.each do |post| %>
         <div class="form-group">
@@ -45,18 +49,16 @@
 
     </div>
 
-    <!--プロフィール-->
     <div class="col-12 col-lg-4 mb-5 mb-lg-0 order-0 order-lg-1">
+      <!--プロフィール-->
       <div class="card">
         <div class="card-body">
           <div class="row">
-            <div class="col-12 col-md-4">
+            <div class="col-4">
               <%= image_tag @user.get_user_icon(100,100) %>
             </div>
-            <div class="col-12 col-md-8 d-flex justify-content-center align-items-center">
-              <h6 class="card-title">
-                <%= @user.name %>
-              </h6>
+            <div class="col-8 d-flex justify-content-center align-items-center">
+              <%= @user.name %>
             </div>
           </div>
           <% if @user.profile.present? %>
@@ -67,66 +69,132 @@
         </div>
       </div>
 
-      <h5 class="mt-3">ショップ</h5>
+      <!--ショップ-->
+      <div class="mt-3">
+        <% if @user.shop.present? %>
+        <div class="h5 text-center py-3">
+          <i class="fas fa-shopping-cart"></i>
+          <%= link_to "ショップ", user_shop_path(@user.name_id) %>
+          <i class="fas fa-shopping-cart"></i>
+        </div>
 
-      <!-- Slider main container -->
-      <div class="swiper">
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
-          <!-- Slides -->
-          <% (1..10).each do |item| %>
-          <div class="swiper-slide">
+          <% if @user.shop.items.present? %>
+            <!-- Slider main container -->
+            <div class="swiper">
 
-            <div class="card">
-              <!-- svgはimage_tagに最終的に書き換える -->
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg"
-                          preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
-                <title>Placeholder</title>
-                <rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">商品画像</text>
-              </svg>
-              <!-- ここまでsvg -->
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper">
 
-              <div class="card-body px-5">
-                <div class="card-title">
-                  色紙セット<%= item %>
-                </div>
+                <!-- Slides -->
+                <% @user.shop.items.each do |item| %>
+                  <div class="swiper-slide">
 
-                <div class="card-text">
-                  <div class="pt-3">
-                    テーマ「鋼」の色紙3枚セット。<br>
-                    ・消えない痕跡<br>
-                    ・腐敗<br>
-                    ・軌跡<br>
-                    各サイズ(20×20)<br>
-                  </div>
-                  <div class="pt-3">
-                    <div class="pt-2">
-                      価格
+                    <div class="card mx-4">
+                      <!-- svgはimage_tagに最終的に書き換える -->
+                      <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg"-->
+                      <!--            preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">-->
+                      <!--  <title>Placeholder</title>-->
+                      <!--  <rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">商品画像</text>-->
+                      <!--</svg>-->
+                      <!-- ここまでsvg -->
+                      <%= image_tag item.item_image %>
+
+                      <div class="card-body">
+                        <div class="card-title">
+                          <%= item.name %>
+                        </div>
+
+                        <div class="card-text">
+                          <div class="pt-3">
+                            <%= item.introduction %>
+                          </div>
+                          <div class="pt-3">
+                            <div class="pt-2">
+                              <%= item.price %>円(税込)
+                            </div>
+                          </div>
+                          <div>
+                            <%= link_to "詳細", user_shop_item_path(item.shop.id, item), class: 'btn btn-primary mt-3 form-control' %>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div>100円</div>
                   </div>
-                  <div class="btn btn-primary mt-3 form-control">
-                  詳細
-                  </div>
-                </div>
+
+                <% end %>
               </div>
 
+            <!-- If we need navigation buttons -->
+              <div class="swiper-button-prev fa-fw fa-2x">
+                <i class="fas fa-arrow-circle-left"></i>
+              </div>
+              <div class="swiper-button-next fa-fw fa-2x">
+                <i class="fas fa-arrow-circle-right"></i>
+              </div>
             </div>
+          <% else %>
+            <div class="h5 text-center p-5">
+              商品なし
+            </div>
+          <% end %>
 
+        <% else %>
+          <div class="h5 text-center p-5">
+            ショップなし
+          </div>
+        <% end %>
+      </div>
+
+      <!--画像投稿-->
+      <div class="mt-3">
+        <div class="h5 text-center py-3">
+          <i class="fas fa-images"></i>
+          画像投稿一覧
+          <i class="fas fa-images"></i>
+        </div>
+
+        <!-- Slider main container -->
+        <div class="swiper">
+
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+
+            <!-- Slides -->
+            <% @user.posts.each do |post| %>
+              <% if post.image.present? %>
+                <div class="swiper-slide">
+
+                  <div class="card mx-4">
+                    <!-- svgはimage_tagに最終的に書き換える -->
+                    <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg"-->
+                    <!--            preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">-->
+                    <!--  <title>Placeholder</title>-->
+                    <!--  <rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">商品画像</text>-->
+                    <!--</svg>-->
+                    <!-- ここまでsvg -->
+                    <%= image_tag post.image %>
+
+                    <div class="card-body">
+                      <div class="pt-3">
+                        <%= link_to "詳細", user_post_path(post.user.name_id, post.id), class: 'btn btn-primary btn-block mt-3' %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
           </div>
 
-        <% end %>
-
-        </div>
-
-      <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev fa-fw fa-2x">
-          <i class="fas fa-arrow-circle-left"></i>
-        </div>
-        <div class="swiper-button-next fa-fw fa-2x">
-          <i class="fas fa-arrow-circle-right"></i>
+        <!-- If we need navigation buttons -->
+          <div class="swiper-button-prev fa-fw fa-2x">
+            <i class="fas fa-arrow-circle-left"></i>
+          </div>
+          <div class="swiper-button-next fa-fw fa-2x">
+            <i class="fas fa-arrow-circle-right"></i>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
