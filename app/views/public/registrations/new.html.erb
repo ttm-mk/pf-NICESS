@@ -1,58 +1,88 @@
 <div class="container">
 
-  <div class="row mx-5">
-    <div class="col-4 offset-4">
-      <h2 class="p-4 text-light">新規ユーザー登録</h2>
+  <div class="row">
+    <div class="col-12 text-center">
+      <h2 class="p-4">新規ユーザー登録</h2>
       <%= render "public/shared/error_messages", resource: resource %>
     </div>
-    <div class="col-4"></div>
   </div>
 
-  <%= form_with model: @user, url:user_registration_path, method: :post do |f| %>
-    <div class="row">
-      <div class="col-3 offset-3 bg-white">
-        <div class="h5 mt-4 pt-5 text-center">なまえ</div>
-        <div class="h5 mt-4 pt-2 text-center">ユーザーID</div>
-        <div class="h5 mt-4 pt-1 text-center">メールアドレス</div>
-        <div class="h5 mt-4 text-center">
-          パスワード<br>
-          <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> 文字以上)</em>
+  <div class="row">
+    <div class="col-12 col-md-8 mx-auto">
+      <div class="card mb-5">
+        <div class="card-body p-5">
+          <%= form_with model: @user, url:user_registration_path, method: :post do |f| %>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  ユーザー名
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  ユーザーID
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.text_field :name_id, autofocus: true, class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  メールアドレス
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.text_field :email, autofocus: true, class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  パスワード
+                  <% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %> 文字以上)</em>
+                  <% end %>
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  パスワード(確認)
+                </div>
+                <div class="col-12 col-lg-8">
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row mt-5">
+                <div class="col-12 text-center">
+                  <%= f.submit "新規登録", class: 'btn btn-lg btn-primary btn-block' %>
+                </div>
+              </div>
+            </div>
+
           <% end %>
         </div>
-        <div class="h5 mt-3 pb-5 text-center">パスワード<br>(確認)</div>
       </div>
-
-      <div class="col-3 bg-white">
-        <div class="mt-4 pt-5">
-          <%= f.text_field :name, autofocus: true %>
-        </div>
-        <div class="mt-4">
-          <%= f.text_field :name_id %>
-        </div>
-        <div class="mt-4">
-          <%= f.email_field :email, autocomplete: "email" %>
-        </div>
-        <div class="mt-4">
-          <%= f.password_field :password, autocomplete: "new-password" %>
-        </div>
-        <div class="mt-4 pt-2 pb-5">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-        </div>
-      </div>
-      <div class="col-3"></div>
     </div>
-
-    <div class="row pb-5">
-      <div class="col-6 offset-3 bg-white">
-        <div class="mb-5 text-center">
-          <%= f.submit "新規登録", class: 'btn btn-lg btn-primary' %>
-        </div>
-      </div>
-      <div class="col-3"></div>
-    </div>
-
-  <% end %>
-
+  </div>
 </div>
+
 
