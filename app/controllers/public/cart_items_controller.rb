@@ -2,6 +2,7 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = current_user.cart_items
+    # @shops = Shop.all
     # @items = Item.where(id: @cart_items.ids)
     # @shop = Item.where(shop_id: @items) 
     # pp "ppで以下を表示する",@shop

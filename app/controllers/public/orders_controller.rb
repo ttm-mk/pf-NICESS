@@ -54,7 +54,10 @@ class Public::OrdersController < ApplicationController
         order_detail.order_id = @order.id
         order_detail.order_price = cart_item.item.price
         order_detail.amount = cart_item.amount
-        order_detail.save
+        if order_detail.save
+          order_detail.item.stock - order_detail.amount
+          item.update
+        end
       end
       redirect_to orders_thanks_user_shop_path(current_user, @order.id)
       cart_items.destroy_all

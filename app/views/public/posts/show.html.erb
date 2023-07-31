@@ -1,108 +1,150 @@
 <div class="container">
 
-  <!--post-->
   <div class="row">
+
+    <!--左 投稿表示-->
     <div class="col-12 col-lg-9">
-      <div class="card">
+      <!--post-->
+      <div class="row mx-md-auto">
+        <div class="col-12 col-lg-9">
+          <div class="card">
 
-        <div class="card-body">
-          <div class="pb-3">
-            <%= image_tag @post.user.get_user_icon(100,100) %>
-            <%= @post.user.name %>
-          </div>
-          <div class="">
-            <%= simple_format(@post.text) %>
-          </div>
-          <% if @post.image.present? %>
-            <div>
-              <%= image_tag @post.image, class: 'img-fluid' %>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="card-footer">
-          <div class="d-block d-md-flex justify-content-between">
-            <div>
-              <i class="far fa-comment-alt mr-3"></i>
-              <%= @post.comments.count %>
-
-              <% if @post.favorite_by?(current_user) %>
-                <%= link_to user_post_favorites_path(current_user.id, @post), method: :delete do %>
-                  <i class="fas fa-heart"></i>
-                <% end %>
-                <%= @post.favorites.count %>いいね
-
-              <% else %>
-                <%= link_to user_post_favorites_path(current_user.id, @post), method: :post do %>
-                  <i class="far fa-heart"></i>
-                <% end %>
-                <%= @post.favorites.count %>いいね
-
-              <% end %>
-
-              <% if @post.user.id == current_user.id %>
-                <%= link_to user_post_path(params[:user_id], params[:id]), method: :delete, data: {confirm: '本当に削除しますか？'} do %>
-                  <i class="fas fa-trash-alt"></i>
-                <% end %>
+            <div class="card-body">
+              <div class="pb-3">
+                <%= image_tag @post.user.get_user_icon(100,100) %>
+                <%= @post.user.name %>
+              </div>
+              <div class="pl-5">
+                <%= simple_format(@post.text) %>
+              </div>
+              <% if @post.image.present? %>
+                <div>
+                  <%= image_tag @post.image, class: 'img-fluid' %>
+                </div>
               <% end %>
             </div>
-            <!-- TODO: あとで確認 -->
-            <div class="text-right text-md-left">
-              <%= @post.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M') %>
+
+            <div class="card-footer">
+              <div class="d-block d-md-flex justify-content-between">
+                <div>
+                  <i class="far fa-comment-alt mr-3"></i>
+                  <%= @post.comments.count %>
+
+                  <% if @post.favorite_by?(current_user) %>
+                    <%= link_to user_post_favorites_path(current_user.id, @post), method: :delete do %>
+                      <i class="fas fa-heart"></i>
+                    <% end %>
+                    <%= @post.favorites.count %>いいね
+
+                  <% else %>
+                    <%= link_to user_post_favorites_path(current_user.id, @post), method: :post do %>
+                      <i class="far fa-heart"></i>
+                    <% end %>
+                    <%= @post.favorites.count %>いいね
+
+                  <% end %>
+
+                  <% if @post.user.id == current_user.id %>
+                    <%= link_to user_post_path(params[:user_id], params[:id]), method: :delete, data: {confirm: '本当に削除しますか？'} do %>
+                      <i class="fas fa-trash-alt"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+                <!-- TODO: あとで確認 -->
+                <div class="text-right text-md-left">
+                  <%= @post.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M') %>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!--comment-->
+      <div class="row mx-md-auto mb-5">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <% @post.comments.each do |comment| %>
+                    <div class="m-2">
+                      <%= image_tag comment.user.get_user_icon(50,50) %>
+                      <%= comment.user.name %>
+                      <div class="pt-3 pb-4 pl-4">
+                        <%= simple_format(comment.text) %>
+                      </div>
+
+                      <div class="d-block d-md-flex justify-content-between">
+                        <div>
+                          <%= link_to user_post_comment_path(params[:user_id], params[:id], comment), method: :delete, data: {confirm: '削除しますか？'} do %>
+                            <i class="fas fa-trash-alt"></i>
+                          <% end %>
+                          コメント削除
+                        </div>
+                        <div class="text-right text-md-left">
+                          <%= @post.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M') %>
+                        </div>
+                      </div>
+                      <hr>
+                    </div>
+                  <% end %>
+                  <%= form_with model: @comment, url: user_post_comments_path(params[:user_id], @post) do |f| %>
+                    <div class="form-group">
+                      <%= f.text_area :text, rows: 5, class: 'form-control' %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.submit "コメントを送信", class: 'btn btn-primary' %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
-    <div class="col-lg-3"></div>
-  </div>
 
-  <!--comment-->
-  <div class="row">
-    <div class="col-12">
-      <% @post.comments.reverse.each do |comment| %>
-        <div>
-          <%= comment.user.get_user_icon(100,100) %>
-          <%= comment.user.name %>
-          <%= simple_format(comment.text) %>
-          <%= link_to user_post_comment_path(params[:user_id], params[:id], comment), method: :delete, data: {confirm: '削除しますか？'} do %>
-            <i class="fas fa-trash-alt"></i>
-          <% end %>
+    <!--右 投稿ユーザーのプロフィール-->
+    <div class="col-12 col-lg-3">
+      <div class="row">
+        <div class="col-lg-12 col-md-7">
+          <div class="card mb-5 mt-lg-0">
+
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 col-md-4">
+                  <%= image_tag @post.user.get_user_icon(100,100) %>
+                </div>
+                <div class="col-lg-12 col-md-8 d-flex justify-content-center align-items-center">
+                  <h6 class="card-title">
+                    <%= @post.user.name %>
+                  </h6>
+                </div>
+              </div>
+
+              <% if @post.user.profile.present? %>
+                <div class="mt-3">
+                  <%= simple_format(@post.user.profile) %>
+                </div>
+              <% end %>
+
+              <div class="my-2">
+                <% if current_user.id == @post.user.id %>
+
+                <% elsif current_user.following?(@post.user) %>
+                  <%= link_to "フォローを外す", user_relationships_path(@post.user.id), method: :delete, class: 'btn btn-light' %>
+                <% else %>
+                  <%= link_to "フォローする", user_relationships_path(@post.user.id), method: :post, class: 'btn btn-primary' %>
+                <% end %>
+              </div>
+            </div>
+
+          </div>
         </div>
-      <% end %>
-      <hr>
-      <%= form_with model: @comment, url: user_post_comments_path(params[:user_id], @post) do |f| %>
-        <div class="form-group">
-          <%= f.text_area :text, rows: 5, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.submit "コメントを送信", class: 'btn btn-primary' %>
-        </div>
-      <% end %>
+        <div class="col-lg-12 col-md-5"></div>
+      </div>
     </div>
   </div>
 </div>
-<!--  <h2>Show</h2>-->
-<!--  <%#= simple_format(@post.text) %>-->
-<!--  <hr>-->
-<!--  <%# @post.comments.reverse.each do |comment| %>-->
-<!--    <div>-->
-<!--      <%#= comment.user.name %>-->
-<!--      <%#= simple_format(comment.text) %>-->
-<!--      <%#= link_to user_post_comment_path(params[:user_id], params[:id], comment), method: :delete, data: {confirm: '削除しますか？'} do %>-->
-<!--        <i class="fas fa-trash-alt"></i>-->
-<!--      <%# end %>-->
-<!--    </div>-->
-<!--  <%# end %>-->
-<!--  <hr>-->
-<!--  <%#= form_with model: @comment, url: user_post_comments_path(params[:user_id], @post) do |f| %>-->
-<!--    <div class="form-group">-->
-<!--      <%#= f.text_area :text, rows: 5, class: 'form-control' %>-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--      <%#= f.submit %>-->
-<!--    </div>-->
-<!--  <%# end %>-->
-<!--</div>-->
-
