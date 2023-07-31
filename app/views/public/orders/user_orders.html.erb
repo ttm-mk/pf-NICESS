@@ -10,7 +10,7 @@
       <!--注文履歴一覧-->
       <div class="col-10">
         <% @user_orders.each do |user_order| %>
-          <div class="card">
+          <div class="card mx-3 my-4">
             <div class="card-header">
               <%= user_order.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M') %>　注文履歴
             </div>
@@ -31,7 +31,7 @@
                     <div class="col-12 col-lg-3">
                       <%= item.name %>
                     </div>
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-4 pl-4">
                       <%= item.price %>円 × <%#= item.order.order_detail.amount %>点
                     </div>
                     <div class="col-12 col-lg-5">
@@ -59,12 +59,12 @@
 
               <div class="form-group text-right">
                 <hr>
-                  <div class="row">
-                    <div class="col-9">
+                  <div class="row pr-5">
+                    <div class="col-12 col-lg-9">
                        <h5><strong>請求金額</strong></h5>
                     </div>
-                    <div class="col-3">
-                      <div class="pr-5">小計＋送料円</div>
+                    <div class="col-12 col-lg-3">
+                      <div>小計＋送料円</div>
                     </div>
                   </div>
                 <hr>

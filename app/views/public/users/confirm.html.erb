@@ -1,14 +1,14 @@
 <div class="container">
-  <div class="row">
-    <div class="card mx-auto">
+  <div class="row mx-2">
+    <div class="card my-4 mx-auto">
       <div class="card-body">
 
         <div class="row">
           <div class="col-12 my-4 text-center">
-            <div class="h3 pt-5">
+            <div class="h3 py-5">
               本当に退会しますか？
             </div>
-            <div class="p-5">
+            <div class="px-3 py-4">
               退会するとユーザー情報が削除されるため、<br>
               他ユーザーとの交流履歴、ECサイト使用時の注文履歴<br>
               などの閲覧が出来なくなります。
@@ -16,11 +16,15 @@
           </div>
         </div>
         <div class="row mx-auto mb-5">
-          <div class="col-6 pl-5">
-            <%= link_to "マイページに戻る", user_path(current_user.name_id), class: 'btn btn-primary' %>
+          <div class="col-12 col-lg-6">
+            <div class="form-group">
+              <%= link_to "マイページに戻る", user_path(current_user.name_id), class: 'btn btn-primary btn-block' %>
+            </div>
           </div>
-          <div class="col-6 pl-5">
-            <%= link_to "退会する", user_resign_path(current_user), method: :patch, class: 'btn btn-danger', data: { confirm: "本当に退会します。よろしいですか？" } %>
+          <div class="col-12 col-lg-6">
+            <div class="from-group">
+              <%= link_to "退会する", user_resign_path(current_user), method: :patch, class: 'btn btn-danger btn-block', data: { confirm: "本当に退会します。よろしいですか？" } %>
+            </div>
           </div>
         </div>
 

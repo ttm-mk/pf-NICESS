@@ -39,7 +39,7 @@ class Public::UsersController < ApplicationController
     user.update(is_deleted: true)
     reset_session
     redirect_to root_path
-    
+
   end
 
   def update
@@ -55,7 +55,7 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :name_id, :profile, :email, :user_icon)
   end
-  
+
   def shop_params
     params.require(:user).permit(:shop_name, :shop_introduction)
   end

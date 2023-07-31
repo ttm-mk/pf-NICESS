@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="row">
+  <div class="row mx-3">
     <div class="card m-5 mx-auto" style="width: 50rem;">
       <div class="card-header">
         マイ情報編集
       </div>
-      <div class="card-body">
+      <div class="card-body p-4">
         <%= form_with model: @user, url:user_path, method: :patch do |f| %>
           <div class="form-group">
             <div class="row">
@@ -60,9 +60,17 @@
               </div>
             </div>
           </div>
-          <div class="my-4">
-            <%= f.submit "変更を保存", class: 'btn btn-success' %>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 text-center">
+                <div class="my-4 px-5">
+                  <%= f.submit "変更を保存", class: 'btn btn-block btn-success' %>
+                </div>
+              </div>
+            </div>
           </div>
+
         <% end %>
       </div>
 
