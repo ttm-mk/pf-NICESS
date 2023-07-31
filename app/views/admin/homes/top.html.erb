@@ -1,50 +1,35 @@
 <div class="container">
+
   <div class="row">
-    <div class="col-12">
-      <div class="card m-4">
-        <div class="row">
-          <div class="col-12 text-center">
-            <div class="m-5 h2">
-             <strong>ユーザー情報詳細</strong>
-            </div>
-          </div>
-    
-          <div class="row mx-auto">
-            <div class="col-12">
-              <table class="table border table-bordered mb-5">
-                <thead>
-                  <tr>
-                    <th class="border-dark px-5">なまえ</th>
-                    <th class="border-dark px-5">ユーザーID</th>
-                    <th class="border-dark px-5">ショップ名</th>
-                    <th class="border-dark px-5">メールアドレス</th>
-                    <th class="border-dark">ステータス</th>
-                    <th class="border-dark"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @users.each do |user| %>
-                    <tr>
-                      <td class="border-dark"><%= user.name %></td>
-                      <td class="border-dark"><%= user.name_id %></td>
-                      <td class="border-dark">
-                        <%# if user.shop.present? %>
-                          <%#= user.shop.name %>
-                        <%# end %>
-                      </td>
-                      <td class="border-dark"><%= user.email %></td>
-                      <td class="border-dark"><%= user.is_deleted ? '退会' : ' 有効' %></td>
-                      <td class="border-dark"><%= link_to "詳細", admin_user_path(user), class: 'btn btn-primary' %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-    
-        </div>
+    <div class="col-12 text-center">
+      <div class="h4 p-3">
+       <strong>ユーザー情報詳細</strong>
       </div>
     </div>
   </div>
+
+  <div class="row mx-auto">
+    <div class="col-12">
+      <% @users.each do |user| %>
+        <div class="card">
+          <div class="card-body">
+              <div class="row">
+                <div class="col-4 col-lg-3 offset-lg-1 text-center">
+                  <%= user.name %>
+                </div>
+                <div class="col-4 col-lg-3 text-center">
+                  <%= user.is_deleted ? '退会' : ' 有効' %>
+                </div>
+                <div class="col-4 col-lg-4 text-center">
+                  <%= link_to "詳細", admin_user_path(user), class: 'btn btn-primary' %>
+                </div>
+                <div class="col-lg-1"></div>
+              </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
 </div>
 
