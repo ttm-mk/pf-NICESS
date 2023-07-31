@@ -18,25 +18,26 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    @cart_items = current_user.cart_items.all
+    cart_items = current_user.cart_items.joins(:item).select('cart_items.*, items.shop_id')
+    @cart_items = cart_items.where(item_id: cart_items.pluck(:shop_id))
+    @total_price = 0
 
     @cart_items.each do |cart_item|
-      @total_price =+ (cart_item.item.price * cart_item.amount)
+      @total_price += (cart_item.item.price * cart_item.amount)
     end
-    
+
     @postage = 360
     @total_payment = @postage + @total_price
 
   end
 
   def thanks
-    @order = Order.find(params[:format])
+    @order = Order.find(params[:order_id])
     @order_details = @order.order_details
   end
 
   def user_orders
-    # order_detailからもってきているよ
-    @user_orders = OrderDetail.where(order_id: current_user)
+    @orders = current_user.orders
     @shop = current_user.shop
     @postage = 360
   end
@@ -47,19 +48,21 @@ class Public::OrdersController < ApplicationController
     @order.shop.id = params[:order][:shop_id]
 
     if @order.save
-      cart_items = current_user.cart_items.all
+      items = current_user.cart_items.joins(:item).select('cart_items.*, items.shop_id')
+      cart_items = items.where(item_id: items.pluck(:shop_id))
       cart_items.each do |cart_item|
         order_detail = OrderDetail.new
         order_detail.item_id = cart_item.item_id
         order_detail.order_id = @order.id
         order_detail.order_price = cart_item.item.price
         order_detail.amount = cart_item.amount
-        if order_detail.save
-          order_detail.item.stock - order_detail.amount
-          item.update
-        end
+        order_detail.save
+        # if order_detail.save
+        #   order_detail.item.stock - order_detail.amount
+        #   item.update
+        # end
       end
-      redirect_to orders_thanks_user_shop_path(current_user, @order.id)
+      redirect_to orders_thanks_user_shop_path(current_user, {order_id: @order.id})
       cart_items.destroy_all
     else
       @order = Order.new(order_params)

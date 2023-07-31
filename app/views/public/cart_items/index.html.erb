@@ -1,9 +1,5 @@
 <div class="container">
-  <div class="row">
-    <!--<div class="col-2">-->
-    <!--  <%#= render 'public/shops/sidebar', shop: @shop %>-->
-    <!--</div>-->
-
+  <div class="row mt-4">
     <div class="col-12">
       <div class="form-group">
         <div class="row">
@@ -19,70 +15,82 @@
 
       <div class="row">
         <div class="col-12">
-          <div class="card">
-            
-            <!--ボディ-->
-            <div class="card-body">
-              <% if @cart_item.present? %>
-                <% @cart_items.each do |cart_item| %>
-  
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col-12 col-lg-3 bg-white">
-                        がぞう
-                      </div>
-                      <div class="col-12 col-lg-9">
-                        <div class="m-2">
-                          <%= cart_item.item.shop.user.name %>さんから
-                          <%= cart_item.item.name %>を
-                          <%= cart_item.item.price %>円(税込)で購入する
-                          <%= link_to "カートから削除", cart_item_path(cart_item), method: :delete, class: 'btn btn-danger',
-                              data: {confirm: "カートから削除しますか？"} %>
+          <% if @cart_items.present? %>
+            <% @cart_items.each do |shop_name, cart_items| %>
+              <div class="card mb-4">
+                
+                <!--ヘッダー-->
+                <div class="card-header">
+                  <h2><%= shop_name %></h2>
+                </div>
+                
+                <!--ボディ-->
+                <div class="card-body">
+                  <div class="card-text">
+                    <% cart_items.each do |cart_item| %>
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-12 col-lg-3 bg-white">
+                            <%= image_tag cart_item.item.get_item_image(100,100) %>
+                          </div>
+                          <div class="col-12 col-lg-9">
+                            <div class="m-2">
+                              <%= cart_item.item.shop.user.name %>さんから
+                              <%= cart_item.item.name %>を
+                              <%= cart_item.item.price %>円(税込)で購入する
+                              <%= link_to "カートから削除", cart_item_path(cart_item), method: :delete, class: 'btn btn-danger',
+                                  data: {confirm: "カートから削除しますか？"} %>
+                            </div>
+                          </div>
                         </div>
+  
+                        <div class="row">
+                          <div class="col-12 col-lg-6">
+                            <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
+                              <%= f.hidden_field :item_id, :value => cart_item.item_id %>
+                              <%= f.select :amount, *[1..5] %>
+                              <%= f.submit "数量変更", class: 'btn btn-light' %>
+                            <% end %>
+                          </div>
+  
+                          <div class="col-12 col-lg-6">
+                            小計<%= cart_item.item.price * cart_item.amount %>
+                          </div>
+                        </div>
+  
                       </div>
-                    </div>
-                    
-                    <div class="row">
-                      <div class="col-12 col-lg-6">
-                        <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
-                          <%= f.hidden_field :item_id, :value => cart_item.item_id %>
-                          <%= f.select :amount, *[1..5] %>
-                          <%= f.submit "数量変更", class: 'btn btn-light' %>
-                        <% end %>
-                      </div>
-                      
-                      <div class="col-12 col-lg-6">
-                        小計<%= cart_item.item.price * cart_item.amount %>
-                      </div>
-                    </div>
+                    <% end %>
                     
                   </div>
-                <% end %>
-              <% else %>
-                <div class="m-5 text-center">
-                  カート内はからっぽです！
                 </div>
-              <% end %>
-            </div>
-            
-            <!--フッター-->
-            <div class="card-footer">
-              <div class="row text-center">
-                <div class="col-12 text-right">
-                  <% if @cart_items.present? %>
-                    <%#= link_to "ほかの商品を見る", user_shop_path(user.name_id), class: 'btn btn-light' %>
-                    <%= link_to "注文情報を入力", new_user_shop_order_path(current_user), class: 'btn btn-lg btn-primary' %>
-                  <% else %>
-                    <%= link_to "TOPに戻る", root_path, class: 'btn btn-primary' %>
-                  <% end %>
+
+                <!--フッター-->
+                <div class="card-footer">
+                  <div class="row text-center">
+                    <div class="col-6 col-lg-9 text-right">
+                      <%#= link_to "他の商品を見る", user_shop_path(params[:name_id],params[:shop_id]), class: 'btn btn-info' %>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                      <%= link_to "注文情報を入力", new_user_shop_order_path(current_user, params[:shop_name]), class: 'btn btn-primary' %>
+                    </div>
+                  </div>
                 </div>
+            　</div>
+            <% end %>
+
+          <% else %>
+            <div class="card">
+              <div class="card-body">
+                <div class="m-5">カートはからっぽです！</div>
+              </div>
+              <div class="card-footer">
+                <%= link_to "TOPに戻る", root_path, class: 'btn btn-primary' %>
               </div>
             </div>
-          </div>
+          <% end %>
+
         </div>
       </div>
-
-
     </div>
   </div>
 </div>

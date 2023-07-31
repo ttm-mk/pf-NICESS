@@ -9,10 +9,10 @@
 
       <!--注文履歴一覧-->
       <div class="col-10">
-        <% @user_orders.each do |user_order| %>
+        <% @orders.each do |order| %>
           <div class="card mx-3 my-4">
             <div class="card-header">
-              <%= user_order.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M') %>　注文履歴
+              <%= order.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M') %>　注文履歴
             </div>
 
             <div class="card-body">
@@ -20,22 +20,22 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col-12">
-                    ショップ名：<%= user_order.order.shop.name %>
+                    ショップ名：<%= order.shop.name %>
                   </div>
                 </div>
               </div>
 
-              <% user_order.order.items.each do |item| %>
+              <% order.order_details.each do |order_detail| %>
                 <div class="form-group">
                   <div class="row">
                     <div class="col-12 col-lg-3">
-                      <%= item.name %>
+                      <%= order_detail.item.name %>
                     </div>
                     <div class="col-12 col-lg-4 pl-4">
-                      <%= item.price %>円 × <%#= item.order.order_detail.amount %>点
+                      <%= order_detail.order_price %>円 × <%= order_detail.amount %>点
                     </div>
                     <div class="col-12 col-lg-5">
-                       小計：<%#= item.order_detail.price * item.order_detail.amount %>
+                       小計：<%= order_detail.order_price * order_detail.amount %>円
                     </div>
                   </div>
                 </div>
@@ -52,7 +52,7 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col-12">
-                    <div class=""><%= user_order.order.status_i18n %></div>
+                    <div class=""><%= order.status_i18n %></div>
                   </div>
                 </div>
               </div>
@@ -64,7 +64,7 @@
                        <h5><strong>請求金額</strong></h5>
                     </div>
                     <div class="col-12 col-lg-3">
-                      <div>小計＋送料円</div>
+                      <div><%= order.total_payment %>円</div>
                     </div>
                   </div>
                 <hr>
