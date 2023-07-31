@@ -19,7 +19,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
   end
-  
+
   def destroy
     post = Post.find(params[:id])
     redirect_to root_path and return if !post.user_id == current_user.id

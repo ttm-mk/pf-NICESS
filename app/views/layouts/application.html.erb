@@ -13,76 +13,78 @@
   </head>
 
   <body>
-      <header>
-    <div class="container">
+    <header>
+      <div class="container">
 
-      <div class="row">
-        <div class="col-9"></div>
-        <div class="col-3 p-3">
-          <div class="dropdown">
-            <button class="btn btn-lg dropdown-toggle" type="button" id="dropdownMenu" aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">
-              NICESS
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+        <div class="row">
+          <div class="col-lg-10 col-md-6"></div>
+          <div class="col-lg-2 col-md-6 text-right">
+            <div class="dropdown">
+              <button class="btn btn-lg dropdown-toggle" type="button" id="dropdownMenu" aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">
+                <h3>NICESS</h3>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
 
-              <!--ログイン後-->
-              <% if user_signed_in? %>
-                <li class="dropdown-item">
-                  <%= image_tag current_user.get_user_icon(50,50) %><br>
-                  <%= current_user.name %>
-                </li>
-                <li class="dropdown-item">
-                  <%= link_to "TOP", root_path, class: 'nav-link' %>
-                </li>
-                <li class="dropdown-item">
-                  <%= link_to "ABOUT", about_path, class: 'nav-link' %>
-                </li>
-                <li class="dropdown-item">NOTICE</li>
-                <li class="dropdown-item">
-                  <%= link_to "PROFILE", user_path(current_user.name_id), class: 'nav-link' %>
-                </li>
-                <li class="dropdown-item">
-                  <%= link_to "MY CART", cart_items_path(current_user), class: 'nav-link' %>
-                </li>
-                <li class="dropdown-item">
-                  <%= link_to "LOG OUT", destroy_user_session_path, method: :delete, class: 'nav-link' %>
-                </li>
+                <!--ログイン後-->
+                <% if user_signed_in? %>
+                  <li class="dropdown-item">
+                    <%= image_tag current_user.get_user_icon(50,50) %><br>
+                    <%= current_user.name %>
+                  </li>
+                  <li class="dropdown-item">
+                    <%= link_to "TOP", root_path, class: 'nav-link' %>
+                  </li>
+                  <li class="dropdown-item">
+                    <%= link_to "ABOUT", about_path, class: 'nav-link' %>
+                  </li>
+                  <li class="dropdown-item">NOTICE</li>
+                  <li class="dropdown-item">
+                    <%= link_to "PROFILE", user_path(current_user.name_id), class: 'nav-link' %>
+                  </li>
+                  <li class="dropdown-item">
+                    <%= link_to "MY CART", cart_items_path(current_user), class: 'nav-link' %>
+                  </li>
+                  <li class="dropdown-item">
+                    <%= link_to "LOG OUT", destroy_user_session_path, method: :delete, class: 'nav-link' %>
+                  </li>
 
-              <!--管理ログイン後-->
-              <% elsif admin_signed_in? %>
-                <li class="dropdown-item">ユーザー一覧</li>
-                <li class="dropdown-item">
-                  <%= link_to "LOG OUT", destroy_admin_session_path, method: :delete, class: 'nav-link' %>
-                </li>
+                <!--管理ログイン後-->
+                <% elsif admin_signed_in? %>
+                  <li class="dropdown-item">ユーザー一覧</li>
+                  <li class="dropdown-item">
+                    <%= link_to "LOG OUT", destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+                  </li>
 
-              <!--ログイン前-->
-              <% else %>
-                <li class="dropdown-item">
-                  <%= link_to "TOP", root_path, class: 'nav-link' %>
-                </li>
-                <li class="dropdown-item">
-                  <%= link_to "ABOUT", about_path, class: 'nav-link' %>
-                </li>
-                <li class="dropdown-item">
-                  <%= link_to "NEW USER", new_user_registration_path, class: 'nav-link' %>
-                </li>
-                <li class="dropdown-item">
-                  <%= link_to "LOG IN", new_user_session_path, class: 'nav-link' %>
-                </li>
+                <!--ログイン前-->
+                <% else %>
+                  <li class="dropdown-item">
+                    <%= link_to "TOP", root_path, class: 'nav-link' %>
+                  </li>
+                  <li class="dropdown-item">
+                    <%= link_to "ABOUT", about_path, class: 'nav-link' %>
+                  </li>
+                  <li class="dropdown-item">
+                    <%= link_to "NEW USER", new_user_registration_path, class: 'nav-link' %>
+                  </li>
+                  <li class="dropdown-item">
+                    <%= link_to "LOG IN", new_user_session_path, class: 'nav-link' %>
+                  </li>
 
-              <% end %>
+                <% end %>
 
-            </ul>
+              </ul>
+            </div>
+
           </div>
-
         </div>
+
       </div>
+    </header>
 
+    <div class="main">
+      <%= yield %>
     </div>
-  </header>
 
-
-    <%= yield %>
   </body>
 
 </html>

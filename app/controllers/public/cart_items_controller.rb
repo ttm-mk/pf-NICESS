@@ -4,7 +4,7 @@ class Public::CartItemsController < ApplicationController
     @cart_items = current_user.cart_items
     # @shops = Shop.all
     # @items = Item.where(id: @cart_items.ids)
-    # @shop = Item.where(shop_id: @items) 
+    # @shop = Item.where(shop_id: @items)
     # pp "ppで以下を表示する",@shop
     # # TODO
     # item_ids = Item.where(shop_id: @shop.ids).pluck(:id)

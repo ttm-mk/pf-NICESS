@@ -4,7 +4,7 @@
       <% if @shops.present? %>
 
         <% @shops.each do |shop| %>
-          <div class="card bg-white">
+          <div class="card bg-white mt-3">
             <div class="card-body">
               <div class="form-group">
                 <%= link_to user_path(shop.user.name_id) do %>
