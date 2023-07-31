@@ -1,6 +1,6 @@
 <% posts.each do |post| %>
   <% if post.image.present? %>
-    <div class="card mb-3">
+    <div class="card my-3">
       <div class="card-body">
         <div class="mt-1 mb-4">
           <%= link_to user_path(post.user.name_id) do %>

@@ -23,6 +23,7 @@ class Public::UsersController < ApplicationController
     @favorite_posts = Post.find(favorites)
     # フォローユーザー取得
     @following_users = @user.followings
+    @shop = @user.shop
   end
 
   def edit
