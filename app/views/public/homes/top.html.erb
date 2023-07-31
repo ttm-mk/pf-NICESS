@@ -1,184 +1,170 @@
-  <div class="container">
+<div class="container">
 
-    <!--ログインしてない場合-->
-    <% if !user_signed_in? %>
+  <!--ログインしてない場合-->
+  <% if !user_signed_in? %>
 
-      <div class="row">
-        <div class="col-12 pt-4">
-          <h1 class="text-center">NICESSとは</h1>
+    <div class="row">
+      <div class="col-12 pt-4">
+        <h1 class="text-center">NICESSとは</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6 offset-3 rounded text-center bg-white my-3">
+        匿名で創作活動をしたい人を応援するSNSサイトです。<br>
+        ＥＣサイトを複合することで、<br>
+        創作活動をする人たちをつなぎ、支援します。<br>
+        <br>
+        創作活動や交流を楽しみましょう！
+      </div>
+      <div class="col-3"></div>
+    </div>
+
+    <div class="row m-5">
+      <div class="col-12">
+        <div class="text-center">画像</div>
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <div class="h2">まずはゲストログインをして<br>試してみてください！</div>
+        <div class="p-3">
+          <%= link_to "こちら", user_guest_sign_in_path, method: :post, class: 'h5 text-light' %>
+          からどうぞ！
+        </div>
+        <div class="p-3">
+          NICESSの詳しい内容は
+          <%= link_to "ABOUT", about_path, class: 'h5 text-light' %>
+          をご覧ください。
+        </div>
+        <div class="p-3">
+          新規登録は
+          <%= link_to "こちら", new_user_registration_path, class: 'h5 text-light' %>
+          から
+        </div>
+        <div class="p-3">
+          ログインは
+          <%= link_to "こちら", new_user_session_path, class: 'h5 text-light' %>
+          から
         </div>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-6 offset-3 rounded text-center bg-white my-3">
-          匿名で創作活動をしたい人を応援するSNSサイトです。<br>
-          ＥＣサイトを複合することで、<br>
-          創作活動をする人たちをつなぎ、支援します。<br>
-          <br>
-          創作活動や交流を楽しみましょう！
-        </div>
-        <div class="col-3"></div>
-      </div>
+  <!--ログインしている場合-->
+  <% else %>
+    <div class="row">
 
-      <div class="row m-5">
-        <div class="col-12">
-          <div class="text-center">画像</div>
-        </div>
-      </div>
+      <div class="col-12 col-lg-7 my-3 order-1 order-lg-0">
+        <div class="my-2">
 
-      <div class="row mb-5">
-        <div class="col-12 text-center">
-          <div class="h2">まずはゲストログインをして<br>試してみてください！</div>
-          <div class="p-3">
-            <%= link_to "こちら", user_guest_sign_in_path, method: :post, class: 'h5 text-light' %>
-            からどうぞ！
-          </div>
-          <div class="p-3">
-            NICESSの詳しい内容は
-            <%= link_to "ABOUT", about_path, class: 'h5 text-light' %>
-            をご覧ください。
-          </div>
-          <div class="p-3">
-            新規登録は
-            <%= link_to "こちら", new_user_registration_path, class: 'h5 text-light' %>
-            から
-          </div>
-          <div class="p-3">
-            ログインは
-            <%= link_to "こちら", new_user_session_path, class: 'h5 text-light' %>
-            から
-          </div>
-        </div>
-      </div>
+          <%= form_with url:root_path, method: :get, local: true do |f| %>
+            <div class="form-group mt-3 mb-5">
+              <%= f.text_field :search, class: "w-50", placeholder: "キーワードで投稿検索をする" %>
+              <%= f.button :type => 'submit', class: 'btn btn-primary' do %>
+                <i class="fas fa-search"></i>検索
+              <% end %>
+            </div>
+          <% end %>
 
-    <!--ログインしている場合-->
-    <% else %>
-      <div class="row">
+          <!--タブ-->
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item bg-white w-25 text-center">
+              <a class="nav-link active" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-selected="true">投稿</a>
+            </li>
+            <li class="nav-item bg-white w-25 text-center">
+              <a class="nav-link" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-selected="false">画廊</a>
+            </li>
+            <li class="nav-item bg-white w-25 text-center">
+              <a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-selected="false">ユーザー</a>
+            </li>
+            <li class="nav-item bg-white w-25 text-center">
+              <a class="nav-link" id="shop-tab" data-toggle="tab" href="#shop" role="tab" aria-selected="false">ショップ</a>
+            </li>
+          </ul>
 
-        <div class="col-7 my-3">
-          <div class="my-2">
+          <!--タブ内容-->
+          <div class="tab-content" id="myTabContent">
+            <!--投稿-->
+            <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
+              <%= render 'public/posts/index', posts: @posts.reverse, user: @user %>
+            </div>
+            <!--画像投稿-->
+            <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
+              <%= render 'public/posts/image', posts: @posts.reverse %>
+            </div>
+            <!--ユーザー-->
+            <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
+              <%= form_with url:root_path, method: :get, local: true do |f| %>
+                <div class="form-group ml-3 mt-3">
+                  <%= f.text_field :seek, class: 'w-50', placeholder: "ユーザー検索" %>
+                  <%= f.button :type => 'submit', class: 'btn btn-primary' do %>
+                    <i class="fas fa-search"></i>検索
+                  <% end %>
+                </div>
+              <% end %>
+               <div class="row">
+                <div class="col-12">
+                  <% if @users.present? %>
 
-            <%= form_with url:root_path, method: :get, local: true do |f| %>
-              <div class="form-group mt-3 mb-5">
-                <%= f.text_field :search, class: "w-50", placeholder: "キーワードで投稿検索をする" %>
-                <%= f.button :type => 'submit', class: 'btn btn-primary' do %>
-                  <i class="fas fa-search"></i>検索
-                <% end %>
-              </div>
-            <% end %>
-
-            <!--タブ-->
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item bg-white w-25 text-center">
-                <a class="nav-link active" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-selected="true">投稿</a>
-              </li>
-              <li class="nav-item bg-white w-25 text-center">
-                <a class="nav-link" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-selected="false">画廊</a>
-              </li>
-              <li class="nav-item bg-white w-25 text-center">
-                <a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-selected="false">ユーザー</a>
-              </li>
-              <li class="nav-item bg-white w-25 text-center">
-                <a class="nav-link" id="shop-tab" data-toggle="tab" href="#shop" role="tab" aria-selected="false">ショップ</a>
-              </li>
-            </ul>
-
-            <!--タブ内容-->
-            <div class="tab-content" id="myTabContent">
-              <!--投稿-->
-              <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
-                <%= render 'public/posts/index', posts: @posts.reverse, user: @user %>
-              </div>
-              <!--画像投稿-->
-              <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
-                <%= render 'public/posts/image', posts: @posts.reverse %>
-              </div>
-              <!--ユーザー-->
-              <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
-                <%= form_with url:root_path, method: :get, local: true do |f| %>
-                  <div class="form-group ml-3 mt-3">
-                    <%= f.text_field :seek, class: 'w-50', placeholder: "ユーザー検索" %>
-                    <%= f.button :type => 'submit', class: 'btn btn-primary' do %>
-                      <i class="fas fa-search"></i>検索
-                    <% end %>
-                  </div>
-                <% end %>
-                 <div class="row">
-                  <div class="col-12">
-                    <% if @users.present? %>
-
-                      <% @users.each do |user| %>
-                        <div class="card bg-white">
-                          <div class="card-body">
-                            <div class="form-group">
-                              <%= link_to user_path(user.name_id) do %>
-                                <%= image_tag user.get_user_icon(100,100) %>
-                              <% end %>
-                              <%= user.name %>
-                            </div>
-                            <div class="form-group">
-                              <%= user.profile %>
-                            </div>
+                    <% @users.each do |user| %>
+                      <div class="card bg-white">
+                        <div class="card-body">
+                          <div class="form-group">
+                            <%= link_to user_path(user.name_id) do %>
+                              <%= image_tag user.get_user_icon(100,100) %>
+                            <% end %>
+                            <%= user.name %>
+                          </div>
+                          <div class="form-group">
+                            <%= user.profile %>
                           </div>
                         </div>
-                      <% end %>
-
-                    <% else %>
-                      <div class="my-5 text-center">
-                        ユーザーはいません
                       </div>
-
                     <% end %>
 
-                  </div>
+                  <% else %>
+                    <div class="my-5 text-center">
+                      ユーザーはいません
+                    </div>
+
+                  <% end %>
+
                 </div>
               </div>
-              <!--ショップ-->
-              <div class="tab-pane fade" id="shop" role="tabpanel" aria-labelledby="shop-tab">
-                <%= render 'public/shops/shop', shops: @shops %>
-              </div>
             </div>
-
-          </div>
-        </div>
-
-        <div class="col-5">
-          <!--投稿スペース-->
-
-          <div class="my-5 ml-3">
-            <%= form_with model: @post, url:user_posts_path(current_user), method: :post do |f| %>
-             <div class="form-group">
-               <%= f.text_area :text, rows: 5, class: 'form-control' %>
-             </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-8">
-                    <%= f.file_field :image, accept: 'image/*' %>
-                  </div>
-                  <div class="col-4">
-                    <%= f.submit '投稿する', class: 'btn btn-primary btn-block' %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-
-          <!--ショップスペース-->
-          <!--< % if shop_id_present? %>-->
-            <div class="bg-white m-3 h-25">
-              <div>ここにショップ情報おく</div>
+            <!--ショップ-->
+            <div class="tab-pane fade" id="shop" role="tabpanel" aria-labelledby="shop-tab">
+              <%= render 'public/shops/shop', shops: @shops %>
             </div>
-          <!--< % end %>-->
-
-          <!--画廊スペース-->
-          <div class="bg-white m-3">
-            <div>ここに画廊</div>
           </div>
 
         </div>
-
       </div>
 
-    <% end %>
+      <div class="col-12 col-lg-5 order-0 order-lg-1">
+        <!--投稿スペース-->
 
-  </div>
+        <div class="my-5 ml-3">
+          <%= form_with model: @post, url:user_posts_path(current_user), method: :post do |f| %>
+           <div class="form-group">
+             <%= f.text_area :text, rows: 5, class: 'form-control' %>
+           </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-lg-8">
+                  <%= f.file_field :image, accept: 'image/*' %>
+                </div>
+                <div class="col-12 col-lg-4">
+                  <%= f.submit '投稿する', class: 'btn btn-primary btn-block' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        
+      </div>
+    </div>
+
+  <% end %>
+</div>
