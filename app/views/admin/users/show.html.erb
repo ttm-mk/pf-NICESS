@@ -1,47 +1,102 @@
 <div class="container">
-  <div class="row">
+  <div class="row my-3">
     <div class="col-12">
 
-      <div class="card bg-white">
+      <div class="card">
         <div class="card-header">
           ユーザー情報詳細
         </div>
 
         <div class="card-body">
           <div class="row">
-            <div class="col-3">
-              <div class="mb-3">なまえ</div>
-              <div class="mb-3">ユーザーID</div>
-              <div class="mb-3">ショップ名</div>
-              <div class="mb-3">メールアドレス</div>
-              <div class="mb-3">ステータス</div>
-            </div>
-
-            <div class="col-6">
-              <div class="mb-3"><%= @user.name %></div>
-              <div class="mb-3"><%= @user.name_id %></div>
-              <div class="mb-3"><%#= @user.shop.name %>ショップのなまえ</div>
-              <div class="mb-3"><%= @user.email %></div>
-              <div class="mb-3"><%= @user.is_deleted ? '退会' : '有効' %></div>
-            </div>
-            <div class="col-3">
-              <div class="m-5">
-                <%= image_tag @user.get_user_icon %>
+            <!--右側-->
+            <div class="col-8">
+              <div class="form-group">
+                <div class="row ml-4">
+                  <div class="col-12 col-lg-3">
+                    なまえ
+                  </div>
+                  <div class="col-12 col-lg-9">
+                    <%= @user.name %>
+                  </div>
+                </div>
               </div>
+
+              <div class="form-group">
+                <div class="row ml-4">
+                  <div class="col-12 col-lg-3">
+                    ユーザーID
+                  </div>
+                  <div class="col-12 col-lg-9">
+                    <%= @user.name_id %>
+                  </div>
+                </div>
+              </div>
+
+             <% if @user.shop.present? %>
+                <div class="form-group">
+                  <div class="row ml-4">
+                    <div class="col-12 col-lg-3">
+                      ショップ名
+                    </div>
+                    <div class="col-12 col-lg-9">
+                      <%= @user.shop.name %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+
+              <div class="form-group">
+                <div class="row ml-4">
+                  <div class="col-12 col-lg-3">
+                    メールアドレス
+                  </div>
+                  <div class="col-12 col-lg-9">
+                    <%= @user.email %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row ml-4">
+                  <div class="col-12 col-lg-3">
+                    会員状況
+                  </div>
+                  <div class="col-12 col-lg-9">
+                    <%= form_with model: @user, url:admin_user_path do |f| %>
+                      <div class="">
+                        <%= f.radio_button :is_deleted, "false" %>
+                        <%= f.label :is_deleted_false, "有効" %>
+
+                        <%= f.radio_button :is_deleted, "true" %>
+                        <%= f.label :is_deleted_false, "退会" %>
+                        <span class="pl-5"><%= f.submit '変更を保存', class: 'btn btn-success' %></span>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <!--左側-->
+            <div class="col-4 float-center">
+              <%= image_tag @user.get_user_icon(200,200) %>
             </div>
           </div>
         </div>
 
         <div class="card-footer">
-          <div class="p-3">
-            <%= link_to "編集する", edit_admin_user_path, class: 'btn btn-success' %>
+          <div class="row">
+            <div class="col-12 offset-lg-3 col-lg-6">
+              <div class="text-center">
+                <%= link_to "管理者TOPへ戻る", admin_path %>
+              </div>
+            </div>
+            <div class="col-lg-3"></div>
           </div>
         </div>
 
-      </div>
-      <div class="py-3">
-        <%= link_to "戻る", admin_path %>
-      </div>
     </div>
   </div>
 </div>
