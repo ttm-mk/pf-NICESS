@@ -19,7 +19,8 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new(order_params)
     cart_items = current_user.cart_items.joins(:item).select('cart_items.*, items.shop_id')
-    @cart_items = cart_items.where(item_id: cart_items.pluck(:shop_id))
+    @cart_items = cart_items.where(item_id: cart_items.pluck(:shop_id).group(:item.id))
+
     @total_price = 0
 
     @cart_items.each do |cart_item|
