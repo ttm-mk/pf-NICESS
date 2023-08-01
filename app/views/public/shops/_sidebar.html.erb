@@ -12,17 +12,21 @@
 <div class="form-group">
   <div class="card" style="height: 15rem;">
     <div class="card-body">
-      <%= @shop.introduction %>
+      <div class="text-center">
+        <%= shop.introduction %>
+      </div>
 
-      <% if @shop.user == current_user %>
-        <%= link_to "編集", edit_user_shop_path(current_user), class: 'btn btn-success' %>
-      <% end %>
     </div>
   </div>
+  <% if shop.user == current_user %>
+    <div class="text-center mb-5">
+      <%= link_to "編集", edit_user_shop_path(current_user), class: 'btn btn-block btn-success' %>
+    </div>
+  <% end %>
 </div>
 
 <!--ショップ管理者メニュー-->
-<% if @shop.user_id == current_user.id %>
+<% if shop.user_id == current_user.id %>
   <div class="form-group text-center">
     <!--<div class="p-4">-->
       <strong>管理者メニュー</strong>

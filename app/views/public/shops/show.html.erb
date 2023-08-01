@@ -1,33 +1,53 @@
 <div class="container">
   <div class="row">
-    
+
     <!--サイドバー-->
-    <div class="col-2">
+    <div class="col-2 d-md-none d-xl-none d-lg-none mt-4">
+      <p>
+        <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#shopmenu" aria-expanded="false" aria-controls="shopmenu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </p>
+      <div style="min-height: 120px;">
+        <div class="collapse width" id="shopmenu">
+          <div class="card card-body" style="width: 300px;">
+            <%= render 'public/shops/sidebar', shop: @shop %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-2 d-none d-md-block">
       <%= render 'public/shops/sidebar', shop: @shop %>
     </div>
 
+
     <!--商品一覧-->
     <div class="col-10">
-      <div class="row">
+      <div class="row mt-4">
+        <div class="col-lg-1 col-md-0 col-sm-0"></div>
         <% @items.each do |item| %>
-          <div class="card mx-5 bg-white" style="width: 20rem; height: 25rem;">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+
+          <div class="card mx-auto mb-2 bg-white" style="width: 13rem; height: 20rem;">
             <div class="card-body">
               <div class="form-group">
-                <div class="">
-                  <%#= image_tag item.item_image, class: 'img-fluid' %>
+                <div class="text-center my-auto">
+                  <%= image_tag item.get_item_image(150,150), class: 'img-fluid' %>
                 </div>
               </div>
               <div class="card-title h5">
                 <%= item.name %>
               </div>
               <div class="">
-                <%= item.price %>円(税込)
+                価格：<%= item.price %>円(税込)
               </div>
-              <div class="">
-                <%= link_to "詳細を見る", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary px-3' %>
+              <div class="my-3">
+                <%= link_to "詳細を見る", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary btn-block' %>
               </div>
             </div>
           </div>
+        </div>
         <% end %>
       </div>
     </div>
