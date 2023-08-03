@@ -22,9 +22,9 @@
                 <!--ヘッダー-->
                 <div class="card-header">
                   <h2>
-                    <%#= link_to user_shop_path do %>
+                    <%= link_to user_shop_path(Shop.find_by(name: shop_name).user.name_id) do %>
                       <%= shop_name %>
-                    <%# end %>
+                    <% end %>
                   </h2>
                 </div>
 
@@ -85,7 +85,7 @@
                       <%#= link_to "他の商品を見る", user_shop_path(@item.shop.user.name_id, @item.shop_id), class: 'btn btn-info' %>
                     </div>
                     <div class="col-12 col-lg-3">
-                      <%= link_to "注文情報を入力", new_user_shop_order_path(current_user, params[:shop_name]), class: 'btn btn-primary btn-block' %>
+                      <%= link_to "注文情報を入力", new_user_shop_order_path(current_user, {shop_id: Shop.find_by(name: shop_name).id}), class: 'btn btn-primary btn-block' %>
                     </div>
                   </div>
                 </div>

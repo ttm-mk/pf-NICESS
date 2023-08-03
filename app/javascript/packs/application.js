@@ -15,8 +15,8 @@ import "bootstrap";
 import "../stylesheets/application";
 
 // Swiper
-import Swiper from "swiper/swiper-bundle"
-window.Swiper = Swiper
+//import Swiper from "swiper/swiper-bundle"
+//window.Swiper = Swiper
 
 
 Rails.start()

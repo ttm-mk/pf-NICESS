@@ -2,7 +2,8 @@ class Public::OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @shop = @order.shop
+    @shop = Shop.find(params[:shop_id])
+    @cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
   end
 
   def index
@@ -18,9 +19,8 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    # cart_items = current_user.cart_items.joins(:item).select('cart_items.*, items.shop_id')
-    @cart_items = current_user.cart_items
-    # @cart_items = cart_items.where(item_id: cart_items.pluck(:shop_id).group(:item.id))
+    @shop = Shop.find(params[:order][:shop_id])
+    @cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
 
     @total_price = 0
 
@@ -47,18 +47,19 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.user_id = current_user.id
-    @order.shop.id = params[:order][:shop_id]
+    @shop = Shop.find(params[:order][:shop_id])
+    cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
 
     if @order.save
-      items = current_user.cart_items.joins(:item).select('cart_items.*, items.shop_id')
-      cart_items = items.where(item_id: items.pluck(:shop_id))
+      # items = current_user.cart_items.joins(:item).select('cart_items.*, items.shop_id')
+      # cart_items = items.where(item_id: items.pluck(:shop_id))
       cart_items.each do |cart_item|
         order_detail = OrderDetail.new
         order_detail.item_id = cart_item.item_id
         order_detail.order_id = @order.id
         order_detail.order_price = cart_item.item.price
         order_detail.amount = cart_item.amount
-        order_detail.save(order_detail_params)
+        order_detail.save
         # if order_detail.save
         #   order_detail.item.stock - order_detail.amount
         #   item.update
@@ -95,7 +96,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def order_detail_params
-    params.repuire(:order_detail).permit(:amount, :order_price, :order_id, :item_id)
+    params.require(:order_detail).permit(:amount, :order_price, :order_id, :item_id)
   end
 
 end

@@ -220,6 +220,7 @@
 
           <div class="card-footer text-center">
             <div class="mt-3">
+              <%= f.hidden_field :shop_id, :value => @shop.id %>
               <%= f.submit "注文を確定する", class: 'btn btn-lg btn-primary btn-block' %>
             </div>
             <div class="pt-4">
