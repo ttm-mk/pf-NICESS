@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+
 import "jquery";
 import "popper.js";
 import "bootstrap";
@@ -16,6 +17,7 @@ import "../stylesheets/application";
 // Swiper
 import Swiper from "swiper/swiper-bundle"
 window.Swiper = Swiper
+
 
 Rails.start()
 Turbolinks.start()

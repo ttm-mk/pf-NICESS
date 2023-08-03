@@ -95,7 +95,10 @@
           <div class="tab-content" id="myTabContent">
             <!--投稿-->
             <div class="tab-pane fade mt-3 show active" id="post" role="tabpanel" aria-labelledby="post-tab">
-              <%= render 'public/posts/index', posts: @posts.reverse, user: @user %>
+              <!--<div class="scroll-list jscroll">-->
+                <%= render 'public/posts/index', posts: @posts.reverse, user: @user %>
+                <%#= paginate @posts %>
+              <!--</div> -->
             </div>
             <!--画像投稿-->
             <div class="tab-pane fade mt-3" id="image" role="tabpanel" aria-labelledby="image-tab">

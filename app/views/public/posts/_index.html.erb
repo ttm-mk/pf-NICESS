@@ -1,50 +1,50 @@
- <% posts.each do |post| %>
-    <div class="card my-3">
-      <div class="card-body">
-        <div class="mt-1 mb-4">
-          <%= link_to user_path(post.user.name_id) do %>
-            <%= image_tag post.user.get_user_icon(80, 80) %>
+   <% posts.each do |post| %>
+      <div class="card my-3">
+        <div class="card-body">
+          <div class="mt-1 mb-4">
+            <%= link_to user_path(post.user.name_id) do %>
+              <%= image_tag post.user.get_user_icon(80, 80) %>
+            <% end %>
+            <%= post.user.name %>
+          </div>
+          <div class="px-4">
+            <%= simple_format(post.text) %>
+          </div>
+          <% if post.image.present? %>
+            <div>
+              <%= image_tag post.image, class: 'img-fluid' %>
+            </div>
           <% end %>
-          <%= post.user.name %>
         </div>
-        <div class="px-4">
-          <%= simple_format(post.text) %>
-        </div>
-        <% if post.image.present? %>
-          <div>
-            <%= image_tag post.image, class: 'img-fluid' %>
-          </div>
-        <% end %>
-      </div>
 
-      <div class="card-footer">
-        <div class="d-block d-md-flex justify-content-between">
-          <div>
-            <%= link_to user_post_path(post.user.name_id, post.id) do %>
-              <i class="far fa-comment-alt mr-3"></i>
-            <% end %>
-            <%= post.comments.count %>コメント
-
-            <% if post.favorite_by?(current_user) %>
-              <%= link_to user_post_favorites_path(current_user.id, post), method: :delete do %>
-                <i class="fas fa-heart"></i>
+        <div class="card-footer">
+          <div class="d-block d-md-flex justify-content-between">
+            <div>
+              <%= link_to user_post_path(post.user.name_id, post.id) do %>
+                <i class="far fa-comment-alt mr-3"></i>
               <% end %>
-              <%= post.favorites.count %>いいね
+              <%= post.comments.count %>コメント
 
-            <% else %>
-              <%= link_to user_post_favorites_path(current_user.id, post), method: :post do %>
-                <i class="far fa-heart"></i>
+              <% if post.favorite_by?(current_user) %>
+                <%= link_to user_post_favorites_path(current_user.id, post), method: :delete do %>
+                  <i class="fas fa-heart"></i>
+                <% end %>
+                <%= post.favorites.count %>いいね
+
+              <% else %>
+                <%= link_to user_post_favorites_path(current_user.id, post), method: :post do %>
+                  <i class="far fa-heart"></i>
+                <% end %>
+                <%= post.favorites.count %>いいね
+
               <% end %>
-              <%= post.favorites.count %>いいね
 
-            <% end %>
-
-          </div>
-          <!-- TODO: あとで確認 -->
-          <div class="text-right text-md-left">
-            <%= post.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M') %>
+            </div>
+            <!-- TODO: あとで確認 -->
+            <div class="text-right text-md-left">
+              <%= post.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M') %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-<% end %>
+  <% end %>
