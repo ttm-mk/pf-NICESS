@@ -85,7 +85,7 @@
                       <%#= link_to "他の商品を見る", user_shop_path(@item.shop.user.name_id, @item.shop_id), class: 'btn btn-info' %>
                     </div>
                     <div class="col-12 col-lg-3">
-                      <%= link_to "注文情報を入力", new_user_shop_order_path(current_user, params[:shop_name]), class: 'btn btn-primary' %>
+                      <%= link_to "注文情報を入力", new_user_shop_order_path(current_user, params[:shop_name]), class: 'btn btn-primary btn-block' %>
                     </div>
                   </div>
                 </div>

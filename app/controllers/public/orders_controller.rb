@@ -18,8 +18,9 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    cart_items = current_user.cart_items.joins(:item).select('cart_items.*, items.shop_id')
-    @cart_items = cart_items.where(item_id: cart_items.pluck(:shop_id).group(:item.id))
+    # cart_items = current_user.cart_items.joins(:item).select('cart_items.*, items.shop_id')
+    @cart_items = current_user.cart_items
+    # @cart_items = cart_items.where(item_id: cart_items.pluck(:shop_id).group(:item.id))
 
     @total_price = 0
 
@@ -57,7 +58,7 @@ class Public::OrdersController < ApplicationController
         order_detail.order_id = @order.id
         order_detail.order_price = cart_item.item.price
         order_detail.amount = cart_item.amount
-        order_detail.save
+        order_detail.save(order_detail_params)
         # if order_detail.save
         #   order_detail.item.stock - order_detail.amount
         #   item.update
@@ -91,6 +92,10 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:client_name, :client_phone_number, :client_email, :delivery_post_code, :delivery_address,
                                   :delivery_name, :postage, :total_payment, :payment_method, :status, :user_id, :shop_id)
+  end
+
+  def order_detail_params
+    params.repuire(:order_detail).permit(:amount, :order_price, :order_id, :item_id)
   end
 
 end

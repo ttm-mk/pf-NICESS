@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row my-3">
     <div class="col-12">
       <div class="card">
 
@@ -116,13 +116,16 @@
           </div>
 
           <div class="card-footer text-center">
-            <div class="mt-3">
-              <%= f.hidden_field :shop_id, :value => @order.items.shop.id %>
-              <%= f.submit "注文情報を確認する", class: 'btn btn-lg btn-success text-center px-5' %>
+            <div class="col-12 col-md-8 offset-md-2">
+              <div class="mt-3">
+                <%#= f.hidden_field :shop_id, :value => @order.items.shop.id %>
+                <%= f.submit "注文情報を確認する", class: 'btn btn-success btn-block' %>
+              </div>
+              <div class="pt-4">
+                <%= link_to "カートに戻る", cart_items_path(current_user), class: 'text-right' %>
+              </div>
             </div>
-            <div class="pt-4">
-              <%= link_to "カートに戻る", cart_items_path(current_user), class: 'text-right' %>
-            </div>
+            <div class="col-md-2 d-none d-md-block"></div>
           </div>
         <% end %>
 
