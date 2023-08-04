@@ -24,6 +24,17 @@
 
    <!--商品一覧-->
     <div class="col-lg-10 col-sm-12">
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-12 p-3 h2 text-center">
+            <i class="fas fa-shopping-cart"></i>
+            <%= @shop.name %>
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+        </div>
+      </div>
+
       <div class="row mt-4">
 
           <% @items.each do |item| %>
