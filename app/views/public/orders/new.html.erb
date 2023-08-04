@@ -6,18 +6,35 @@
         <div class="card-header">
           注文情報入力
         </div>
-
-                    <% @cart_items.each do |cart_item| %>
-                          <div>
-                            <%= image_tag cart_item.item.get_item_image(100,100) %>
-                          </div>
-
-                            <div class="m-2">
-                              <%= cart_item.item.name %>:
-                              <%= cart_item.item.price %>円(税込)
-                            </div>
-
-                    <% end %>
+        
+        <div class="form-group">
+          <h4 class="pt-2 pl-3">
+            <strong>購入商品情報</strong>
+          </h4>
+          <hr>
+        </div>
+        
+        <% @cart_items.each do |cart_item| %>
+        <div class="row m-3">
+          <div class="col-12 col-md-3">
+            <div class="pt-2 text-center my-auto">
+              <%= image_tag cart_item.item.get_item_image(100,100) %>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 my-auto">
+            <div class="m-2">
+              【<%= cart_item.item.name %>】
+            </div>
+            <div class="m-2 pl-5"><%= cart_item.item.price %>円(税込)</div>
+            <hr>
+            <div class="m-2 pl-5">
+              個数：<%= cart_item.amount %>
+            </div>
+          </div>
+          <div class="col-md-5 d-none d-md-block"></div>
+        </div>
+        <% end %>
+                    
         <!--情報入力-->
         <%= form_with model: @order, url: orders_confirm_user_shop_path do |f| %>
           <div class="card-body">

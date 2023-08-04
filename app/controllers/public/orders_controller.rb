@@ -28,8 +28,8 @@ class Public::OrdersController < ApplicationController
       @total_price += (cart_item.item.price * cart_item.amount)
     end
 
-    @postage = 360
-    @total_payment = @postage + @total_price
+    # @postage = @shop.postage
+    @total_payment = @shop.postage + @total_price
 
   end
 
@@ -41,7 +41,7 @@ class Public::OrdersController < ApplicationController
   def user_orders
     @orders = current_user.orders
     @shop = current_user.shop
-    @postage = 360
+    # @postage = 360
   end
 
   def create
