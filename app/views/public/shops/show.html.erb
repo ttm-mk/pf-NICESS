@@ -50,7 +50,12 @@
                   <%= item.name %>
                 </div>
                 <div class="card-text">
-                  価格：<%= item.price %>円(税込)
+                  <div class="pt-2">
+                    価格：<%= item.price %>円(税込)
+                  </div>
+                  <div class="pt-2 text-primary">
+                    <%= item.is_sale ? '販売中' : '品切れ' %>
+                  </div>
                 </div>
               </div>
               <div class="card-footer py-4">

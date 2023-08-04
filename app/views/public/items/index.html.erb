@@ -22,14 +22,14 @@
     </div>
 
     <div class="col-lg-10 ccol-sm-12">
-      
+
       <div class="row py-4">
-        <div class="col-12 col-lg-4">
+        <div class="col-12 col-md-4">
           <div class="h4">
             <strong>商品一覧</strong>
           </div>
         </div>
-        <div class="col-12 col-lg-8">
+        <div class="col-12 col-md-8">
           <div class="">
             <%= link_to "商品新規作成", new_user_shop_item_path(@shop), class: 'btn btn-primary' %>
           </div>
@@ -40,8 +40,9 @@
         <div class="col-12">
           <table class="table border bg-white">
             <thead>
-              <tr>
+              <tr class="text-center">
                 <th>商品名</th>
+                <th>在庫数</th>
                 <th>販売ステータス</th>
                 <th></th>
               </tr>
@@ -52,7 +53,8 @@
                   <td>
                     <%= item.name %>
                   </td>
-                  <td>
+                  <td class="text-center"><%= item.stock %>個</td>
+                  <td class="text-center">
                     <%= item.is_sale ? '販売中' : '品切れ' %>
                   </td>
                   <td>

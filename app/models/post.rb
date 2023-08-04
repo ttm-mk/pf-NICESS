@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   has_one_attached :image
+  
+  paginates_per 5
 
 # TODO
   def favorite_by?(favorited_user)

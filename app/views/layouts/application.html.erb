@@ -51,6 +51,13 @@
                   <li class="dropdown-item">
                     <%= link_to "MY CART", cart_items_path(current_user), class: 'nav-link' %>
                   </li>
+
+                  <% if current_user.shop.present? %>
+                    <li class="dropdown-item">
+                      <%= link_to "MY SHOP", user_shop_path(current_user.name_id), class: 'nav-link' %>
+                    </li>
+                  <% end %>
+
                   <li class="dropdown-item">
                     <%= link_to "LOG OUT", destroy_user_session_path, method: :delete, class: 'nav-link' %>
                   </li>

@@ -46,7 +46,7 @@
             </div>
           </div>
     <%#= p @shop.id, "shopIDをみる" %>
-          <%= form_with model: @cart_item, url: cart_items_path(current_user), method: :post do |f| %>
+          <% if @item.stock == 0 %>
             <div class="form-group pt-3">
               <div class="row">
                 <div class="col-12 text-center">
@@ -57,33 +57,68 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group mt-5">
               <div class="row text-center">
+                <h4 class="col-12 text-danger">申し訳ありません<br>品切れです！</h4>
                 <h4 class="col-12 text-primary">
                   <%= @item.price %>円<span class="h6">(税込)</span>
                 </h4>
                 <div class="col-12 col-md-4 offset-md-4">
-                  <%= f.select :amount, [["1個", 1],["2個", 2],["3個", 3],["4個", 4],["5個", 5]], {include_blank: "個数を選択する"}, class: 'form-control' %>
                 </div>
                 <div class="col-md-4 d-none d-md-block"></div>
               </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mt-5">
               <div class="row">
-                <div class="col-md-12 col-lg-6 offset-lg-3 text-center">
-                  <div class="mt-4">
-                    <%= f.hidden_field :item_id, :value => @item.id %>
-                    <%= f.submit "カートに入れる", class: 'btn btn-lg btn-primary btn-block' %>
-                  </div>
-                  <div class="pt-4">
-                    <%= link_to "TOPに戻る", user_shop_path(@shop.user.name_id) %>
-                  </div>
+                <div class="col-12 col-md-4 offset-md-4">
+                  <%= link_to "ショップTOPに戻る", user_shop_path(@item.shop.user.name_id), class: 'btn btn-primary btn-block' %>
                 </div>
-                <div class="col-lg-3 d-none d-md-block"></div>
               </div>
             </div>
+
+          <% else %>
+            <%= form_with model: @cart_item, url: cart_items_path(current_user), method: :post do |f| %>
+              <div class="form-group pt-3">
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <h4><%= @item.name %></h4>
+                    <div class="pl-4">
+                      <%= @item.introduction %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+                <div class="form-group mt-5">
+                  <div class="row text-center">
+                    <h4 class="col-12 text-primary">
+                      <%= @item.price %>円<span class="h6">(税込)</span>
+                    </h4>
+                    <div class="col-12 col-md-4 offset-md-4">
+                      <%= f.select :amount, [*[1..@item.stock]], {include_blank: "個数を選択する"}, class: 'form-control' %>
+                    </div>
+                    <div class="col-md-4 d-none d-md-block"></div>
+                  </div>
+                </div>
+
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-12 col-lg-6 offset-lg-3 text-center">
+                    <div class="mt-4">
+                      <%= f.hidden_field :item_id, :value => @item.id %>
+                      <%= f.submit "カートに入れる", class: 'btn btn-lg btn-primary btn-block' %>
+                    </div>
+                    <div class="pt-4">
+                      <%= link_to "TOPに戻る", user_shop_path(@shop.user.name_id) %>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 d-none d-md-block"></div>
+                </div>
+              </div>
+            <% end %>
           <% end %>
 
         </div>

@@ -4,12 +4,12 @@ class Public::HomesController < ApplicationController
     @post = Post.new
     @posts = Post.all
     @post_data = Post.all.order(created_at: :desc)
-    @posts = Kaminari.paginate_array(@post_data).page(params[:page]).per(3)
+    @posts = Kaminari.paginate_array(@post_data).page(params[:page])
     @shops = Shop.all
 
     if params[:search] || params[:seek].present?
       @post_data = Post.where('text LIKE ?', "%#{params[:search]}%")
-      @posts = Kaminari.paginate_array(@post_data).page(params[:page]).per(3)
+      @posts = Kaminari.paginate_array(@post_data).page(params[:page])
       # @posts = Post.where('text LIKE ?', "%#{params[:search]}%")
       @users = User.where('name LIKE ?', "%#{params[:seek]}%")
 
@@ -17,7 +17,7 @@ class Public::HomesController < ApplicationController
       @category = Category.find(params[:name])
 
     else
-      @posts = Post.all.order(created_at: :desc).page(params[:page]).per(3)
+      @posts = Post.all.order(created_at: :desc).page(params[:page])
     end
   end
 
