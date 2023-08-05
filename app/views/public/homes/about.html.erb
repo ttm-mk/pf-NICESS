@@ -1,28 +1,35 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-12 pt-4">
-      <h1 class="text-center">NICESSとは</h1>
+    <div class="col-12 p-4">
+      <h1 class="text-center">
+        <i class="fas fa-question-circle"></i>
+        NICESSとは
+      </h1>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-6 offset-3 rounded text-center bg-white my-3 p-4">
-      匿名で創作活動をしたい人を応援するSNSサイトです。<br>
-      ＥＣサイトを複合することで、<br>
-      創作活動をする人たちをつなぎ、支援します。
+    <div class="col-12 col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body text-center py-4">
+          匿名で創作活動をしたい人を応援するSNSサイトです。<br>
+          ＥＣサイトを複合することで、<br>
+          創作活動をする人たちをつなぎ、支援します。
+        </div>
+      </div>
     </div>
-    <div class="col-3"></div>
+    <div class="col-md-3 d-none d-md-block"></div>
   </div>
 
   <div class="row m-3">
-    <div class="col-6 offset-3">
-      <h4>
-        NICESSは、「SNS」と「EC」（通販）サイトを
+    <div class="col-12 col-md-6 offset-md-3">
+      <h5>
+        NICESSは、「SNS」と「EC」（通販）サイトを<br>
        「I」ntermingling（混ぜ合わせる）という意味があります。
-      </h4>
+      </h5>
     </div>
-    <div class="col-3"></div>
+    <div class="col-md-3 d-none d-md-block"></div>
   </div>
 
   <div class="row p-5">
@@ -32,52 +39,63 @@
   </div>
 
   <div class="row">
-    <div class="col-6 offset-3">
-      <h4>
+    <div class="col-12 col-md-6 offset-md-3">
+      <h5>
         ・SNSだけを使用して交流したい<br>
         ・SNSでイラスト投稿をして楽しみたい<br>
         ・SNSで広報しながら通販サイトで活動したい<br>
         ・通販サイトで作品を買いたい
+      </h5>
+    </div>
+    <div class="col-md-3 d-none d-md-block"></div>
+  </div>
+  
+  <div class="row">
+    <div class="col-12">
+      <h4 class="p-5 text-center">
+        <strong>そんなあなたの願いを叶えます！</strong>
       </h4>
-      <h4 class="p-5 text-center">そんなあなたの願いを叶えます！</h4>
     </div>
-    <div class="col-3"></div>
   </div>
 
   <div class="row">
-    <div class="col-4 offset-1 text-center mb-5 bg-white">
-      <div class="p-3">
-        SNSとして利用するだけでもOK！<br>
-        通販サイトを作らなくても大丈夫！<br><br>
-        自分の求める使い方をしよう！<br>
-        それが「NICESS」です！
+    <div class="col-12 col-md-4 offset-md-1">
+      <div class="card m-3 p-3">
+        <div class="card-body text-center p-3">
+          SNSとして利用するだけでもOK！<br>
+          通販サイトを作らなくても大丈夫！<br><br>
+          自分の求める使い方をしよう！<br>
+          それが「NICESS」です！
+        </div>
       </div>
     </div>
-    <div class="col-7"></div>
+    <div class="col-md-7 d-none d-md-block"></div>
   </div>
 
   <div class="row">
-    <div class="col-4 offset-1 text-center mb-5 bg-white">
-      <div class="p-3">
-        <div>
-          初めての方は
-          <%= link_to "ゲストログイン", user_guest_sign_in_path, method: :post %>
-          から<br>
-          お試しで利用することができます。
-        </div>
-        <div>
-          <br>利用したい方は
-          <%= link_to "新規登録", new_user_registration_path %>
-          から
-        </div>
-        <div>
-          <br>すでに登録しているユーザーは<br>
-          <%= link_to "こちら", new_user_session_path %>
-          からどうぞ！
+    <div class="col-12 col-md-4 offset-md-1">
+      <div class="card m-3 p-3">
+        <div class="card-body">
+          <div>
+            初めての方は
+            <%= link_to "ゲストログイン", user_guest_sign_in_path, method: :post %>
+            から<br>
+            お試しで利用することができます。
+          </div>
+          <div>
+            <br>利用したい方は
+            <%= link_to "新規登録", new_user_registration_path %>
+            から
+          </div>
+          <div>
+            <br>すでに登録しているユーザーは<br>
+            <%= link_to "こちら", new_user_session_path %>
+            からどうぞ！
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-7"></div>
+    <div class="col-md-7 d-none d-md-block"></div>
   </div>
 
 </div>

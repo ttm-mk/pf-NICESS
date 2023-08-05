@@ -38,7 +38,7 @@
                 </tr>
               </thead>
               <tbody>
-                <% @orders.each do |order| %>
+                <% @orders.reverse.each do |order| %>
                 <tr>
                   <td>
                     <%= order.created_at.in_time_zone('Tokyo').strftime('%Y年%m月%d日 %H:%M') %>

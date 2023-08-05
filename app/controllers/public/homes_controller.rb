@@ -10,7 +10,6 @@ class Public::HomesController < ApplicationController
     if params[:search] || params[:seek].present?
       @post_data = Post.where('text LIKE ?', "%#{params[:search]}%")
       @posts = Kaminari.paginate_array(@post_data).page(params[:page])
-      # @posts = Post.where('text LIKE ?', "%#{params[:search]}%")
       @users = User.where('name LIKE ?', "%#{params[:seek]}%")
 
     elsif params[:category].present?

@@ -4,20 +4,28 @@
   <% if !user_signed_in? %>
 
     <div class="row">
-      <div class="col-12 pt-4">
-        <h1 class="text-center">NICESSとは</h1>
+      <div class="col-12 p-4">
+        <h1 class="text-center">
+          <span class="text-primary">NICESS</span>
+          へようこそ！</h1>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-6 offset-3 rounded text-center bg-white my-3">
-        匿名で創作活動をしたい人を応援するSNSサイトです。<br>
-        ＥＣサイトを複合することで、<br>
-        創作活動をする人たちをつなぎ、支援します。<br>
-        <br>
-        創作活動や交流を楽しみましょう！
+      <div class="col-12 col-md-6 offset-md-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center py-auto">
+              匿名で創作活動をしたい人を応援するSNSサイトです。<br>
+              ＥＣサイトを複合することで、<br>
+              創作活動をする人たちをつなぎ、支援します。<br>
+              <br>
+              創作活動や交流を楽しみましょう！
+            </div>
+         </div>
+        </div>
       </div>
-      <div class="col-3"></div>
+      <div class="col-md-3 d-none d-md-block"></div>
     </div>
 
     <div class="row m-5">
@@ -29,13 +37,14 @@
     <div class="row mb-5">
       <div class="col-12 text-center">
         <div class="h2">まずはゲストログインをして<br>試してみてください！</div>
-        <div class="p-3">
-          <%= link_to "こちら", user_guest_sign_in_path, method: :post, class: 'h5 text-light' %>
-          からどうぞ！
+        <div class="p-3 lead">
+          <u class="text-primary">
+            <%= link_to "こちらからどうぞ！", user_guest_sign_in_path, method: :post, class: 'h4 text-primary' %>
+          </u>
         </div>
         <div class="p-3">
           NICESSの詳しい内容は
-          <%= link_to "ABOUT", about_path, class: 'h5 text-light' %>
+          <u><%= link_to "ABOUT", about_path, class: 'h5 text-light' %></u>
           をご覧ください。
         </div>
         <div class="p-3">
@@ -102,10 +111,11 @@
             </div>
             <!--画像投稿-->
             <div class="tab-pane fade mt-3" id="image" role="tabpanel" aria-labelledby="image-tab">
-              <div id="post_index"><%= render 'public/posts/image', posts: @posts.reverse %></div>
+              <div id="post_index"><%= render 'public/posts/image', posts: @posts %></div>
             </div>
             <!--ユーザー-->
             <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
+              
               <%= form_with url:root_path, method: :get, local: true do |f| %>
                 <div class="form-group ml-3 mt-3">
                   <%= f.text_field :seek, class: 'w-50', placeholder: "ユーザー検索" %>
@@ -114,6 +124,7 @@
                   <% end %>
                 </div>
               <% end %>
+              
                <div class="row">
                 <div class="col-12">
                   <% if @users.present? %>
@@ -123,7 +134,7 @@
                         <div class="card-body">
                           <div class="form-group">
                             <%= link_to user_path(user.name_id) do %>
-                              <%= image_tag user.get_user_icon(100,100) %>
+                              <%= image_tag user.get_user_icon(80,80) %>
                             <% end %>
                             <%= user.name %>
                           </div>
