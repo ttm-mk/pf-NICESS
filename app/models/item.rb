@@ -1,13 +1,14 @@
 class Item < ApplicationRecord
-  
+
   belongs_to :shop
+  belongs_to :category
   has_many :cart_items, dependent: :destroy
   has_many :order_details, dependent: :destroy
   has_many :orders, through: :order_details
-  
+
   has_one_attached :item_image
-  
-  
+
+
   def get_item_image(width, height)
     unless item_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -16,5 +17,5 @@ class Item < ApplicationRecord
     item_image.variant(resize_to_limit: [width, height]).processed
   end
 
-  
+
 end

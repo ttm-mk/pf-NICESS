@@ -39,6 +39,7 @@ Rails.application.routes.draw do
         get '/user_orders' => 'orders#user_orders'
         resources :orders, only: [:new, :create, :index, :show, :edit, :update]
         resources :order_details, only: [:create]
+        resources :categories, only: [:index, :edit, :create, :update, :destroy]
       end
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
