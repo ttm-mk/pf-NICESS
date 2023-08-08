@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+
+    <!--サイドバー-->
+    <div class="col-12 d-lg-none d-xl-none mt-4">
+      <p>
+        <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#shopmenu" aria-expanded="false" aria-controls="shopmenu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </p>
+      <div>
+        <div class="collapse width" id="shopmenu">
+          <div class="card card-body" style="width: 250px;">
+            <%= render 'public/shops/sidebar', shop: @shop %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-2 d-none d-lg-block">
+      <%= render 'public/shops/sidebar', shop: @shop %>
+    </div>
+
+    <!--カテゴリー-->
+    <div class="col-12 col-lg-10">
+
+      <div class="row my-3">
+        <div class="col-12">
+          <div class="h4 py-2">
+             <strong>カテゴリー編集</strong>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-8">
+
+              <div class="card">
+                <div class="card-body">
+                  <%= form_with model: @category, url: user_shop_category_path(@category), method: :patch do |f| %>
+                    <div class="form-group">
+                      <div class="row">
+                         <div class="col-12 col-md-9 mb-3">
+                           <%= f.text_field :name, class: 'form-control' %>
+                         </div>
+                         <div class="col-12 col-md-3">
+                           <%= f.submit "変更を保存", class: 'btn btn-success btn-block' %>
+                         </div>
+                      </div>
+                    </div>
+                  <% end %>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 d-none d-md-block"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

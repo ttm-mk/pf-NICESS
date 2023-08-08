@@ -21,8 +21,10 @@
       <%= render 'public/shops/sidebar', shop: @shop %>
     </div>
 
-    <div class="col-12 col-lg-10">
+    <!--カテゴリー-->
+    <div class="col-12 col-lg-10 pl-5">
 
+      <!--新規登録-->
       <div class="row">
         <div class="col-12">
           <div class="pt-4 h4">
@@ -43,15 +45,16 @@
         </div>
       </div>
 
-      <div class="row mt-5">
+      <!--一覧-->
+      <div class="row my-5">
         <div class="col-12">
           <div class="h5 pt-4">
              <strong>カテゴリー一覧</strong>
           </div>
-          
+
           <div class="row">
             <div class="col-12 col-md-8">
-              
+
               <div class="card">
                 <div class="card-body">
                   <% @categories.each do |category| %>
@@ -64,13 +67,13 @@
                            <%= link_to "編集", edit_user_shop_category_path(params[:user_id], category), class: 'btn btn-success btn-block' %>
                          </div>
                          <div class="col-3">
-                           <%= link_to "削除", user_shop_category_path(params[:user_id], category), class: 'btn btn-danger btn-block', data: {confirm: "本当に削除しますか？"} %>
+                           <%= link_to "削除", user_shop_category_path(params[:user_id], category), method: :delete, class: 'btn btn-danger btn-block', data: {confirm: "本当に削除しますか？"} %>
                          </div>
                       </div>
                     </div>
                     <hr>
                   <% end %>
-    
+
                 </div>
               </div>
             </div>
