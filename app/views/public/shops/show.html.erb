@@ -11,61 +11,116 @@
       <div>
         <div class="collapse width" id="shopmenu">
           <div class="card card-body" style="width: 250px;">
-            <%= render 'public/shops/sidebar', shop: @shop %>
+            <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
           </div>
         </div>
       </div>
     </div>
 
     <div class="col-2 d-none d-lg-block">
-      <%= render 'public/shops/sidebar', shop: @shop %>
+      <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
     </div>
 
 
    <!--商品一覧-->
     <div class="col-lg-10 col-sm-12">
 
-      <div class="form-group">
-        <div class="row">
-          <div class="col-12 p-3 h2 text-center">
-            <i class="fas fa-shopping-cart"></i>
-            <%= @shop.name %>
-            <i class="fas fa-shopping-cart"></i>
-          </div>
-        </div>
-      </div>
-
-      <div class="row mt-4">
-
-          <% @items.each do |item| %>
-          <div class="col-lg-5 col-md-5 col-sm-12 mx-auto">
-            <div class="card mx-auto mb-2 bg-white" style="width: 20rem; height: 27rem;">
-              <div class="card-body text-center">
-                <div class="form-group">
-                  <div class="my-auto">
-                    <%= image_tag item.get_item_image(150,150), class: 'img-fluid' %>
-                  </div>
-                </div>
-                <div class="card-title h5">
-                  <%= item.name %>
-                </div>
-                <div class="card-text">
-                  <div class="pt-2">
-                    価格：<%= item.price %>円(税込)
-                  </div>
-                  <div class="pt-2 text-primary">
-                    <%= item.is_sale ? '販売中' : '品切れ' %>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer py-4">
-                <%= link_to "詳細を見る", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary btn-block' %>
-              </div>
+      <% if params[:category_id].present? %>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-12 p-3 h2 text-center">
+              <i class="fas fa-search"></i>
+              <%= @category_name %>
+              <i class="fas fa-search"></i>
             </div>
           </div>
-          <% end %>
+        </div>
 
-      </div>
+        <div class="row mt-4">
+
+            <% @category_items.each do |item| %>
+            <div class="col-lg-5 col-md-5 col-sm-12 mx-auto">
+              <div class="card mx-auto mb-2 bg-white" style="width: 20rem; height: 27rem;">
+                <div class="card-body text-center">
+                  <div class="form-group">
+                    <div class="my-auto">
+                      <%= image_tag item.get_item_image(150,150), class: 'img-fluid' %>
+                    </div>
+                  </div>
+                  <div class="text-primary">
+                    <%= item.category.name %>
+                  </div>
+                  <div class="card-title h5">
+                    <%= item.name %>
+                  </div>
+                  <div class="card-text">
+                    <div class="pt-2">
+                      価格：<%= item.price %>円(税込)
+                    </div>
+                    <div class="pt-2 text-primary">
+                      <%= item.is_sale ? '販売中' : '品切れ' %>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer py-4">
+                  <%= link_to "詳細を見る", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary btn-block' %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+
+        </div>
+
+      <% else %>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-12 p-3 h2 text-center">
+              <i class="fas fa-shopping-cart"></i>
+              <%= @shop.name %>
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+
+            <% @items.each do |item| %>
+            <div class="col-lg-5 col-md-5 col-sm-12 mx-auto">
+              <div class="card mx-auto mb-2 bg-white" style="width: 20rem; height: 27rem;">
+                <div class="card-body text-center">
+                  <div class="form-group">
+                    <div class="my-auto">
+                      <%= image_tag item.get_item_image(150,150), class: 'img-fluid' %>
+                    </div>
+                  </div>
+
+                  <% if item.category.present? %>
+                    <div class="text-primary">
+                      <%= item.category.name %>
+                    </div>
+                  <% end %>
+
+                  <div class="card-title h5">
+                    <%= item.name %>
+                  </div>
+                  <div class="card-text">
+                    <div class="pt-2">
+                      価格：<%= item.price %>円(税込)
+                    </div>
+                    <div class="pt-2 text-primary">
+                      <%= item.is_sale ? '販売中' : '品切れ' %>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer py-4">
+                  <%= link_to "詳細を見る", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary btn-block' %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+
+        </div>
+      <% end %>
     </div>
 
   </div>

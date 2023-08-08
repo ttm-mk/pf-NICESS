@@ -11,14 +11,14 @@
       <div>
         <div class="collapse width" id="shopmenu">
           <div class="card card-body" style="width: 250px;">
-            <%= render 'public/shops/sidebar', shop: @shop %>
+            <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
           </div>
         </div>
       </div>
     </div>
 
     <div class="col-2 d-none d-lg-block">
-      <%= render 'public/shops/sidebar', shop: @shop %>
+      <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
     </div>
 
     <div class="col-lg-10 col-sm-12">
@@ -49,6 +49,11 @@
           <% if @item.stock == 0 %>
             <div class="form-group pt-3">
               <div class="row">
+                <% if @item.category.present? %>
+                  <div class="col-12 text-center text-primary">
+                    <%= @item.category.name %>
+                  </div>
+                <% end %>
                 <div class="col-12 text-center">
                   <h4><%= @item.name %></h4>
                   <div class="pl-4">
@@ -57,11 +62,11 @@
                 </div>
               </div>
             </div>
+
             <div class="form-group mt-5">
               <div class="row text-center">
                 <h4 class="col-12 text-danger">申し訳ありません<br>品切れです！</h4>
                 <h4 class="col-12 text-primary">
-                  <%= @item.price %>円<span class="h6">(税込)</span>
                 </h4>
                 <div class="col-12 col-md-4 offset-md-4">
                 </div>
@@ -81,6 +86,11 @@
             <%= form_with model: @cart_item, url: cart_items_path(current_user), method: :post do |f| %>
               <div class="form-group pt-3">
                 <div class="row">
+                  <% if @item.category.present? %>
+                    <div class="col-12 text-center text-primary">
+                      <%= @item.category.name %>
+                    </div>
+                  <% end %>
                   <div class="col-12 text-center">
                     <h4><%= @item.name %></h4>
                     <div class="pl-4">

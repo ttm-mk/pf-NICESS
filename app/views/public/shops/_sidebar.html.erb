@@ -3,9 +3,16 @@
     <strong>カテゴリー</strong>
   </div>
   <div class="mx-auto">
-    <div class="p-2">イラスト</div>
-    <div class="p-2">漫画</div>
-    <div class="p-2">セット</div>
+    <div class="py-2">
+      <%= link_to "すべて", user_shop_path(user.name_id) %>
+    </div>
+
+    <% categories.each do |category| %>
+    <div class="py-2">
+      <%= link_to category.name, user_shop_path(user.name_id, category_id: category.id) %>
+    </div>
+    <% end %>
+
   </div>
 </div>
 

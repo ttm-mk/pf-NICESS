@@ -1,28 +1,34 @@
 class Public::ItemsController < ApplicationController
   before_action :authenticate_user!
-  
+
 
   def new
     @item = Item.new
+    @user = User.find_by(id: params[:user_id])
     @shop = current_user.shop
+    @categories = @shop.categories.all
   end
 
   def index
+    @user = User.find_by(id: params[:user_id])
     @shop = current_user.shop
     @items = @shop.items.all
+    @categories = @shop.categories.all
   end
 
   def show
     @item = Item.find(params[:id])
     @shop = @item.shop
-    @user = @shop.user.name_id
+    @user = @shop.user
     @cart_item = CartItem.new
+    @categories = @shop.categories.all
   end
 
   def edit
     @user = User.find_by(id: params[:user_id])
     @shop = @user.shop
     @item = Item.find(params[:id])
+    @categories = @shop.categories.all
   end
 
   def create
@@ -57,7 +63,7 @@ class Public::ItemsController < ApplicationController
   private
 
   def shop_item_params
-    params.require(:item).permit(:item_image, :name, :price, :introduction, :stock, :is_sale, :shop_id)
+    params.require(:item).permit(:item_image, :name, :price, :introduction, :stock, :is_sale, :shop_id, :category_id)
   end
 
 end

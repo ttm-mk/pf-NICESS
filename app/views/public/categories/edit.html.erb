@@ -11,14 +11,14 @@
       <div>
         <div class="collapse width" id="shopmenu">
           <div class="card card-body" style="width: 250px;">
-            <%= render 'public/shops/sidebar', shop: @shop %>
+            <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
           </div>
         </div>
       </div>
     </div>
 
     <div class="col-2 d-none d-lg-block">
-      <%= render 'public/shops/sidebar', shop: @shop %>
+      <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
     </div>
 
     <!--カテゴリー-->

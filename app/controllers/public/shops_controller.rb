@@ -1,11 +1,16 @@
 class Public::ShopsController < ApplicationController
   before_action :authenticate_user!
-  
+
 
   def show
     @user = User.find_by(name_id: params[:user_id])
     @shop = @user.shop
     @items = @shop.items.all
+    @categories = @shop.categories.all
+    if params[:category_id].present?
+      @category_name = @shop.categories.find_by(id: params[:category_id]).name
+      @category_items = @items.where(category_id: params[:category_id])
+    end
   end
 
   def new
@@ -14,7 +19,9 @@ class Public::ShopsController < ApplicationController
   end
 
   def edit
-    @shop = current_user.shop
+    @user = User.find_by(id: params[:user_id])
+    @shop = @user.shop
+    @categories = @shop.categories.all
   end
 
   def create

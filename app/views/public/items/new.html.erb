@@ -1,10 +1,29 @@
 <div class="container">
   <div class="row">
-    <div class="col-2">
-      <%= render 'public/shops/sidebar', shop: @shop %>
+
+    <!--サイドバー-->
+    <div class="col-12 d-md-none d-lg-none d-xl-none mt-4">
+      <p>
+        <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#shopmenu" aria-expanded="false" aria-controls="shopmenu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </p>
+      <div>
+        <div class="collapse width" id="shopmenu">
+          <div class="card card-body" style="width: 250px;">
+            <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-10">
-      <div class="card m-5">
+
+    <div class="col-2 d-none d-md-block">
+      <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
+    </div>
+
+    <!--右側-->
+    <div class="col-12 col-md-10">
+      <div class="card my-3">
 
         <div class="card-header">
           商品新規登録
@@ -13,20 +32,20 @@
         <%= form_with model: @item, url:user_shop_items_path(@shop.id), method: :post do |f| %>
           <div class="card-body">
 
-            <div class="row m-3">
+            <div class="row">
               <div class="form-group">
                 <div class="col-12">
-                  <%= f.file_field :item_image, accept: 'image/*' %>
+                  <%= f.file_field :item_image, accept: 'image/*', style: "font-size: 0.8em;" %>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
               <div class="row">
-                <div class="col-12 col-lg-4 pb-3">
+                <div class="col-12 col-md-4">
                   商品名
                 </div>
-                <div class="col-12 col-lg-8 pb-3 pr-5">
+                <div class="col-12 col-md-8 pb-3 pr-5">
                   <%= f.text_field :name, class: 'form-control', placeholder: "商品名" %>
                 </div>
               </div>
@@ -34,10 +53,10 @@
 
             <div class="form-group">
               <div class="row">
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-md-4">
                   商品説明
                 </div>
-                <div class="col-12 col-lg-8 pr-5">
+                <div class="col-12 col-md-8 pr-5">
                   <%= f.text_area :introduction, rows: 5, class: 'form-control', placeholder: "商品の説明文" %>
                 </div>
               </div>
@@ -45,32 +64,46 @@
 
             <div class="form-group">
               <div class="row">
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-md-4">
                   販売価格
                 </div>
-                <div class="col-12 col-lg-8">
-                  <%= f.text_field :price, placeholder: "100円以上" %> 円(税込)
+                <div class="col-6 col-md-4">
+                  <%= f.text_field :price, class: 'form-control', placeholder: "100円以上" %>
                 </div>
+                <div class="col-6 col-md-4 pt-2">円(税込)</div>
               </div>
             </div>
 
             <div class="form-group">
               <div class="row">
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-md-4">
                   在庫数
                 </div>
-                <div class="col-12 col-lg-8">
-                  <%= f.text_field :stock, placeholder: "0以上入力" %> 個
+                <div class="col-6 col-md-4">
+                  <%= f.text_field :stock, class: 'form-control', placeholder: "0以上入力" %>
                 </div>
+                <div class="col-6 col-md-4 pt-2">個</div>
               </div>
             </div>
 
             <div class="form-group">
               <div class="row">
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-md-4">
+                  カテゴリー
+                </div>
+                <div class="col-12 col-md-4">
+                  <%= f.select :category_id, options_from_collection_for_select(@categories, :id, :name), {include_blank: "カテゴリーを選択する"}, class: 'form-control' %>
+                </div>
+                <div class="col-md-4 d-none d-md-block"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-12 col-md-4">
                   販売ステータス
                 </div>
-                <div class="col-12 col-lg-8">
+                <div class="col-12 col-md-8">
                   <%= f.radio_button :is_sale, "true" %>
                   <%= f.label :is_sale_true, "販売中" %>
 

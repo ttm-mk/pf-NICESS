@@ -2,15 +2,17 @@ class Public::CategoriesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @user = current_user.name_id
-    @shop = current_user.shop
+    @user = User.find_by(name_id: params[:user_id])
+    @shop = @user.shop
     @category = Category.new
     @categories = @shop.categories.all
   end
 
   def edit
-    @shop = current_user.shop
+    @user = User.find_by(name_id: params[:user_id])
+    @shop = @user.shop
     @category = Category.find(params[:id])
+    @categories = @shop.categories.all
   end
 
   def create
