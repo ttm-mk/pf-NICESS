@@ -9,6 +9,6 @@ class Shop < ApplicationRecord
   # バリデーション
   validates :name, presence: { message: "・ショップ名を入力して下さい。" }, length: { maximum: 20 }
   validates :introduction, length: { maximum: 200 }
-  validates :postage, presence: { message: "店舗送料を入力して下さい。" }, numbericality: { only_integer: true }
+  # validates :postage, presence: { message: "店舗送料を入力して下さい。" }, numbericality: { only_integer: true }
 
 end

@@ -21,7 +21,23 @@
       <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
     </div>
 
+
+    <!--右側-->
     <div class="col-lg-10 col-sm-12">
+
+      <!--error_message-->
+      <% if @cart_item.errors.any? %>
+      <div class="p-3">
+        <%= @cart_item.errors.count %>件のエラーがあります
+      </div>
+      <ul>
+        <% @cart_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+      <% end %>
+
+      <!--商品詳細-->
       <div class="card my-3">
         <div class="card-body">
 
@@ -43,17 +59,21 @@
                   </div>
                 </div>
               <% end %>
+
             </div>
           </div>
-    <%#= p @shop.id, "shopIDをみる" %>
+
+          <!--在庫がない場合-->
           <% if @item.stock == 0 %>
             <div class="form-group pt-3">
               <div class="row">
+
                 <% if @item.category.present? %>
                   <div class="col-12 text-center text-primary">
                     <%= @item.category.name %>
                   </div>
                 <% end %>
+
                 <div class="col-12 text-center">
                   <h4><%= @item.name %></h4>
                   <div class="pl-4">
@@ -66,11 +86,6 @@
             <div class="form-group mt-5">
               <div class="row text-center">
                 <h4 class="col-12 text-danger">申し訳ありません<br>品切れです！</h4>
-                <h4 class="col-12 text-primary">
-                </h4>
-                <div class="col-12 col-md-4 offset-md-4">
-                </div>
-                <div class="col-md-4 d-none d-md-block"></div>
               </div>
             </div>
 
@@ -83,14 +98,18 @@
             </div>
 
           <% else %>
+
+          <!--在庫がある場合-->
             <%= form_with model: @cart_item, url: cart_items_path(current_user), method: :post do |f| %>
               <div class="form-group pt-3">
                 <div class="row">
+
                   <% if @item.category.present? %>
                     <div class="col-12 text-center text-primary">
                       <%= @item.category.name %>
                     </div>
                   <% end %>
+
                   <div class="col-12 text-center">
                     <h4><%= @item.name %></h4>
                     <div class="pl-4">
@@ -128,7 +147,9 @@
                   <div class="col-lg-3 d-none d-md-block"></div>
                 </div>
               </div>
+
             <% end %>
+
           <% end %>
 
         </div>

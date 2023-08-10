@@ -2,11 +2,26 @@
   <div class="row mt-5">
     <div class="col-12 mx-auto">
 
+      <!--error_message-->
+      <% if @shop.errors.any? %>
+        <div class="p-3">
+          <%= @shop.errors.count %>件のエラーがあります
+        </div>
+
+        <ul>
+          <% @shop.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
       <div class="card">
+
         <!--ヘッダー-->
         <div class="card-header h4">
           ショップ新規登録
         </div>
+
         <!--ボディ-->
         <div class="card-body">
           <%= form_with model: @shop, url:user_shop_path(params[:user_id]), method: :post do |f| %>
@@ -41,10 +56,13 @@
                 <div class="col-md-3 d-none d-md-block d-lg-block d-xl-block"></div>
               </div>
             </div>
+
           <% end %>
         </div>
+
       </div>
+
+
     </div>
   </div>
-
 </div>

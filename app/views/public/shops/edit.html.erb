@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mt-4">
 
-    <!--サイドバー-->
+    <!--左　サイドバー-->
     <div class="col-12 d-lg-none d-xl-none mt-4">
       <p>
         <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#shopmenu" aria-expanded="false" aria-controls="shopmenu">
@@ -21,13 +21,32 @@
       <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
     </div>
 
+
+    <!--右　編集画面-->
     <div class="col-lg-10 col-sm-12">
+
+      <!--error_message-->
+      <% if @shop.errors.any? %>
+        <div class="p-3">
+          <%= @shop.errors.count %>件のエラーがあります
+        </div>
+
+        <ul>
+          <% @shop.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+
       <div class="card">
         <div class="card-header">
           <h5>ショップ情報編集</h5>
         </div>
+
         <%= form_with model: @shop, url:user_shop_path(@shop, current_user), method: :patch do |f| %>
           <div class="card-body">
+
             <div class="form-group">
               <div class="row">
                 <div class="col-12 col-md-4">
@@ -60,6 +79,7 @@
                 </div>
               </div>
             </div>
+
           </div>
 
           <div class="card-footer">
@@ -76,6 +96,9 @@
         <% end %>
 
       </div>
+
     </div>
+
+
   </div>
 </div>

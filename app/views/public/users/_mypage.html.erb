@@ -1,9 +1,14 @@
 <div class="container">
   <div class="row">
+
     <div class="card m-5 mx-auto" style="width: 35rem;">
+
+      <!--ヘッダー-->
       <div class="card-header">
         マイ情報
       </div>
+
+      <!--ボディ-->
       <div class="card-body">
 
         <div class="form-group">
@@ -19,6 +24,7 @@
             <div class="col-4 pb-3">
               なまえ
             </div>
+
             <div class="col-8 pb-3">
               <%= user.name %>
             </div>
@@ -30,6 +36,7 @@
             <div class="col-4 pb-3">
               ユーザーid
             </div>
+
             <div class="col-8 pb-3">
               <%= user.name_id %>
             </div>
@@ -41,6 +48,7 @@
             <div class="col-4 pb-3">
               プロフィール
             </div>
+
             <div class="col-8 pb-3">
               <%= simple_format(user.profile) %>
             </div>
@@ -52,6 +60,7 @@
             <div class="col-4 pb-3">
               メールアドレス
             </div>
+
             <div class="col-8 pb-3">
               <%= user.email %>
             </div>
@@ -59,14 +68,18 @@
         </div>
       </div>
 
+      <!--フッター-->
       <div class="card-footer">
         <div class="row">
+
           <div class="col-12 col-md-4 mt-2">
             <%= link_to "編集する", edit_user_path(user.name_id), class: 'btn btn-success btn-block' %>
           </div>
+
           <div class="col-12 col-md-4 mt-2">
             <%= link_to "注文履歴を見る", user_orders_user_shop_path(current_user), class: 'btn btn-warning btn-block' %>
           </div>
+
           <div class="col-12 col-md-4 mt-2">
             <% if user.shop.present? %>
               <%= link_to "マイショップ", user_shop_path(user.name_id), class: 'btn btn-primary btn-block' %>
@@ -74,6 +87,7 @@
               <%= link_to "ショップをつくる", new_user_shop_path(user.name_id), class: 'btn btn-primary btn-block' %>
             <% end %>
           </div>
+
         </div>
 
         <div class="row">
@@ -82,8 +96,11 @@
           </div>
           <div class="col-md-8 d-none d-md-block"></div>
         </div>
+
       </div>
 
     </div>
+
+
   </div>
 </div>

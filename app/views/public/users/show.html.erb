@@ -1,5 +1,7 @@
 <div class="container">
   <div class="row mt-5">
+
+    <!--左　投稿・タブ-->
     <div class="col-12 col-lg-8 order-1 order-lg-0">
 
       <div>
@@ -87,8 +89,12 @@
 
     </div>
 
-    <!--プロフィール-->
+
+    <!--右　プロフィール・ショップ情報-->
     <div class="col-12 col-lg-4 mb-5 mb-lg-0 order-0 order-lg-1">
+      <%= render "public/users/user_sidebar", user: @user, shop: @shop %>
+
+      <!--プロフィール-->
       <div class="card">
         <div class="card-body">
           <div class="row">
@@ -121,9 +127,9 @@
       <!--ショップ-->
       <div class="mt-3">
         <% if @user.shop.present? %>
-        <div class="h5 text-center">
-          <%= link_to "ショップ", user_shop_path(@user.name_id) %>
-        </div>
+          <div class="h5 text-center">
+            <%= link_to "ショップ", user_shop_path(@user.name_id) %>
+          </div>
 
           <% if @user.shop.items.present? %>
             <!-- Slider main container -->
@@ -137,13 +143,6 @@
                   <div class="swiper-slide">
 
                     <div class="card mx-4">
-                      <!-- svgはimage_tagに最終的に書き換える -->
-                      <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg"-->
-                      <!--            preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">-->
-                      <!--  <title>Placeholder</title>-->
-                      <!--  <rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="50%" y="50%">商品画像</text>-->
-                      <!--</svg>-->
-                      <!-- ここまでsvg -->
                       <%= image_tag item.item_image %>
 
                       <div class="card-body">
@@ -166,18 +165,20 @@
                         </div>
                       </div>
                     </div>
+
                   </div>
 
                 <% end %>
               </div>
 
-            <!-- If we need navigation buttons -->
+              <!-- If we need navigation buttons -->
               <div class="swiper-button-prev fa-fw fa-2x">
                 <i class="fas fa-arrow-circle-left"></i>
               </div>
               <div class="swiper-button-next fa-fw fa-2x">
                 <i class="fas fa-arrow-circle-right"></i>
               </div>
+
             </div>
           <% else %>
             <div class="h5 text-center p-5">
@@ -190,24 +191,27 @@
             ショップなし
           </div>
         <% end %>
+
       </div>
+
+    </div>
 
   </div>
 </div>
 
 <!-- javaを書く用 -->
-<script>
-  new Swiper(".swiper", {
-  loop: true,
+<!--<script>-->
+<!--  new Swiper(".swiper", {-->
+<!--  loop: true,-->
 
-  // If we need pagination
-  // pagination: {
-  //   el: '.swiper-pagination',
-  // },
+  <!--// If we need pagination-->
+  <!--// pagination: {-->
+  <!--//   el: '.swiper-pagination',-->
+  <!--// },-->
 
-  // Navigation arrows
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },});
-</script>
+  <!--// Navigation arrows-->
+<!--  navigation: {-->
+<!--    nextEl: '.swiper-button-next',-->
+<!--    prevEl: '.swiper-button-prev',-->
+<!--  },});-->
+<!--</script>-->

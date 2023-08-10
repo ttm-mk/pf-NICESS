@@ -22,7 +22,22 @@
     </div>
 
 
+    <!--右側-->
     <div class="col-lg-10 col-md-12 mx-auto">
+
+      <!--error_message-->
+      <% if @item.errors.any? %>
+      <div class="p-3">
+        <%= @item.errors.count %>件のエラーがあります
+      </div>
+      <ul>
+        <% @item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+      <% end %>
+
+      <!--商品編集-->
       <div class="card my-3">
 
         <div class="card-header">
@@ -128,6 +143,7 @@
       <div class="py-3 text-center">
         <%= link_to "TOPに戻る", user_shop_path(@item.shop.user.name_id, @shop.id) %>
       </div>
+
     </div>
   </div>
 </div>

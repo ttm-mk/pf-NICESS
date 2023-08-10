@@ -23,6 +23,7 @@
         <%= render 'public/shops/sidebar', shop: @shop %>
       </div>
 
+
       <!--注文履歴一覧-->
       <div class="col-lg-10 col-md-12">
         <% @orders.each do |order| %>
@@ -46,15 +47,19 @@
               <% order.order_details.each do |order_detail| %>
                 <div class="form-group">
                   <div class="row">
+
                     <div class="col-12 col-lg-3">
                       <strong><%= order_detail.item.name %></strong>
                     </div>
+
                     <div class="col-12 col-lg-4 pl-4">
                       <%= order_detail.order_price %>円 × <%= order_detail.amount %>点
                     </div>
+
                     <div class="col-12 col-lg-5">
                        小計：<%= order_detail.order_price * order_detail.amount %>円
                     </div>
+
                   </div>
                 </div>
                 <hr>
@@ -94,7 +99,12 @@
           </div>
         <% end %>
       </div>
+
     <% else %>
+      <div class="m-5 text-center">
+        注文履歴はありません
+      </div>
+
     <% end %>
 
   </div>

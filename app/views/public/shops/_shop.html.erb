@@ -1,10 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
+
       <% if @shops.present? %>
 
         <% @shops.each do |shop| %>
           <div class="card bg-white mt-3">
+
             <div class="card-body">
               <div class="form-group">
                 <%= link_to user_path(shop.user.name_id) do %>
@@ -12,13 +14,16 @@
                 <% end %>
                 <%= shop.user.name %>
               </div>
+
               <div class="form-group">
                 <%= shop.user.profile %>
               </div>
+
               <div class="form-group">
                 <%= link_to "ショップへいく", user_shop_path(shop.user.name_id), class: 'btn btn-primary' %>
               </div>
             </div>
+
           </div>
         <% end %>
 

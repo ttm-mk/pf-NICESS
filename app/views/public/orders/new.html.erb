@@ -1,12 +1,27 @@
 <div class="container">
   <div class="row my-3">
     <div class="col-12">
+
+      <!--error_message-->
+      <% if @order.errors.any? %>
+      <div class="p-3">
+        <%= @order.errors.count %>件のエラーがあります
+      </div>
+      <ul>
+        <% @order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+      <% end %>
+
+
       <div class="card">
 
         <div class="card-header">
           注文情報入力
         </div>
 
+        <!--購入商品情報一覧-->
         <div class="form-group">
           <h4 class="pt-2 pl-3">
             <strong>購入商品情報</strong>
@@ -15,28 +30,35 @@
         </div>
 
         <% @cart_items.each do |cart_item| %>
-        <div class="row m-3">
-          <div class="col-12 col-md-3">
-            <div class="pt-2 text-center my-auto">
-              <%= image_tag cart_item.item.get_item_image(100,100) %>
+          <div class="row m-3">
+            <div class="col-12 col-md-3">
+              <div class="pt-2 text-center my-auto">
+                <%= image_tag cart_item.item.get_item_image(100,100) %>
+              </div>
             </div>
+
+            <div class="col-12 col-md-4 my-auto">
+              <div class="m-2">
+                【<%= cart_item.item.name %>】
+              </div>
+
+              <div class="m-2 pl-5"><%= cart_item.item.price %>円(税込)</div>
+              <hr>
+
+              <div class="m-2 pl-5">
+                個数：<%= cart_item.amount %>
+              </div>
+            </div>
+
+            <div class="col-md-5 d-none d-md-block"></div>
+
           </div>
-          <div class="col-12 col-md-4 my-auto">
-            <div class="m-2">
-              【<%= cart_item.item.name %>】
-            </div>
-            <div class="m-2 pl-5"><%= cart_item.item.price %>円(税込)</div>
-            <hr>
-            <div class="m-2 pl-5">
-              個数：<%= cart_item.amount %>
-            </div>
-          </div>
-          <div class="col-md-5 d-none d-md-block"></div>
-        </div>
         <% end %>
 
         <!--情報入力-->
         <%= form_with model: @order, url: orders_confirm_user_shop_path do |f| %>
+
+          <!--ボディ-->
           <div class="card-body">
             <div class="form-group">
               <h4>
@@ -138,11 +160,9 @@
                 </div>
               </div>
             </div>
-
-
-
           </div>
 
+          <!--フッター-->
           <div class="card-footer text-center">
             <div class="col-12 col-md-8 offset-md-2">
               <div class="mt-3">
@@ -153,11 +173,15 @@
                 <%= link_to "カートに戻る", cart_items_path(current_user), class: 'text-right' %>
               </div>
             </div>
+
             <div class="col-md-2 d-none d-md-block"></div>
+
           </div>
+
         <% end %>
 
       </div>
+
     </div>
   </div>
 </div>

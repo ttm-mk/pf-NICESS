@@ -24,6 +24,14 @@
     <!--カテゴリー-->
     <div class="col-12 col-lg-10">
 
+      <% if @category.errors.any? %>
+        <ul>
+          <% @category.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
       <div class="row my-3">
         <div class="col-12">
           <div class="h4 py-2">

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <!--サイドバー-->
+    <!--左　サイドバー-->
     <div class="col-12 d-md-none d-lg-none d-xl-none mt-4">
       <p>
         <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#shopmenu" aria-expanded="false" aria-controls="shopmenu">
@@ -21,15 +21,32 @@
       <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
     </div>
 
-    <!--右側-->
+    <!--右 新規商品入力欄-->
     <div class="col-12 col-md-10">
+
+      <!--error_message-->
+      <% if @item.errors.any? %>
+      <div class="p-3">
+        <%= @item.errors.count %>件のエラーがあります
+      </div>
+      <ul>
+        <% @item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+      <% end %>
+
+
+      <!--新規登録-->
       <div class="card my-3">
 
         <div class="card-header">
           商品新規登録
         </div>
 
-        <%= form_with model: @item, url:user_shop_items_path(@shop.id), method: :post do |f| %>
+        <%= form_with model: @item, url:user_shop_items_path(@shop.id), method: :post, local: true do |f| %>
+
+          <!--ボディ-->
           <div class="card-body">
 
             <div class="row">
@@ -125,5 +142,6 @@
         <% end %>
       </div>
     </div>
+
   </div>
 </div>

@@ -1,4 +1,5 @@
 <div class="container">
+
   <div class="row">
     <div class="col-12">
       <h3 class="p-5 text-center">
@@ -34,6 +35,7 @@
 
             <div class="form-group">
               <div class="row">
+
                 <div class="col-12 col-md-4 text-center my-auto">
                   <%= image_tag order_detail.item.get_item_image(200,250) %>
                 </div>
@@ -43,10 +45,13 @@
                     <div class="col-12 col-md-4 pb-2">
                       金額
                     </div>
+
                     <div class="col-12 col-md-8 pb-2">
                       <%= order_detail.item.price %>円(税込)
                     </div>
+
                   </div>
+
                   <div class="row pt-2">
                     <div class="col-12 col-md-4">
                       購入数
@@ -55,6 +60,7 @@
                       <%= order_detail.amount %>点
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -62,142 +68,146 @@
             <div class="form-group bg-info mb-3 text-right">
               <div class="row">
                 <div class="col-12">
+
                   <div class="row text-light pr-2">
                     <div class="col-12 col-md-10 h4">
                       <strong>小計</strong>
                     </div>
+
                     <div class="col-12 col-md-2 h4">
                       <strong>
                         <%= order_detail.item.price * order_detail.amount %>
                         <span class="h6">円</span>
                       </strong>
                     </div>
+
                   </div>
+
                 </div>
               </div>
             </div>
 
           <% end %>
 
-            <div class="form-group">
-              <hr>
-              <h4>
-                <strong>お客様情報</strong>
-              </h4>
-              <hr>
-            </div>
-
-            <div class="form-group">
-              <div class="row">
-                <div class="col-12 col-md-4">
-                  氏名
-                </div>
-                <div class="col-12 col-md-8">
-                  <%= @order.client_name %>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="row">
-                <div class="col-12 col-md-4">
-                  電話番号(ハイフンなし)
-                </div>
-                <div class="col-12 col-md-8">
-                  <%= @order.client_phone_number %>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="row mb-5">
-                <div class="col-12 col-md-4">
-                  メールアドレス
-                </div>
-                <div class="col-12 col-md-8">
-                  <%= @order.client_email %>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <hr>
-              <h4>
-                <strong>配送先情報</strong>
-              </h4>
-              <hr>
-            </div>
-
-            <div class="form-group">
-              <div class="row">
-                <div class="col-12 col-md-4">
-                  配送先郵便番号(ハイフンなし)
-                </div>
-                <div class="col-12 col-md-8">
-                  <%= @order.delivery_post_code %>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="row">
-                <div class="col-12 col-md-4">
-                  配送先住所
-                </div>
-                <div class="col-12 col-md-8 pr-5">
-                  <%= @order.delivery_address %>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="row mb-5">
-                <div class="col-12 col-md-4">
-                  配送先氏名
-                </div>
-                <div class="col-12 col-md-8">
-                  <%= @order.delivery_name %>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <hr>
-              <h4>
-                <strong>支払い方法</strong>
-              </h4>
-              <hr>
-            </div>
-
-            <div class="form-group">
-              <div class="row mb-5">
-                <div class="col-12">
-                  <%= @order.payment_method_i18n %>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-                <hr>
-                <h4>
-                  <strong>請求金額</strong>
-                </h4>
-                <hr>
-            </div>
-
-            <div class="form-group">
-              <div class="row">
-                <div class="col-12 col-md-2">
-                  送料
-                </div>
-                <div class="col-12 col-md-10">
-                  <%= @order.postage %>円
-                </div>
-              </div>
-            </div>
-
+          <div class="form-group">
             <hr>
-            <div class="form-group text-right">
+            <h4>
+              <strong>お客様情報</strong>
+            </h4>
+            <hr>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 col-md-4">
+                氏名
+              </div>
+              <div class="col-12 col-md-8">
+                <%= @order.client_name %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 col-md-4">
+                電話番号(ハイフンなし)
+              </div>
+              <div class="col-12 col-md-8">
+                <%= @order.client_phone_number %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row mb-5">
+              <div class="col-12 col-md-4">
+                メールアドレス
+              </div>
+              <div class="col-12 col-md-8">
+                <%= @order.client_email %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <hr>
+            <h4>
+              <strong>配送先情報</strong>
+            </h4>
+            <hr>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 col-md-4">
+                配送先郵便番号(ハイフンなし)
+              </div>
+              <div class="col-12 col-md-8">
+                <%= @order.delivery_post_code %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 col-md-4">
+                配送先住所
+              </div>
+              <div class="col-12 col-md-8 pr-5">
+                <%= @order.delivery_address %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row mb-5">
+              <div class="col-12 col-md-4">
+                配送先氏名
+              </div>
+              <div class="col-12 col-md-8">
+                <%= @order.delivery_name %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <hr>
+            <h4>
+              <strong>支払い方法</strong>
+            </h4>
+            <hr>
+          </div>
+
+          <div class="form-group">
+            <div class="row mb-5">
+              <div class="col-12">
+                <%= @order.payment_method_i18n %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <hr>
+            <h4>
+              <strong>請求金額</strong>
+            </h4>
+            <hr>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-12 col-md-2">
+                送料
+              </div>
+              <div class="col-12 col-md-10">
+                <%= @order.postage %>円
+              </div>
+            </div>
+          </div>
+
+          <hr>
+          <div class="form-group text-right">
               <div class="row">
                 <div class="col-12 col-md-2 offset-lg-8">
                   <h3>合計</h3>
@@ -207,7 +217,8 @@
                 </div>
               </div>
             </div>
-          </div>
+
+        </div>
 
       </div>
 
@@ -217,6 +228,7 @@
           <%= link_to "注文履歴を見る", user_orders_user_shop_path(current_user), class: 'btn btn-success btn-block' %>
         </div>
       </div>
+
       <div class="col-md-2 d-none d-md-block"></div>
     </div>
 

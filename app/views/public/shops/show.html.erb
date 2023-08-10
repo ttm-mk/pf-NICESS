@@ -25,6 +25,7 @@
    <!--商品一覧-->
     <div class="col-lg-10 col-sm-12">
 
+      <!--カテゴリー検索時-->
       <% if params[:category_id].present? %>
         <div class="form-group">
           <div class="row">
@@ -38,21 +39,28 @@
 
         <div class="row mt-4">
 
-            <% @category_items.each do |item| %>
+          <% @category_items.each do |item| %>
             <div class="col-lg-5 col-md-5 col-sm-12 mx-auto">
+
               <div class="card mx-auto mb-2 bg-white" style="width: 20rem; height: 27rem;">
+
+                <!--ボディ-->
                 <div class="card-body text-center">
+
                   <div class="form-group">
                     <div class="my-auto">
                       <%= image_tag item.get_item_image(150,150), class: 'img-fluid' %>
                     </div>
                   </div>
+
                   <div class="text-primary">
                     <%= item.category.name %>
                   </div>
+
                   <div class="card-title h5">
                     <%= item.name %>
                   </div>
+
                   <div class="card-text">
                     <div class="pt-2">
                       価格：<%= item.price %>円(税込)
@@ -61,16 +69,22 @@
                       <%= item.is_sale ? '販売中' : '品切れ' %>
                     </div>
                   </div>
+
                 </div>
+
+                <!--フッター-->
                 <div class="card-footer py-4">
                   <%= link_to "詳細を見る", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary btn-block' %>
                 </div>
+
               </div>
+
             </div>
-            <% end %>
+          <% end %>
 
         </div>
 
+      <!--カテゴリー検索がない時-->
       <% else %>
         <div class="form-group">
           <div class="row">
@@ -84,9 +98,12 @@
 
         <div class="row mt-4">
 
-            <% @items.each do |item| %>
+          <% @items.each do |item| %>
             <div class="col-lg-5 col-md-5 col-sm-12 mx-auto">
+
               <div class="card mx-auto mb-2 bg-white" style="width: 20rem; height: 27rem;">
+
+                <!--ボディ-->
                 <div class="card-body text-center">
                   <div class="form-group">
                     <div class="my-auto">
@@ -103,6 +120,7 @@
                   <div class="card-title h5">
                     <%= item.name %>
                   </div>
+
                   <div class="card-text">
                     <div class="pt-2">
                       価格：<%= item.price %>円(税込)
@@ -111,17 +129,23 @@
                       <%= item.is_sale ? '販売中' : '品切れ' %>
                     </div>
                   </div>
+
                 </div>
+
+                <!--フッター-->
                 <div class="card-footer py-4">
                   <%= link_to "詳細を見る", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary btn-block' %>
                 </div>
+
               </div>
             </div>
-            <% end %>
+          <% end %>
 
         </div>
+
       <% end %>
     </div>
+
 
   </div>
 </div>
