@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
 
+  # アソシエーション
   belongs_to :shop
   belongs_to :category
   has_many :cart_items, dependent: :destroy
@@ -7,6 +8,13 @@ class Item < ApplicationRecord
   has_many :orders, through: :order_details
 
   has_one_attached :item_image
+
+
+  # バリデーション
+  validates :name, presence: true
+  validates :price, presence: true, numbericality: { only_integer: true, greater_than_or_equal_to: 100 }
+  validates :introduction, presence: true
+  validates :stock, presence: true, numbericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
 
   def get_item_image(width, height)

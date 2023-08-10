@@ -1,11 +1,18 @@
 class Post < ApplicationRecord
-  has_many :comments, dependent: :destroy
 
+  # アソシエーション
+  has_many :comments, dependent: :destroy
   belongs_to :user
   has_many :favorites, dependent: :destroy
 
   has_one_attached :image
-  
+
+
+  # バリデーション
+  validates :text, presence: true, length: { maximum: 200 }
+
+
+  # ページネーション
   paginates_per 5
 
 # TODO

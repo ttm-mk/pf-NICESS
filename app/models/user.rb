@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, authentication_keys: [:name_id]
 
 
+  # アソシエーション
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -24,7 +25,12 @@ class User < ApplicationRecord
 
   has_one_attached :user_icon
 
+
+  # バリデーション
+  validates :name, presence: true
   validates :name_id, uniqueness: true
+  validates :profile, length: { maximum: 200 }
+
 
 # ゲスト関係：TODO
   def self.guest
