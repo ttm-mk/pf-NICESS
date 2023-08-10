@@ -7,8 +7,8 @@ class Shop < ApplicationRecord
   has_many :categories, dependent: :destroy
 
   # バリデーション
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: { message: "・ショップ名を入力して下さい。" }, length: { maximum: 20 }
   validates :introduction, length: { maximum: 200 }
-  validates :postage, presence: true, numbericality: { only_integer: true }
+  validates :postage, presence: { message: "店舗送料を入力して下さい。" }, numbericality: { only_integer: true }
 
 end

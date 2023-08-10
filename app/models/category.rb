@@ -5,6 +5,6 @@ class Category < ApplicationRecord
   belongs_to :shop
 
   # バリデーション
-  validates :name, presence: true, length: { maximum: 10 }
+  validates :name, presence: { message: "・カテゴリー名を入力して下さい。" }, length: { maximum: 10 }
 
 end

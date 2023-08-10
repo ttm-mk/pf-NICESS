@@ -11,10 +11,10 @@ class Item < ApplicationRecord
 
 
   # バリデーション
-  validates :name, presence: true
-  validates :price, presence: true, numbericality: { only_integer: true, greater_than_or_equal_to: 100 }
-  validates :introduction, presence: true
-  validates :stock, presence: true, numbericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :name, presence: { message: "・商品名を入力して下さい。" }
+  validates :price, presence: { message: "・商品価格を入力して下さい。(※100円以上)" }, numbericality: { only_integer: true, greater_than_or_equal_to: 100 }
+  validates :introduction, presence: { message: "・商品紹介文を入力して下さい。" }
+  validates :stock, presence: { message: "・在庫数を入力して下さい(※在庫数がない場合は、0を入力して下さい)" }, numbericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
 
   def get_item_image(width, height)
