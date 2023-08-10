@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   scope module: :public do
     get 'user/confirm' => 'users#confirm'
     patch 'user/resign' => 'users#resign'
+    get 'user/user_orders' => 'users#user_orders'
     resources :users, only: [:show, :edit, :update] do
       # get 'shop/new' => 'shops#new'
       # post '/shop' => 'shops#create'
@@ -36,7 +37,6 @@ Rails.application.routes.draw do
         resources :items, only: [:new, :create, :index, :show, :edit, :update, :destroy]
         post '/orders/confirm' => 'orders#confirm'
         get '/orders/thanks' => 'orders#thanks'
-        get '/user_orders' => 'orders#user_orders'
         resources :orders, only: [:new, :create, :index, :show, :edit, :update]
         resources :order_details, only: [:create]
         resources :categories, only: [:index, :edit, :create, :update, :destroy]

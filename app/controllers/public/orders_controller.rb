@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_user!
-  
+
 
   def new
     @order = Order.new
@@ -9,14 +9,18 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @user = current_user
     @shop = current_user.shop
+    @categories = @shop.categories
     @orders = @shop.orders
   end
 
   def show
+    @user = current_user
+    @shop = current_user.shop
+    @categories = @shop.categories
     @order = Order.find(params[:id])
     @order_details = @order.order_details
-    @shop = current_user.shop
   end
 
   def confirm
@@ -30,7 +34,6 @@ class Public::OrdersController < ApplicationController
       @total_price += (cart_item.item.price * cart_item.amount)
     end
 
-    # @postage = @shop.postage
     @total_payment = @shop.postage + @total_price
 
   end
@@ -40,21 +43,15 @@ class Public::OrdersController < ApplicationController
     @order_details = @order.order_details
   end
 
-  def user_orders
-    @orders = current_user.orders
-    @shop = current_user.shop
-    # @postage = 360
-  end
 
   def create
     @order = Order.new(order_params)
     @order.user_id = current_user.id
     @shop = Shop.find(params[:order][:shop_id])
+    # TODO
     cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
 
-    if @order.save
-      # items = current_user.cart_items.joins(:item).select('cart_items.*, items.shop_id')
-      # cart_items = items.where(item_id: items.pluck(:shop_id))
+    if !@order.save
       cart_items.each do |cart_item|
         order_detail = OrderDetail.new
         order_detail.item_id = cart_item.item_id
@@ -62,6 +59,7 @@ class Public::OrdersController < ApplicationController
         order_detail.order_price = cart_item.item.price
         order_detail.amount = cart_item.amount
         order_detail.save
+
         if order_detail.save
           item = cart_item.item
           item.update_columns(stock: item.stock - cart_item.amount)
@@ -70,9 +68,13 @@ class Public::OrdersController < ApplicationController
       end
       redirect_to orders_thanks_user_shop_path(current_user, {order_id: @order.id})
       cart_items.destroy_all
+
     else
-      @order = Order.new(order_params)
+      @order = Order.new
+      @shop = Shop.find(params[:shop_id])
+      @cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
       render :new
+
     end
   end
 
@@ -80,10 +82,15 @@ class Public::OrdersController < ApplicationController
     order = Order.find(params[:id])
     order.user_id = current_user.id
     order.shop_id = current_user.shop.id
+
     if order.update(order_params)
       redirect_to user_shop_order_path(order)
     else
-      redirect_to user_shop_orders_path(current_user.name_id, current_user.shop)
+      @user = current_user
+      @shop = current_user.shop
+      @categories = @shop.categories
+      @orders = @shop.orders
+      render :index
     end
   end
 

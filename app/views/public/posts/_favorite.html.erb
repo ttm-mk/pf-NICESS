@@ -21,21 +21,30 @@
       <div class="card-footer">
         <div class="d-block d-md-flex justify-content-between">
           <div>
+            <!--コメント-->
             <i class="far fa-comment-alt mr-3"></i>
-            <%= post.comments.count %>
+            <span class="pr-3"><%= post.comments.count %>コメント</span>
 
+            <!--いいね-->
             <% if post.favorite_by?(current_user) %>
               <%= link_to user_post_favorites_path(current_user.id, post), method: :delete do %>
                 <i class="fas fa-heart"></i>
               <% end %>
-              <%= post.favorites.count %>いいね
+              <span class="pr-3"><%= post.favorites.count %>いいね</span>
 
             <% else %>
               <%= link_to user_post_favorites_path(current_user.id, post), method: :post do %>
                 <i class="far fa-heart"></i>
               <% end %>
-              <%= post.favorites.count %>いいね
+              <span class="pr-3"><%= post.favorites.count %>いいね</span>
 
+            <% end %>
+
+            <!--削除-->
+            <% if post.user.id == current_user.id %>
+              <%= link_to user_post_path(post.user.id, post.id), method: :delete, data: {confirm: '本当に削除しますか？'} do %>
+                <i class="fas fa-trash-alt"></i>削除
+              <% end %>
             <% end %>
 
           </div>
@@ -45,7 +54,7 @@
         </div>
       </div>
     </div>
-    
+
   <%# end %>
-  
+
 <% end %>

@@ -1,31 +1,11 @@
 <div class="container">
   <div class="row">
 
-    <% if current_user.shop.present? && @orders.present? %>
-
-      <!--サイドバー-->
-      <div class="col-12 d-lg-none d-xl-none mt-4">
-        <p>
-          <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#shopmenu" aria-expanded="false" aria-controls="shopmenu">
-            <i class="fas fa-bars"></i>
-          </button>
-        </p>
-        <div>
-          <div class="collapse width" id="shopmenu">
-            <div class="card card-body" style="width: 250px;">
-              <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-2 d-none d-lg-block">
-        <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
-      </div>
-
-
-      <!--注文履歴一覧-->
-      <div class="col-lg-10 col-md-12">
+    <!--注文履歴一覧-->
+    <% if @orders.present? %>
+      
+      <!--注文履歴有の場合 左-->
+      <div class="col-12 col-md-8">
         <% @orders.reverse.each do |order| %>
           <div class="card mx-3 my-4">
             <div class="card-header">
@@ -99,49 +79,33 @@
           </div>
         <% end %>
       </div>
-
-    <% elsif current_user.shop.present? && !@orders.present? %>
-    
-      <!--サイドバー-->
-      <div class="col-12 d-lg-none d-xl-none mt-4">
-        <p>
-          <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#shopmenu" aria-expanded="false" aria-controls="shopmenu">
-            <i class="fas fa-bars"></i>
-          </button>
-        </p>
-        <div>
-          <div class="collapse width" id="shopmenu">
-            <div class="card card-body" style="width: 250px;">
-              <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-2 d-none d-lg-block">
-        <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
-      </div>
-
-
-      <!--注文履歴一覧-->
-      <div class="col-lg-10 col-md-12">
-        <div class="m-5 text-center">
-          注文履歴はありません
-        </div>
-      </div>
-    
       
+      <!--右　プロフィール・ショップ情報-->
+      <div class="col-12 col-md-4 mb-5 mb-md-0 pt-4">
+        <%= render "public/users/user_sidebar", user: @user, shop: @shop %>
+      </div>
+
     <% else %>
-      <div class="col-12">
+    
+      <!--注文履歴なしの場合　左-->
+      <div class="col-12 col-md-8 pt-4">
         <div class="m-5 text-center">
           注文履歴はありません
         </div>
+      
+        <div class="row">
+          <div class="col-12 col-md-4 offset-md-4">
+            <%= link_to "ユーザーページに戻る", user_path(current_user.name_id), class: 'btn btn-primary btn-block' %>
+          </div>
+          <div class="col-md-4 d-none d-md-block"></div>
+        </div>
       </div>
       
-      <div class="col-12 ccol-md-4 offsert-md-4">
-        <%= link_to "ユーザーページに戻る", user_path(current_user.name_id), class: 'btn btn-primary btn-block' %>
+      <!--右　プロフィール・ショップ情報-->
+      <div class="col-12 col-md-4 mb-5 mb-md-0 pt-4">
+        <%= render "public/users/user_sidebar", user: @user, shop: @shop %>
       </div>
-      <div class="col-md-4 d-none d-md-block"></div>
+
 
     <% end %>
 

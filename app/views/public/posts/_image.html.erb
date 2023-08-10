@@ -1,6 +1,8 @@
 <% posts.each do |post| %>
   <% if post.image.present? %>
     <div class="card my-3">
+
+      <!--ボディ-->
       <div class="card-body">
         <div class="mt-1 mb-4">
           <%= link_to user_path(post.user.name_id) do %>
@@ -9,7 +11,7 @@
           <%= post.user.name %>
         </div>
         <div class="px-4">
-          <%= post.text %>
+          <%= simple_format(post.text) %>
         </div>
         <% if post.image.present? %>
           <div>
@@ -18,26 +20,37 @@
         <% end %>
       </div>
 
+      <!--フッター-->
       <div class="card-footer">
         <div class="d-block d-md-flex justify-content-between">
           <div>
-            <i class="far fa-comment-alt mr-3"></i>
-            <%= post.comments.count %>
+            <!--コメント-->
+            <%= link_to user_post_path(post.user.id, post.id) do %>
+              <i class="far fa-comment-alt mr-3"></i>
+            <% end %>
+            <span class="pr-3"><%= post.comments.count %>コメント</span>
 
+            <!--いいね-->
             <% if post.favorite_by?(current_user) %>
               <%= link_to user_post_favorites_path(current_user.id, post), method: :delete do %>
                 <i class="fas fa-heart"></i>
               <% end %>
-              <%= post.favorites.count %>いいね
+              <span class="pr-3"><%= post.favorites.count %>いいね</span>
 
             <% else %>
               <%= link_to user_post_favorites_path(current_user.id, post), method: :post do %>
                 <i class="far fa-heart"></i>
               <% end %>
-              <%= post.favorites.count %>いいね
+              <span class="pr-3"><%= post.favorites.count %>いいね</span>
 
             <% end %>
 
+            <!--削除-->
+            <% if post.user.id == current_user.id %>
+              <%= link_to user_post_path(post.user.id, post.id), method: :delete, data: {confirm: '本当に削除しますか？'} do %>
+                <i class="fas fa-trash-alt"></i>削除
+              <% end %>
+            <% end %>
           </div>
           <div class="text-right text-md-left">
             <%= post.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M') %>
@@ -48,11 +61,3 @@
 
   <% end %>
 <% end %>
-
-<!--<%# unless user.image.attached? %>-->
-<!--  <div class="m-4">-->
-<!--    画像投稿はありません。-->
-<!--  </div>-->
-<!--<%# end %>-->
-
-

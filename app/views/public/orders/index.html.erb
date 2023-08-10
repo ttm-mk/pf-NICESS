@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-      <!--サイドバー-->
+      <!--左　サイドバー-->
       <div class="col-12 d-lg-none d-xl-none mt-4">
         <p>
           <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#shopmenu" aria-expanded="false" aria-controls="shopmenu">
@@ -11,25 +11,31 @@
         <div>
           <div class="collapse width" id="shopmenu">
             <div class="card card-body" style="width: 250px;">
-              <%= render 'public/shops/sidebar', shop: @shop %>
+              <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
             </div>
           </div>
         </div>
       </div>
 
       <div class="col-2 d-none d-lg-block">
-        <%= render 'public/shops/sidebar', shop: @shop %>
+        <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
       </div>
 
+
+    <!--右　注文一覧表示-->
     <div class="col-lg-10 col-md-12 mx-auto">
       <div class="card my-3">
+
+        <!--ヘッダー-->
         <div class="card-header">
           <h4>注文一覧</h4>
         </div>
 
+        <!--ボディ-->
         <div class="card-body">
           <div class="table-responsive">
             <table class="table">
+
               <thead>
                 <tr>
                   <th>注文日時</th>
@@ -37,6 +43,7 @@
                   <th></th>
                 </tr>
               </thead>
+
               <tbody>
                 <% @orders.reverse.each do |order| %>
                 <tr>
@@ -51,12 +58,16 @@
                   </td>
                 </tr>
                 <% end %>
+
               </tbody>
+
             </table>
           </div>
         </div>
 
       </div>
     </div>
+
+
   </div>
 </div>

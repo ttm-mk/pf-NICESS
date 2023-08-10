@@ -1,16 +1,17 @@
 <div class="container">
   <div class="row mt-4">
     <div class="col-12">
-      
-      <% if @cart_items.errors.any? %>
-        <%= @cart_items.errors.count %>件のエラーが発生しました
-        <ul>
-        <% @cart_items.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      <% end %>
-      
+
+      <!--<%# if @cart_items.errors.any? %>-->
+      <!--  <%#= @cart_items.errors.count %>件のエラーが発生しました-->
+      <!--  <ul>-->
+      <!--  <%# @cart_items.errors.full_messages.each do |message| %>-->
+      <!--    <li><%#= message %></li>-->
+      <!--  <%# end %>-->
+      <!--  </ul>-->
+      <!--<%# end %>-->
+
+      <!--カート表示-->
       <div class="form-group">
         <div class="row">
           <div class="col-5 h4">

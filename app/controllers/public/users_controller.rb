@@ -20,9 +20,11 @@ class Public::UsersController < ApplicationController
     redirect_to root_path, notice: 'ユーザーはいません' and return if @user.nil?
     @post = Post.new
     @posts = Post.all
+    
     # いいね取得
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
+    
     # フォローユーザー取得
     @following_users = @user.followings
     @shop = @user.shop
@@ -30,7 +32,14 @@ class Public::UsersController < ApplicationController
 
   def edit
     @user = User.find_by(name_id: params[:id])
-    @shop = Shop.new
+    # @shop = Shop.new
+  end
+  
+  def user_orders
+    @user = User.find_by(name_id: params[:name_id])
+    @shop = @user.shop
+    @orders = @user.orders
+    
   end
 
   def confirm

@@ -21,19 +21,20 @@
       <%= render 'public/shops/sidebar', shop: @shop, user: @user, categories: @categories %>
     </div>
 
+
     <!--右 新規商品入力欄-->
     <div class="col-12 col-md-10">
 
       <!--error_message-->
       <% if @item.errors.any? %>
-      <div class="p-3">
-        <%= @item.errors.count %>件のエラーがあります
-      </div>
-      <ul>
-        <% @item.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <div class="p-3">
+          <%= @item.errors.count %>件のエラーがあります
+        </div>
+        <ul>
+          <% @item.errors.full_messages.each do |message| %>
+            <li class="text-danger"><%= message %></li>
+          <% end %>
+        </ul>
       <% end %>
 
 
