@@ -15,41 +15,41 @@
               <%= post.text %>
             </div>
             <% if post.image.present? %>
-            <div>
+            <div class="text-center">
               <%= image_tag post.image, class: 'img-fluid' %>
             </div>
             <% end %>
           </div>
-    
+
           <div class="card-footer">
             <div class="d-block d-md-flex justify-content-between">
               <div>
                 <!--コメント-->
                 <i class="far fa-comment-alt mr-3"></i>
                 <span class="pr-3"><%= post.comments.count %>コメント</span>
-    
+
                 <!--いいね-->
                 <% if post.favorite_by?(current_user) %>
                   <%= link_to user_post_favorites_path(current_user.id, post), method: :delete do %>
                     <i class="fas fa-heart"></i>
                   <% end %>
                   <span class="pr-3"><%= post.favorites.count %>いいね</span>
-    
+
                 <% else %>
                   <%= link_to user_post_favorites_path(current_user.id, post), method: :post do %>
                     <i class="far fa-heart"></i>
                   <% end %>
                   <span class="pr-3"><%= post.favorites.count %>いいね</span>
-    
+
                 <% end %>
-    
+
                 <!--削除-->
                 <% if post.user.id == current_user.id %>
                   <%= link_to user_post_path(post.user.id, post.id), method: :delete, data: {confirm: '本当に削除しますか？'} do %>
                     <i class="fas fa-trash-alt"></i>削除
                   <% end %>
                 <% end %>
-    
+
               </div>
               <div class="text-right text-md-left">
                 <%= post.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M') %>
@@ -57,7 +57,7 @@
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
 
@@ -71,5 +71,5 @@
       </div>
     </div>
   </div>
-  
+
 <% end %>

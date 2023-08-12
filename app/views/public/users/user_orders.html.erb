@@ -3,7 +3,7 @@
 
     <!--注文履歴一覧-->
     <% if @orders.present? %>
-      
+
       <!--注文履歴有の場合 左-->
       <div class="col-12 col-md-8">
         <% @orders.reverse.each do |order| %>
@@ -27,17 +27,20 @@
               <% order.order_details.each do |order_detail| %>
                 <div class="form-group">
                   <div class="row">
+                    <div class="col-12 col-md-2 text-center-my-auto">
+                      <%= image_tag order_detail.item.get_item_image(50,50) %>
+                    </div>
 
-                    <div class="col-12 col-lg-3">
+                    <div class="col-12 col-md-3">
                       <strong><%= order_detail.item.name %></strong>
                     </div>
 
-                    <div class="col-12 col-lg-4 pl-4">
+                    <div class="col-12 col-md-3 pl-4">
                       <%= order_detail.order_price %>円 × <%= order_detail.amount %>点
                     </div>
 
-                    <div class="col-12 col-lg-5">
-                       小計：<%= order_detail.order_price * order_detail.amount %>円
+                    <div class="col-12 col-md-4">
+                       <strong>小計：<%= order_detail.order_price * order_detail.amount %>円</strong>
                     </div>
 
                   </div>
@@ -65,10 +68,10 @@
               <div class="form-group text-right pr-3">
                 <hr>
                   <div class="row">
-                    <div class="col-12 col-lg-9">
+                    <div class="col-12 col-md-9">
                        <h5><strong>請求金額</strong></h5>
                     </div>
-                    <div class="col-12 col-lg-3">
+                    <div class="col-12 col-md-3">
                       <h5><strong><%= order.total_payment %>円</strong></h5>
                     </div>
                   </div>
@@ -79,20 +82,20 @@
           </div>
         <% end %>
       </div>
-      
+
       <!--右　プロフィール・ショップ情報-->
       <div class="col-12 col-md-4 mb-5 mb-md-0 pt-4">
         <%= render "public/users/user_sidebar", user: @user, shop: @shop %>
       </div>
 
     <% else %>
-    
+
       <!--注文履歴なしの場合　左-->
       <div class="col-12 col-md-8 pt-4">
         <div class="m-5 text-center">
           注文履歴はありません
         </div>
-      
+
         <div class="row">
           <div class="col-12 col-md-4 offset-md-4">
             <%= link_to "ユーザーページに戻る", user_path(current_user.name_id), class: 'btn btn-primary btn-block' %>
@@ -100,7 +103,7 @@
           <div class="col-md-4 d-none d-md-block"></div>
         </div>
       </div>
-      
+
       <!--右　プロフィール・ショップ情報-->
       <div class="col-12 col-md-4 mb-5 mb-md-0 pt-4">
         <%= render "public/users/user_sidebar", user: @user, shop: @shop %>

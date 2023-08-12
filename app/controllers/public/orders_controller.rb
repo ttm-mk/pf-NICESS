@@ -51,7 +51,7 @@ class Public::OrdersController < ApplicationController
     # TODO
     cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
 
-    if !@order.save
+    if @order.save
       cart_items.each do |cart_item|
         order_detail = OrderDetail.new
         order_detail.item_id = cart_item.item_id

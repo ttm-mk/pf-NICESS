@@ -19,7 +19,7 @@ class Public::UsersController < ApplicationController
     @user = User.find_by(name_id: params[:id])
     redirect_to root_path, notice: 'ユーザーはいません' and return if @user.nil?
     @post = Post.new
-    @posts = Post.all
+    @user_posts = @user.posts.all.order(created_at: :desc).page(params[:page])
     
     # いいね取得
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)

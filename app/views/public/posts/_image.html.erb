@@ -13,11 +13,9 @@
         <div class="px-4">
           <%= simple_format(post.text) %>
         </div>
-        <% if post.image.present? %>
-          <div>
-            <%= image_tag post.image, class: 'img-fluid' %>
-          </div>
-        <% end %>
+        <div class="text-center">
+          <%= image_tag post.image, class: 'img-fluid' %>
+        </div>
       </div>
 
       <!--フッター-->

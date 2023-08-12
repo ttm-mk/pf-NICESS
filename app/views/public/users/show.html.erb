@@ -62,16 +62,32 @@
       <div class="tab-content" id="myTabContent">
       <!--投稿-->
         <div class="tab-pane fade show active" id="post" role="tabpanel" aria-labelledby="post-tab">
-          <%= render 'public/posts/index', posts: @user.posts.reverse.take(3), user: @user %>
-          <div class="h4 text-right mb-5">
-            <%= link_to user_posts_path(params[:id]) do %>
-              <i class="fas fa-angle-double-right"></i> もっと見る
-            <% end %>
-          </div>
+          <% if @user.posts.present? %>
+            <%= render 'public/posts/index', posts: @user.posts.reverse.take(3), user: @user %>
+            <div class="h4 text-right mb-5">
+              <%= link_to user_posts_path(params[:id]) do %>
+                <i class="fas fa-angle-double-right"></i> もっと見る
+              <% end %>
+            </div>
+          <% else %>
+            <div class="row">
+              <div class="col-12">
+                <div class="m-5 text-center">
+                  ユーザーの投稿はありません！
+                </div>
+              </div>
+            </div>
+
+          <% end %>
         </div>
+
         <!--画像あり投稿-->
         <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
-          <%= render 'public/posts/image', posts: @user.posts.reverse, user: @user %>
+          <%= render 'public/posts/image', posts: @user_posts, user: @user %>
+          <div id="posts_image"></div>
+          <div class="text-center py-4">
+            <%= link_to_next_page @user_posts, 'もっと見る', remote: true, id: 'view_more', class: 'btn btn-lg btn-light' %>
+          </div>
         </div>
         <!--いいね-->
         <div class="tab-pane fade" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
