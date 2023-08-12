@@ -84,6 +84,13 @@
 
         </div>
 
+        <div class="row">
+          <div class="col-12 col-md-4 offset-md-4">
+            <%= link_to "", user_path(@user.name_id), class: 'btn btn-primary btn-block' %>
+          </div>
+          <div class="col-md-4 d-none d-md-block"></div>
+        </div>
+
       <!--カテゴリー検索がない時-->
       <% else %>
         <div class="form-group">
@@ -143,9 +150,15 @@
 
         </div>
 
+        <div class="row">
+          <div class="col-12 col-md-4 offset-md-4 my-5">
+            <%= link_to "ユーザーのSNSに戻る", user_path(@user.name_id), class: 'btn btn-primary btn-block' %>
+          </div>
+          <div class="col-md-4 d-none d-md-block"></div>
+        </div>
+
       <% end %>
     </div>
-
 
   </div>
 </div>

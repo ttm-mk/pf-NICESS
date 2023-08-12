@@ -5,7 +5,7 @@
     <div class="col-12 col-lg-9">
       <!--post-->
       <div class="row mx-md-auto">
-        <div class="col-12 col-lg-9">
+        <div class="col-12">
           <div class="card">
 
             <!--ボディ-->
@@ -20,7 +20,7 @@
                 <%= simple_format(@post.text) %>
               </div>
               <% if @post.image.present? %>
-                <div>
+                <div class="text-center">
                   <%= image_tag @post.image, class: 'img-fluid' %>
                 </div>
               <% end %>

@@ -1,4 +1,10 @@
-$('#post_index').append("<%= escape_javascript(render 'public/posts/image', posts: @posts, object: @posts) %>");
+$('#posts_intex').append("<%= escape_javascript(render 'public/posts/index', posts: @posts, object: @posts) %>");
 $("#view_more").replaceWith("<%= escape_javascript(
   link_to_next_page(@posts, 'もっと見る', remote: true, id: 'view_more')
+) %>");
+
+
+$('#posts_image').append("<%= escape_javascript(render 'public/posts/image', posts: @posts, object: @posts) %>");
+$("#view_more2").replaceWith("<%= escape_javascript(
+  link_to_next_page(@posts, 'もっと見る', remote: true, id: 'view_more2')
 ) %>");

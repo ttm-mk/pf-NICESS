@@ -5,7 +5,6 @@ class Public::HomesController < ApplicationController
   def top
     @users = User.all
     @post = Post.new
-    @posts = Post.all
     @post_data = Post.all.order(created_at: :desc)
     @posts = Kaminari.paginate_array(@post_data).page(params[:page])
     @shops = Shop.all
@@ -15,10 +14,9 @@ class Public::HomesController < ApplicationController
       @posts = Kaminari.paginate_array(@post_data).page(params[:page])
       @users = User.where('name LIKE ?', "%#{params[:seek]}%")
 
-    elsif params[:category].present?
-      @category = Category.find(params[:name])
-
     else
+      @post_data = Post.all.order(created_at: :desc)
+      # @posts = Kaminari.paginate_array(@post_data).page(params[:page])
       @posts = Post.all.order(created_at: :desc).page(params[:page])
     end
   end

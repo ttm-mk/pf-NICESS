@@ -71,7 +71,7 @@ class Public::OrdersController < ApplicationController
 
     else
       @order = Order.new
-      @shop = Shop.find(params[:shop_id])
+      @shop = Shop.find(params[:order][:shop_id])
       @cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
       render :new
 
