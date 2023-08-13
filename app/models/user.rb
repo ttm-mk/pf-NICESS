@@ -27,11 +27,11 @@ class User < ApplicationRecord
 
 
   # バリデーション
-  validates :name, presence: { message: "・SNSで使用するハンドルネームを入力して下さい。" }
-  validates :name_id, presence: { message: "・ユーザーIDを入力して下さい。(※ログインで使用します)" }, uniqueness: true
+  validates :name, presence: true
+  validates :name_id, presence: true, uniqueness: true
   validates :profile, length: { maximum: 200 }
-  validates :email, presence: { message: "・メールアドレスを入力して下さい。" }
-  validates :encrypted_password, presence: { message: "・パスワードを入力して下さい。" }, length: { minimum: 6 }
+  validates :email, presence: true
+  validates :encrypted_password, presence: true, length: { minimum: 6 }
 
 
 # ゲスト関係：TODO

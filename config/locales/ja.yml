@@ -13,6 +13,47 @@ ja:
 
 
   activerecord:
+    attributes:
+      cart_item:
+        amount: 個数
+
+      category:
+        name: カテゴリー名
+
+      comment:
+        text: コメント
+
+      item:
+        name: 商品名
+        price: 金額
+        introduction: 商品説明文
+        stock: 在庫数
+        category: カテゴリー
+        is_sale: ステータス
+
+      order:
+        client_name: お客様の氏名(フルネーム)
+        client_phone_number: お客様の電話番号
+        client_email: お客様のメールアドレス
+        delivery_post_code: 配送先の郵便番号
+        delivery_address: 配送先の住所
+        delivery_name: 配送先の宛名
+        payment_method: 支払方法
+
+      post:
+        text: 投稿内容
+
+      shop:
+        name: ショップ名
+        introduction: ショップの説明文
+        postage: 送料
+
+      user:
+        name: ユーザー名
+        name_id: ログインに使用するユーザーID
+        email: メールアドレス
+
+
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

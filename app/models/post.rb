@@ -9,7 +9,7 @@ class Post < ApplicationRecord
 
 
   # バリデーション
-  validates :text, presence: { message: "文章を入力して下さい。(200字以内)" }, length: { maximum: 200 }
+  validates :text, presence: true, length: { maximum: 200 }
 
 
   # ページネーション

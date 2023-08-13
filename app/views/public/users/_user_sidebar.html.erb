@@ -50,34 +50,41 @@
                 <%= image_tag item.item_image %>
 
                 <div class="card-body text-center">
-                  
+
                   <!--商品名表示-->
                   <div class="card-title">
                     <%= item.name %>
                   </div>
-                  
+
                   <!--商品内容表示-->
                   <div class="card-text">
                     <div class="pt-3">
                       <%= item.introduction %>
                     </div>
-                    
+
                     <div class="pt-3">
                       <div class="pt-2">
                         <%= item.price %>円(税込)
                       </div>
-                      
-                      <div class="pt-2 text-danger">
-                        <%= item.is_sale ? '販売中' : '品切れ' %>
-                      </div>
+
+                      <!--TODO-->
+                      <% if item.is_sale %>
+                        <div class="pt-2 text-primary">
+                          販売中
+                        </div>
+                      <% else %>
+                        <div class="pt-2 text-danger">
+                          品切れ
+                        </div>
+                      <% end %>
                     </div>
-                    
+
                     <div>
                       <%= link_to "詳細", user_shop_item_path(item.shop.id, item), class: 'btn btn-primary mt-3 form-control' %>
                     </div>
-                    
+
                   </div>
-                  
+
                 </div>
               </div>
 

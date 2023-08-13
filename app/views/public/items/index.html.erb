@@ -55,7 +55,15 @@
                   </td>
                   <td class="text-center"><%= item.stock %>個</td>
                   <td class="text-center">
-                    <%= item.is_sale ? '販売中' : '品切れ' %>
+                    <% if item.is_sale %>
+                      <div class="text-primary">
+                        販売中
+                      </div>
+                    <% else %>
+                      <div class="text-danger">
+                        品切れ
+                      </div>
+                    <% end %>
                   </td>
                   <td>
                     <%= link_to "詳細", user_shop_item_path(@user.name_id, item.id), class: 'btn btn-primary btn-block' %>

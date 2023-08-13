@@ -36,6 +36,11 @@ class Public::OrdersController < ApplicationController
 
     @total_payment = @shop.postage + @total_price
 
+    # valid?でバリデーションよんでくれる
+    unless @order.valid?
+      render :new
+    end
+
   end
 
   def thanks
@@ -70,7 +75,6 @@ class Public::OrdersController < ApplicationController
       cart_items.destroy_all
 
     else
-      @order = Order.new
       @shop = Shop.find(params[:order][:shop_id])
       @cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
       render :new
