@@ -1,9 +1,27 @@
 <div class="container">
 
+  <!--error_message-->
+  <div class="row p-3">
+    <div class="col-12 col-md-8 offset-md-2">
+      <% if @user.errors.any? %>
+        <div>
+          <%= @user.errors.count %>件のエラーがあります
+        </div>
+        <div>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li class="text-danger"><strong><%= message %></strong></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-2 d-none d-md-blocks"></div>
+  </div>
+
   <div class="row">
     <div class="col-12 text-center">
       <h2 class="p-4">新規ユーザー登録</h2>
-      <%= render "public/shared/error_messages", resource: resource %>
     </div>
   </div>
 
@@ -14,10 +32,10 @@
           <%= form_with model: @user, url:user_registration_path, method: :post do |f| %>
             <div class="form-group">
               <div class="row">
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-md-4">
                   ユーザー名
                 </div>
-                <div class="col-12 col-lg-8">
+                <div class="col-12 col-md-8">
                   <%= f.text_field :name, autofocus: true, class: 'form-control' %>
                 </div>
               </div>
@@ -25,10 +43,10 @@
 
             <div class="form-group">
               <div class="row">
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-md-4">
                   ユーザーID
                 </div>
-                <div class="col-12 col-lg-8">
+                <div class="col-12 col-md-8">
                   <%= f.text_field :name_id, autofocus: true, class: 'form-control' %>
                 </div>
               </div>
@@ -36,10 +54,10 @@
 
             <div class="form-group">
               <div class="row">
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-md-4">
                   メールアドレス
                 </div>
-                <div class="col-12 col-lg-8">
+                <div class="col-12 col-md-8">
                   <%= f.text_field :email, autofocus: true, class: 'form-control' %>
                 </div>
               </div>
@@ -47,13 +65,13 @@
 
             <div class="form-group">
               <div class="row">
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-md-4">
                   パスワード
                   <% if @minimum_password_length %>
                     <em>(<%= @minimum_password_length %> 文字以上)</em>
                   <% end %>
                 </div>
-                <div class="col-12 col-lg-8">
+                <div class="col-12 col-md-8">
                   <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
                 </div>
               </div>
@@ -61,10 +79,10 @@
 
             <div class="form-group">
               <div class="row">
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-md-4">
                   パスワード(確認)
                 </div>
-                <div class="col-12 col-lg-8">
+                <div class="col-12 col-md-8">
                   <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
                 </div>
               </div>

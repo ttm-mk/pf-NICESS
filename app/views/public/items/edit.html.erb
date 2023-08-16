@@ -32,7 +32,7 @@
       </div>
       <ul>
         <% @item.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li class="text-danger"><strong><%= message %></strong></li>
         <% end %>
       </ul>
       <% end %>

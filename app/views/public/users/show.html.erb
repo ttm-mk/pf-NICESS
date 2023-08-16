@@ -12,15 +12,20 @@
             <%= f.text_area :text, rows: 5, class: 'form-control' %>
           </div>
 
-          <div class="row">
-            <div class="col-12 col-md-8">
+          <div class="row mb-5">
+            <div class="col-7 d-md-none d-lg-none d-xl-none">
+              <div class="form-group">
+                <%= f.file_field :image, accept: 'image/*', style: "font-size: 0.7em;" %>
+              </div>
+            </div>
+            <div class="col-md-8 d-none d-md-block">
               <div class="form-group">
                 <%= f.file_field :image, accept: 'image/*' %>
               </div>
             </div>
-            <div class="col-12 col-md-4 mb-5">
+            <div class="col-5 col-md-4">
               <div class="form-group">
-                <%= f.submit '投稿する', class: 'btn btn-primary btn-block' %>
+                <%= f.submit '投稿する', class: 'btn btn-md btn-primary btn-block', style: "font-size: 0.9em;" %>
               </div>
             </div>
           </div>
@@ -32,36 +37,36 @@
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item w-25 text-center">
           <a class="nav-link bg-light active" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-selected="true">
-            <i class="fas fa-scroll"></i><br>投稿
+            <i class="fas fa-scroll"></i><br><span style="font-size: 0.8em">投稿</span>
           </a>
         </li>
-        
+
         <!--画像投稿-->
         <li class="nav-item w-25 text-center">
           <a class="nav-link bg-light" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-selected="true">
-            <i class="fas fa-images"></i><br>画廊
+            <i class="fas fa-images"></i><br><span style="font-size: 0.8em">画廊</span>
           </a>
         </li>
-        
+
         <!--いいね投稿-->
         <li class="nav-item w-25 text-center">
           <a class="nav-link bg-light" id="favorite-tab" data-toggle="tab" href="#favorite" role="tab" aria-selected="true">
-            <i class="fas fa-heart"></i><br>いいね
+            <i class="fas fa-heart"></i><br><span style="font-size: 0.8em">いいね</span>
           </a>
         </li>
-        
+
         <!--フォローユーザー-->
         <li class="nav-item w-25 text-center">
           <a class="nav-link bg-light" id="follow-tab" data-toggle="tab" href="#follow" role="tab" aria-selected="true">
-            <i class="fas fa-users"></i><br>user
+            <i class="fas fa-users"></i><br><span style="font-size: 0.7em">ユーザー</span>
           </a>
         </li>
-        
+
         <!--カレントユーザー情報-->
         <% if @user == current_user %>
           <li class="nav-item w-100 text-center">
             <a class="nav-link bg-light" id="mypage-tab" data-toggle="tab" href="#mypage" role="tab" aria-selected="false">
-              <i class="far fa-id-card"></i>マイ情報
+              <i class="far fa-id-card"></i> <span style="font-size: 0.8em">マイ情報</span>
             </a>
           </li>
         <% end %>
@@ -98,17 +103,17 @@
             <%= link_to_next_page @user_posts, 'もっと見る', remote: true, id: 'view_more', class: 'btn btn-lg btn-light' %>
           </div>
         </div>
-        
+
         <!--いいね-->
         <div class="tab-pane fade" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
           <%= render 'public/posts/favorite', favorite_posts: @favorite_posts.reverse %>
         </div>
-        
+
         <!--フォロー-->
         <div class="tab-pane fade" id="follow" role="tabpanel" aria-labelledby="follow-tab">
           <%= render 'public/relationships/relationship',  following_users: @following_users %>
         </div>
-        
+
         <!--マイ情報-->
         <div class="tab-pane fade" id="mypage" role="tabpanel" aria-labelledby="mypage-tab">
           <%= render 'public/users/mypage', user: @user %>

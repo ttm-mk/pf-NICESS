@@ -53,7 +53,7 @@
                     </div>
                   </div>
 
-                  <div class="text-primary">
+                  <div class="text-secondary pb-2" style="font-size: 0.8em">
                     <%= item.category.name %>
                   </div>
 
@@ -65,9 +65,16 @@
                     <div class="pt-2">
                       価格：<%= item.price %>円(税込)
                     </div>
-                    <div class="pt-2 text-primary">
-                      <%= item.is_sale ? '販売中' : '品切れ' %>
-                    </div>
+
+                    <% if item.is_sale %>
+                      <div class="pt-2 text-primary">
+                        販売中
+                      </div>
+                    <% else %>
+                      <div class="pt-2 text-danger">
+                        品切れ
+                      </div>
+                    <% end %>
                   </div>
 
                 </div>
@@ -119,7 +126,7 @@
                   </div>
 
                   <% if item.category.present? %>
-                    <div class="text-primary">
+                    <div class="text-secondary pb-2" style="font-size: 0.8em">
                       <%= item.category.name %>
                     </div>
                   <% end %>
@@ -132,9 +139,15 @@
                     <div class="pt-2">
                       価格：<%= item.price %>円(税込)
                     </div>
-                    <div class="pt-2 text-primary">
-                      <%= item.is_sale ? '販売中' : '品切れ' %>
-                    </div>
+                    <% if item.is_sale %>
+                      <div class="pt-2 text-primary">
+                        販売中
+                      </div>
+                    <% else %>
+                      <div class="pt-2 text-danger">
+                        品切れ
+                      </div>
+                    <% end %>
                   </div>
 
                 </div>

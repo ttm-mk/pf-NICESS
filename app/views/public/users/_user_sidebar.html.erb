@@ -1,5 +1,5 @@
 <!--プロフィール表示-->
-<div class="card">
+<div class="card mx-4">
   <div class="card-body">
     <div class="row">
       <div class="col-12 col-md-4">
@@ -12,7 +12,7 @@
       </div>
     </div>
     <% if user.profile.present? %>
-      <div class="mt-3">
+      <div class="mt-3" style="font-size: 0.8em">
         <%= simple_format(user.profile) %>
       </div>
     <% end %>
@@ -52,13 +52,13 @@
                 <div class="card-body text-center">
 
                   <!--商品名表示-->
-                  <div class="card-title">
+                  <div class="card-title h5">
                     <%= item.name %>
                   </div>
 
                   <!--商品内容表示-->
                   <div class="card-text">
-                    <div class="pt-3">
+                    <div class="pt-3" style="font-size: 0.8em">
                       <%= item.introduction %>
                     </div>
 

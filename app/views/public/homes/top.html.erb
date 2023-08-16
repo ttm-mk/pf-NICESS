@@ -73,11 +73,11 @@
           <%= form_with url:root_path, method: :get, local: true do |f| %>
             <div class="form-group mt-3 mb-5">
               <div class="row">
-                <div class="col-6">
-                  <%= f.text_field :search, class: "form-control", placeholder: "キーワードで投稿検索をする" %>
+                <div class="col-8">
+                  <%= f.text_field :search, class: "form-control", placeholder: "キーワードで投稿を検索" %>
                 </div>
-                <div class="col-6">
-                  <%= f.button :type => 'submit', class: 'btn btn-primary' do %>
+                <div class="col-4">
+                  <%= f.button :type => 'submit', class: 'btn btn-md btn-primary' do %>
                     <i class="fas fa-search"></i>検索
                   <% end %>
                 </div>
@@ -90,25 +90,25 @@
             <!--投稿-->
             <li class="nav-item w-25 text-center">
               <a class="nav-link bg-light active" id="post-tab" data-toggle="tab" href="#post" role="tab" aria-selected="true">
-                <i class="fas fa-scroll"></i>全投稿
+                <i class="fas fa-scroll"></i><br><span style="font-size: 0.8em">全投稿</span>
               </a>
             </li>
             <!--画像投稿-->
             <li class="nav-item w-25 text-center">
               <a class="nav-link bg-light" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-selected="false">
-                <i class="fas fa-images"></i>画像投稿
+                <i class="fas fa-images"></i><br><span style="font-size: 0.6em">全画像投稿</span>
               </a>
             </li>
             <!--ユーザー-->
             <li class="nav-item w-25 text-center">
               <a class="nav-link bg-light" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-selected="false">
-                <i class="fas fa-users"></i>全user
+                <i class="fas fa-users"></i><br><span style="font-size: 0.6em">全ユーザー</span>
               </a>
             </li>
             <!--ショップ-->
             <li class="nav-item w-25 text-center">
               <a class="nav-link bg-light" id="shop-tab" data-toggle="tab" href="#shop" role="tab" aria-selected="false">
-                <i class="fas fa-shopping-cart"></i>全ショップ
+                <i class="fas fa-shopping-cart"></i><br><span style="font-size: 0.6em">全ショップ</span>
               </a>
             </li>
           </ul>
@@ -202,25 +202,28 @@
         <% if @post.errors.any? %>
           <ul>
             <% @post.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
+              <li class="text-danger"><strong><%= message %></strong></li>
             <% end %>
           </ul>
         <% end %>
 
         <!--投稿スペース-->
 
-        <div class="my-5 ml-3">
+        <div class="mt-4 mb-3 mx-auto">
           <%= form_with model: @post, url:user_posts_path(current_user), method: :post do |f| %>
            <div class="form-group">
              <%= f.text_area :text, rows: 5, class: 'form-control' %>
            </div>
             <div class="form-group">
-              <div class="row">
-                <div class="col-12 col-lg-8 mb-3">
+              <div class="row pb-4">
+                <div class="col-7 d-md-none d-lg-none d-xl-none">
+                  <%= f.file_field :image, accept: 'image/*', style: "font-size: 0.7em;" %>
+                </div>
+                <div class="col-md-8 d-none d-md-block">
                   <%= f.file_field :image, accept: 'image/*' %>
                 </div>
-                <div class="col-12 col-lg-4">
-                  <%= f.submit '投稿する', class: 'btn btn-primary btn-block' %>
+                <div class="col-5 col-md-4">
+                  <%= f.submit '投稿する', class: 'btn btn-primary btn-block', style: "font-size: 0.9em;" %>
                 </div>
               </div>
             </div>
