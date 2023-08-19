@@ -46,6 +46,12 @@ class User < ApplicationRecord
     end
   end
 
+  # def guest_check
+  #   if current_user == User.find(2)
+  #     redirect_to root_path, notice: "このページを見るにはユーザー登録が必要です。"
+  #   end
+  # end
+
 
 # ユーザーアイコン
   def get_user_icon(width, height)

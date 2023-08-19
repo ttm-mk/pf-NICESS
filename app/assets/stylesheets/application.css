@@ -15,19 +15,47 @@
  */
 
 html, body {
-  background-color: #A5C6E3 !important;
+  background-image: url(nicess_bg.jpg);
 }
 
 header {
-  background-color: white !important;
+  /*background-color: white !important;*/
   height: 170px;
 }
 
 .header_bg {
   background-image: url(nicess_header.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  /*background-repeat: no-repeat;*/
+  /*background-size: auto;*/
 }
 
 
 /*レスポンシブ記述*/
+@media screen and (max-width: 1024px) {
+  .header_bg {
+    background-image: url(header_1024.jpg);
+    background-size: cover;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  header {
+    height: 140px;
+  }
+  .header_bg {
+    background-image: url(header_768.jpg);
+    background-size: cover;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  header {
+    height: 140px;
+  }
+  
+  .header_bg {
+    background-image: url(header_425.jpg);
+    background-size: auto;
+  }
+}

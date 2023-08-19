@@ -1,5 +1,6 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_user!
+  # before_action :guest_check
 
 
   def index

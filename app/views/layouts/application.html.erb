@@ -95,6 +95,13 @@
     </header>
 
     <div class="main">
+      
+      <% flash.each do |message_type, message| %>
+      <div class="bg-primary text-center text-white">
+        <div class="flash-message <%= message_type %>"><%= message %></div>
+      </div>
+      <% end %>
+      
       <%= yield %>
     </div>
 
