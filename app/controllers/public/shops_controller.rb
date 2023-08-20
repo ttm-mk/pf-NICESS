@@ -3,25 +3,37 @@ class Public::ShopsController < ApplicationController
 
 
   def show
-    @user = User.find_by(name_id: params[:user_id])
-    @shop = @user.shop
-    @items = @shop.items.all
-    @categories = @shop.categories.all
-    if params[:category_id].present?
-      @category_name = @shop.categories.find_by(id: params[:category_id]).name
-      @category_items = @items.where(category_id: params[:category_id])
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @user = User.find_by(name_id: params[:user_id])
+      @shop = @user.shop
+      @items = @shop.items.all
+      @categories = @shop.categories.all
+      if params[:category_id].present?
+        @category_name = @shop.categories.find_by(id: params[:category_id]).name
+        @category_items = @items.where(category_id: params[:category_id])
+      end
     end
   end
 
   def new
-    @user = User.find_by(id: params[:user_id])
-    @shop = Shop.new
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @user = User.find_by(id: params[:user_id])
+      @shop = Shop.new
+    end
   end
 
   def edit
-    @user = User.find_by(id: params[:user_id])
-    @shop = @user.shop
-    @categories = @shop.categories.all
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @user = User.find_by(id: params[:user_id])
+      @shop = @user.shop
+      @categories = @shop.categories.all
+    end
   end
 
   def create

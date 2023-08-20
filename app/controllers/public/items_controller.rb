@@ -3,32 +3,48 @@ class Public::ItemsController < ApplicationController
 
 
   def new
-    @item = Item.new
-    @user = User.find_by(id: params[:user_id])
-    @shop = current_user.shop
-    @categories = @shop.categories.all
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @item = Item.new
+      @user = User.find_by(id: params[:user_id])
+      @shop = current_user.shop
+      @categories = @shop.categories.all
+    end
   end
 
   def index
-    @user = User.find_by(id: params[:user_id])
-    @shop = current_user.shop
-    @items = @shop.items.all
-    @categories = @shop.categories.all
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @user = User.find_by(id: params[:user_id])
+      @shop = current_user.shop
+      @items = @shop.items.all
+      @categories = @shop.categories.all
+    end
   end
 
   def show
-    @item = Item.find(params[:id])
-    @shop = @item.shop
-    @user = @shop.user
-    @cart_item = CartItem.new
-    @categories = @shop.categories.all
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @item = Item.find(params[:id])
+      @shop = @item.shop
+      @user = @shop.user
+      @cart_item = CartItem.new
+      @categories = @shop.categories.all
+    end
   end
 
   def edit
-    @user = User.find_by(id: params[:user_id])
-    @shop = @user.shop
-    @item = Item.find(params[:id])
-    @categories = @shop.categories.all
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @user = User.find_by(id: params[:user_id])
+      @shop = @user.shop
+      @item = Item.find(params[:id])
+      @categories = @shop.categories.all
+    end
   end
 
   def create

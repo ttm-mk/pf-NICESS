@@ -31,26 +31,39 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(name_id: params[:id])
-    # @shop = Shop.new
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @user = User.find_by(name_id: params[:id])
+    end
   end
 
   def user_orders
-    @user = User.find_by(name_id: params[:name_id])
-    @shop = @user.shop
-    @orders = @user.orders
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @user = User.find_by(name_id: params[:name_id])
+      @shop = @user.shop
+      @orders = @user.orders
+    end
 
   end
 
   def confirm
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    end
   end
 
   def resign
-    user = current_user
-    user.update(is_deleted: true)
-    reset_session
-    redirect_to root_path
-
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      user = current_user
+      user.update(is_deleted: true)
+      reset_session
+      redirect_to root_path
+    end
   end
 
   def update

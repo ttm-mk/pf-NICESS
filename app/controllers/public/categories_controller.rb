@@ -2,17 +2,25 @@ class Public::CategoriesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @user = User.find_by(name_id: params[:user_id])
-    @shop = @user.shop
-    @category = Category.new
-    @categories = @shop.categories.all
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @user = User.find_by(name_id: params[:user_id])
+      @shop = @user.shop
+      @category = Category.new
+      @categories = @shop.categories.all
+    end
   end
 
   def edit
-    @user = User.find_by(name_id: params[:user_id])
-    @shop = @user.shop
-    @category = Category.find(params[:id])
-    @categories = @shop.categories.all
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @user = User.find_by(name_id: params[:user_id])
+      @shop = @user.shop
+      @category = Category.find(params[:id])
+      @categories = @shop.categories.all
+    end
   end
 
   def create

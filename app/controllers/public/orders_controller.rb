@@ -3,44 +3,59 @@ class Public::OrdersController < ApplicationController
 
 
   def new
-    @order = Order.new
-    @shop = Shop.find(params[:shop_id])
-    @cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @order = Order.new
+      @shop = Shop.find(params[:shop_id])
+      @cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
+    end
   end
 
   def index
-    @user = current_user
-    @shop = current_user.shop
-    @categories = @shop.categories
-    @orders = @shop.orders
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @user = current_user
+      @shop = current_user.shop
+      @categories = @shop.categories
+      @orders = @shop.orders
+    end
   end
 
   def show
-    @user = current_user
-    @shop = current_user.shop
-    @categories = @shop.categories
-    @order = Order.find(params[:id])
-    @order_details = @order.order_details
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @user = current_user
+      @shop = current_user.shop
+      @categories = @shop.categories
+      @order = Order.find(params[:id])
+      @order_details = @order.order_details
+    end
   end
 
   def confirm
-    @order = Order.new(order_params)
-    @shop = Shop.find(params[:order][:shop_id])
-    @cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      @order = Order.new(order_params)
+      @shop = Shop.find(params[:order][:shop_id])
+      @cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
 
-    @total_price = 0
+      @total_price = 0
 
-    @cart_items.each do |cart_item|
-      @total_price += (cart_item.item.price * cart_item.amount)
+      @cart_items.each do |cart_item|
+        @total_price += (cart_item.item.price * cart_item.amount)
+      end
+
+      @total_payment = @shop.postage + @total_price
+
+      # valid?でバリデーションよんでくれる
+      unless @order.valid?
+        render :new
+      end
     end
-
-    @total_payment = @shop.postage + @total_price
-
-    # valid?でバリデーションよんでくれる
-    unless @order.valid?
-      render :new
-    end
-
   end
 
   def thanks
