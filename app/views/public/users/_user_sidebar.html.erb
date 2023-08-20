@@ -3,7 +3,9 @@
   <div class="card-body">
     <div class="row">
       <div class="col-12 col-md-4">
-        <%= image_tag user.get_user_icon(100,100) %>
+        <%= link_to user_path(user.name_id) do %>
+          <%= image_tag user.get_user_icon(100,100) %>
+        <% end %>
       </div>
       <div class="col-12 col-md-8 d-flex justify-content-center align-items-center">
         <h6 class="card-title">
