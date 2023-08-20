@@ -3,10 +3,11 @@
   <div class="row">
     <div class="col-lg-4 d-none d-lg-block">
       <%= image_tag 'sena1.png', size: '350x500', class: 'pr-3' %>
+      <div class="text-center">セナ</div>
     </div>
-  
+
     <div class="col-12 col-lg-4">
-  
+
       <div class="row">
         <div class="col-12 p-4">
           <h1 class="text-center">
@@ -15,7 +16,7 @@
           </h1>
         </div>
       </div>
-  
+
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -27,7 +28,7 @@
           </div>
         </div>
       </div>
-  
+
       <div class="row m-3">
         <div class="col-12 text-center">
           <h5>
@@ -36,19 +37,20 @@
           </h5>
         </div>
       </div>
-  
+
       <div class="row p-5">
         <div class="col-12">
           <div class="text-center">画像</div>
         </div>
       </div>
-  
+
     </div>
-  
+
     <div class="col-lg-4 d-none d-lg-block">
       <%= image_tag 'sui1.png', size: '350x500', class: 'pr-3' %>
+      <div class="text-center">スイ</div>
     </div>
-  
+
   </div>
 
   <div class="row">
@@ -63,7 +65,7 @@
     </div>
     <div class="col-md-2 col-lg-3 d-none d-md-block"></div>
   </div>
-  
+
   <div class="row">
     <div class="col-12">
       <h2 class="p-5 text-center">
@@ -76,12 +78,12 @@
     <div class="col-lg-4 d-none d-lg-block">
       <%= image_tag 'sui2.png', size: '350x500', class: 'mx-auto' %>
     </div>
-    
+
     <div class="col-12 col-md-6 col-lg-4">
       <div class="card m-3 p-3">
         <div class="card-body text-center p-3">
           SNSとして利用するだけでもOK！<br>
-          通販サイトを作らなくても大丈夫！<br><br>
+          通販サイトを作らなくてもご利用可能です！<br><br>
           自分の求める使い方をしよう！<br>
           それが「NICESS」です！
         </div>
@@ -91,11 +93,11 @@
           <div>
             初めての方は
             <%= link_to "ゲストログイン", user_guest_sign_in_path, method: :post %>
-            から<br>
-            お試しで利用することができます。
+            からお試しで利用することができます。
           </div>
+          <div>ゲストユーザーは、SNS機能のみご利用いただけます。</div>
           <div>
-            <br>利用したい方は
+            <br>登録して全機能を利用したい方は
             <%= link_to "新規登録", new_user_registration_path %>
             から
           </div>
@@ -107,10 +109,50 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-md-6 col-lg-4 d-none d-md-block">
       <%= image_tag 'sena2.png', size: '350x500', class: 'mx-auto pr-3' %>
     </div>
-    
+
+  </div>
+
+  <div class="row">
+
+    <!--lg以上表示-->
+    <div class="col-lg-12 d-none d-lg-block">
+      <div class="card m-5">
+
+        <div class="card-body">
+          <div class="card-title h2 text-center">
+            <i class="fab fa-readme"></i>
+            <span class="px-2">NICESSご利用案内</span>
+            <i class="fab fa-readme"></i>
+          </div>
+
+          <div class="card-text">
+            <div class="row">
+              <div class="col-10 offset-1">
+                NICESSは、SNSをベースとしてショップ機能も使用できる複合サイトです。<br>
+
+                <%= image_tag 'guide_menu.png', size: '700x350', class: 'mt-3' %><br>
+
+                ヘッダーのメニュー「NEW USER」から新規登録、ログイン完了後はTOPページに移動します。<br>
+
+                <%= image_tag 'guide_top.png', size: '700x350', class: 'mt-3' %><br>
+
+                TOPでは、「全投稿」ですべてのユーザーの投稿、<br>「全画像投稿」で全ユーザーの画像付き投稿の閲覧が可能です！<br>
+                「全ユーザー」内のユーザーの検索により、ユーザーを探すことも可能です。<br>
+                通販サイトをご利用したい方は、「全ショップ」よりショップをお持ちのユーザーを見ることが出来ます！<br>
+
+              </div>
+              <div class="col-1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!--md以下表示-->
   </div>
 </div>

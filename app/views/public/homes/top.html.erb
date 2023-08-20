@@ -37,6 +37,7 @@
     <div class="row mb-5">
       <div class="col-12 text-center">
         <div class="h2">まずはゲストログインをして<br>試してみてください！</div>
+        <div class="py-3">※ゲストユーザーはSNSの機能のみ使用できます。</div>
         <div class="p-3 lead">
           <u class="text-primary">
             <%= link_to "こちらからどうぞ！", user_guest_sign_in_path, method: :post, class: 'h4 text-primary' %>
@@ -45,19 +46,19 @@
 
         <div class="p-3">
           NICESSの詳しい内容は
-          <u><%= link_to "ABOUT", about_path, class: 'h5 text-light' %></u>
+          <u><%= link_to "ABOUT", about_path, class: 'h5 text-primary' %></u>
           をご覧ください。
         </div>
 
         <div class="p-3">
           新規登録は
-          <%= link_to "こちら", new_user_registration_path, class: 'h5 text-light' %>
+          <%= link_to "こちら", new_user_registration_path, class: 'h5 text-primary' %>
           から
         </div>
 
         <div class="p-3">
           ログインは
-          <%= link_to "こちら", new_user_session_path, class: 'h5 text-light' %>
+          <%= link_to "こちら", new_user_session_path, class: 'h5 text-primary' %>
           から
         </div>
       </div>

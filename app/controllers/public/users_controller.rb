@@ -17,7 +17,7 @@ class Public::UsersController < ApplicationController
   def show
     @users = User.all
     @user = User.find_by(name_id: params[:id])
-    redirect_to root_path, notice: 'ユーザーはいません' and return if @user.nil?
+    # redirect_to root_path, notice: 'ユーザーはいません' and return if @user.nil?
     @post = Post.new
     @user_posts = @user.posts.all.order(created_at: :desc).page(params[:page])
 
