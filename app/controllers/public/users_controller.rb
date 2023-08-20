@@ -1,6 +1,5 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  # before_action :guest_check, except: [:show]
 
 
 # relationshipの記述

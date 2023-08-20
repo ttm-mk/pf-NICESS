@@ -1,18 +1,22 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :guest_check
 
 
   def index
-    # TODO 確認
-    cart_items = current_user.cart_items.joins(:item).select('cart_items.*, items.shop_id')
-    @shops = Shop.where(id: cart_items.pluck(:shop_id))
-    @cart_items = {}
-    @shops.each do |shop|
-      cart_items.each do |cart_item|
-        if shop.id == cart_item.shop_id
-          @cart_items[shop.name] = [] if @cart_items[shop.name].blank?
-          @cart_items[shop.name] << cart_item
+    # binding.pry
+    if current_user.email == "guest@sample.com"
+      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    else
+      # TODO 確認
+      cart_items = current_user.cart_items.joins(:item).select('cart_items.*, items.shop_id')
+      @shops = Shop.where(id: cart_items.pluck(:shop_id))
+      @cart_items = {}
+      @shops.each do |shop|
+        cart_items.each do |cart_item|
+          if shop.id == cart_item.shop_id
+            @cart_items[shop.name] = [] if @cart_items[shop.name].blank?
+            @cart_items[shop.name] << cart_item
+          end
         end
       end
     end
