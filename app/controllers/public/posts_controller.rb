@@ -21,7 +21,7 @@ class Public::PostsController < ApplicationController
     if !@post.save
       redirect_to root_path
     else
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user.name_id)
     end
   end
 

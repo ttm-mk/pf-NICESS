@@ -212,7 +212,7 @@
         <!--投稿スペース-->
 
         <div class="mt-4 mb-3 mx-auto">
-          <%= form_with model: @post, url:user_posts_path(current_user), method: :post do |f| %>
+          <%= form_with model: @post, url: user_posts_path(current_user), method: :post do |f| %>
            <div class="form-group">
              <%= f.text_area :text, rows: 5, class: 'form-control' %>
            </div>
