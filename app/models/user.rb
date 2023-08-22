@@ -51,7 +51,7 @@ class User < ApplicationRecord
 # ユーザーアイコン
   def get_user_icon(width, height)
     unless user_icon.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      file_path = Rails.root.join('app/assets/images/nicess_logos.jpg')
       user_icon.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     user_icon.variant(resize_to_limit: [width, height]).processed

@@ -38,7 +38,8 @@ class Public::ShopsController < ApplicationController
 
   def create
     @shop = Shop.new(shop_params)
-    @user = User.find(params[:user_id])
+    @user = User.find_by(name_id: params[:user_id])
+    pp @user, "ここだよ"
     @shop.user_id = @user.id
     if @shop.save
       redirect_to user_shop_path(@shop.user.name_id)
