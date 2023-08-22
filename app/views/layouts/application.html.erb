@@ -43,7 +43,7 @@
                   <li class="dropdown-item">
                     <%= link_to "ABOUT", about_path, class: 'nav-link' %>
                   </li>
-                  <li class="dropdown-item">NOTICE</li>
+                  <!--<li class="dropdown-item">NOTICE</li>-->
                   <li class="dropdown-item">
                     <%= link_to "PROFILE", user_path(current_user.name_id), class: 'nav-link' %>
                   </li>
@@ -97,13 +97,13 @@
     </header>
 
     <div class="main">
-      
+
       <% flash.each do |message_type, message| %>
       <div class="bg-primary text-center text-white">
         <div class="flash-message <%= message_type %>"><%= message %></div>
       </div>
       <% end %>
-      
+
       <%= yield %>
     </div>
 

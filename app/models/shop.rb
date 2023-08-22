@@ -9,6 +9,6 @@ class Shop < ApplicationRecord
   # バリデーション
   validates :name, presence: true, length: { maximum: 20 }
   validates :introduction, length: { maximum: 200 }
-  # validates :postage, presence: true, numbericality: { only_integer: true }
+  validates :postage, presence: true, numericality: { only_integer: true }
 
 end

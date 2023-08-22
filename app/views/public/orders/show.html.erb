@@ -30,13 +30,12 @@
       </h4>
     </div>
 
-      <% @order_details.each do |order_detail| %>
         <div class="row">
           <div class="col-12">
 
             <div class="card">
               <div class="card-header">
-                商品情報
+                購入情報
               </div>
 
               <div class="card-body">
@@ -44,10 +43,22 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-12 col-md-3">
-                      <strong>購入者</strong>
+                      <strong>購入者氏名</strong>
                     </div>
                     <div class="col-12 col-md-9">
-                      <%= order_detail.order.client_name %>
+                      <%= @order.client_name %>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-12 col-md-3">
+                      <strong>購入者電話番号</strong>
+                    </div>
+                    <div class="col-12 col-md-9">
+                      <%= @order.client_phone_number %>
                     </div>
                   </div>
                 </div>
@@ -58,33 +69,44 @@
                     <div class="col-12 col-md-3">
                       <strong>購入商品</strong>
                     </div>
-                    <div class="col-12 col-md-9">
-                      <%= order_detail.item.name %>
-                    </div>
                   </div>
+
+                  <% @order.order_details.each do |order_detail| %>
+                    <div class="row">
+                      <div class="col-12 col-md-3">
+                        <div class="pt-2 text-center my-auto">
+                          <%= image_tag order_detail.item.get_item_image(100,100) %>
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-4 my-auto">
+                        <div class="m-2">
+                          【<%= order_detail.item.name %>】
+                        </div>
+
+                        <div class="m-2 pl-5"><%= order_detail.item.price %>円(税込)</div>
+                        <hr>
+
+                        <div class="m-2 pl-5">
+                          個数：<%= order_detail.amount %>
+                        </div>
+                      </div>
+
+                      <div class="col-md-5 d-none d-md-block"></div>
+
+                    </div>
+                    <hr>
+                  <% end %>
                 </div>
-                <hr>
 
                 <div class="form-group">
                   <div class="row">
                     <div class="col-12 col-md-3">
-                      <strong>購入数</strong>
+                      <strong>請求金額</strong>
                     </div>
                     <div class="col-12 col-md-9">
-                      <%= order_detail.amount %>点
-                    </div>
-                  </div>
-                </div>
-                <hr>
-
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-12 col-md-3">
-                      <strong>購入金額</strong>
-                    </div>
-                    <div class="col-12 col-md-9">
-                      <div><%= order_detail.order.total_payment %>円</div>
-                      <div>(送料：<%= order_detail.order.postage %>円)</div>
+                      <div><%= @order.total_payment %>円</div>
+                      <div>(送料：<%= @order.postage %>円)</div>
                     </div>
                   </div>
                 </div>
@@ -134,7 +156,7 @@
                        <strong>郵便番号</strong>
                     </div>
                     <div class="col-12 col-md-9">
-                      <%= order_detail.order.delivery_post_code %>
+                      <%= @order.delivery_post_code %>
                     </div>
                   </div>
                 </div>
@@ -146,7 +168,7 @@
                        <strong>住所</strong>
                     </div>
                     <div class="col-12 col-md-9">
-                      <%= order_detail.order.delivery_address %>
+                      <%= @order.delivery_address %>
                     </div>
                   </div>
                 </div>
@@ -158,7 +180,7 @@
                        <strong>宛名</strong>
                     </div>
                     <div class="col-12 col-md-9">
-                      <%= order_detail.order.delivery_name %>
+                      <%= @order.delivery_name %>
                     </div>
                   </div>
                 </div>
@@ -169,7 +191,6 @@
           </div>
         </div>
 
-      <% end %>
 
     </div>
   </div>

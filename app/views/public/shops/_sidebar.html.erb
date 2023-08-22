@@ -40,7 +40,7 @@
 
   <% if shop.user == current_user %>
     <div class="text-center mb-5">
-      <%= link_to "編集", edit_user_shop_path(current_user), class: 'btn btn-block btn-success' %>
+      <%= link_to "編集", edit_user_shop_path(current_user.name_id), class: 'btn btn-block btn-success' %>
     </div>
   <% end %>
 

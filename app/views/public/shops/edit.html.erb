@@ -39,12 +39,12 @@
       <% end %>
 
 
-      <div class="card">
+      <div class="card mb-md-5">
         <div class="card-header">
           <h5>ショップ情報編集</h5>
         </div>
 
-        <%= form_with model: @shop, url:user_shop_path(@shop, current_user), method: :patch do |f| %>
+        <%= form_with model: @shop, url:user_shop_path(current_user, @shop), method: :patch do |f| %>
           <div class="card-body">
 
             <div class="form-group">

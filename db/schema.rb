@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 2023_08_05_145343) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "postage"
+    t.integer "postage", default: 0
   end
 
   create_table "users", force: :cascade do |t|

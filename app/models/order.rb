@@ -8,7 +8,7 @@ class Order < ApplicationRecord
 
 
   # バリデーション
-  validates :client_name, presence: true
+  # validates :client_name, presence: true
   # validates :client_phone_number, presence: true, numbericality: { only_integer: true, in: 10..11 }
   # validates :client_email, presence: true
   # validates :delivery_post_code, presence: true, numbericality: { only_integer: true, equal_to: 7 }

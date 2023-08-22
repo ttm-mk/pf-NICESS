@@ -31,14 +31,14 @@ class Public::OrdersController < ApplicationController
       @shop = current_user.shop
       @categories = @shop.categories
       @order = Order.find(params[:id])
-      @order_details = @order.order_details
+      # @order_details = @order.order_details
     end
   end
 
   def confirm
-    if current_user.email == "guest@sample.com"
-      redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
-    else
+    # if current_user.email == "guest@sample.com"
+    #   redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+    # else
       @order = Order.new(order_params)
       @shop = Shop.find(params[:order][:shop_id])
       @cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
@@ -55,7 +55,7 @@ class Public::OrdersController < ApplicationController
       unless @order.valid?
         render :new
       end
-    end
+    # end
   end
 
   def thanks

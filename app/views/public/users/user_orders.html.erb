@@ -18,7 +18,10 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col-12">
-                    ショップ名：<%= order.shop.name %>
+                    ショップ名：
+                    <%= link_to user_shop_path(order.shop.user.name_id) do %>
+                      <%= order.shop.name %>
+                    <% end %>
                   </div>
                 </div>
               </div>
