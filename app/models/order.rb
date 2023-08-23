@@ -8,13 +8,13 @@ class Order < ApplicationRecord
 
 
   # バリデーション
-  # validates :client_name, presence: true
-  # validates :client_phone_number, presence: true, numbericality: { only_integer: true, in: 10..11 }
-  # validates :client_email, presence: true
-  # validates :delivery_post_code, presence: true, numbericality: { only_integer: true, equal_to: 7 }
-  # validates :delivery_address, presence: true
-  # validates :delivery_name, presence: true
-  # validates :payment_method, presence: true
+  validates :client_name, presence: true
+  validates :client_phone_number, presence: true, numericality: { only_integer: true }
+  validates :client_email, presence: true
+  validates :delivery_post_code, presence: true, numericality: { only_integer: true }
+  validates :delivery_address, presence: true
+  validates :delivery_name, presence: true
+  validates :payment_method, presence: true
 
   # enum管理
   enum payment_method: { credit_card: 0, transfer: 1 }

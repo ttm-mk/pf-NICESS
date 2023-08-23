@@ -40,6 +40,7 @@ class Public::OrdersController < ApplicationController
       redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
     else
       @order = Order.new(order_params)
+      @order.user_id = current_user.id
       @shop = Shop.find(params[:order][:shop_id])
       @cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
 
@@ -50,7 +51,7 @@ class Public::OrdersController < ApplicationController
       end
 
       @total_payment = @shop.postage + @total_price
-
+      
       # valid?でバリデーションよんでくれる
       unless @order.valid?
         # @shop = Shop.find(params[:order][:shop_id])
