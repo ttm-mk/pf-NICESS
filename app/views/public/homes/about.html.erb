@@ -38,9 +38,17 @@
         </div>
       </div>
 
-      <div class="row p-5">
-        <div class="col-12">
-          <div class="text-center">画像</div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-4 text-right">
+            <div class="h1"><i class="far fa-comments"></i></div>
+            <div class="pr-1">SNS</div>
+          </div>
+          <div class="col-4 h1 text-center py-auto"><i class="fas fa-times"></i></div>
+          <div class="col-4 text-left">
+            <div class="h1"><i class="fas fa-store"></i></div>
+            <div class="pl-3">EC</div>
+          </div>
         </div>
       </div>
 
@@ -144,6 +152,29 @@
                 「全ユーザー」内のユーザーの検索により、ユーザーを探すことも可能です。<br>
                 通販サイトをご利用したい方は、「全ショップ」よりショップをお持ちのユーザーを見ることが出来ます！<br>
 
+                <%= image_tag 'guide_profile.png', size: '700x350', class: 'mt-3' %><br>
+
+                PROFILE画面では、ユーザー個人の投稿、画像付き投稿、いいね一覧、フォローユーザー一覧を見ることが出来ます。<br>
+                ショップを持っているユーザーは、プロフィールの下にショップが表示されます。
+
+                <%= image_tag 'guide_myinfo.png', size: '700x350', class: 'mt-3' %><br>
+
+                マイ情報から編集、注文履歴閲覧、ショップの作成、退会が可能です。<br><br>
+
+                <div class="h4 pt-4">
+                  <strong>他制限・注意事項</strong>
+                </div>
+
+                <ul>
+                  <li>投稿は、200文字以内です。</li>
+                  <li>ショップは、1つのアカウントにつき1つの作成です。</li>
+                  <li>ショップ名は、20文字以内です。</li>
+                  <li>ショップ説明文は、200文字以内です。</li>
+                  <li>ショップの商品の最低価格は、100円です。100円以上で設定してください。</li>
+                  <li>販売を開始する前に<span class="text-danger"><u>必ず送料の設定を、ショップ編集から行ってください。</u></span>初期設定0円になっています。</li>
+                  <li>お問い合わせは、公式アカウントに記載されている連絡先にお送りください。</li>
+                </ul>
+
               </div>
               <div class="col-1"></div>
             </div>
@@ -154,5 +185,54 @@
     </div>
 
     <!--md以下表示-->
+    <div class="col-12 d-lg-none d-xl-none">
+      <div class="card m-5">
+
+        <div class="card-body">
+          <div class="card-title h4 text-center">
+            <i class="fab fa-readme"></i>
+            <span class="px-2">NICESSご利用案内</span>
+            <i class="fab fa-readme"></i>
+          </div>
+
+          <div class="card-text">
+            <div class="row">
+              <div class="col-10 offset-1">
+                <ul>
+                  <li>NICESSは、SNSをベースとしてショップ機能も使用できる複合サイトです。</li><br>
+                  <li>ヘッダーのメニュー「NEW USER」他から新規登録を行い、ログイン完了後はTOPページに移動します。</li><br>
+                  <li>TOPでは、「全投稿」ですべてのユーザーの投稿、「全画像投稿」で全ユーザーの画像付き投稿の閲覧が可能です！</li><br>
+                  <li>「全ユーザー」内のユーザーの検索により、ユーザーを探すことも可能です。</li><br>
+                  <li>通販サイトをご利用したい方は、「全ショップ」よりショップをお持ちのユーザーを見ることが出来ます！</li><br>
+                  <li>PROFILE画面では、ユーザー個人の投稿、画像付き投稿、いいね一覧、フォローユーザー一覧を見ることが出来ます。</li><br>
+                  <li>ショップを持っているユーザーは、プロフィールの下にショップが表示されます。</li><br>
+                  <li>ユーザー画面のマイ情報タブ内から編集、注文履歴閲覧、ショップの作成、退会が可能です。</li><br>
+                </ul>
+
+                <div class="h4 pt-4">
+                  <strong>他制限・注意事項</strong>
+                </div>
+
+                <ul>
+                  <li>投稿は、200文字以内です。</li>
+                  <li>ショップは、1つのアカウントにつき1つの作成です。</li>
+                  <li>ショップ名は、20文字以内です。</li>
+                  <li>ショップ説明文は、200文字以内です。</li>
+                  <li>ショップの商品の最低価格は、100円です。100円以上で設定してください。</li>
+                  <li>販売を開始する前に<span class="text-danger"><u>必ず送料の設定を、ショップ編集から行ってください。</u></span>初期設定0円になっています。</li>
+                  <li>お問い合わせは、公式アカウントに記載されている連絡先にお送りください。</li>
+                </ul>
+
+              </div>
+              <div class="col-1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
   </div>
 </div>
