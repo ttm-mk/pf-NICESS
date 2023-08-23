@@ -111,11 +111,13 @@
                   <% end %>
 
                   <div class="col-12 text-center">
-                    <h4><%= @item.name %></h4>
-                    <div class="pl-4">
-                      <%= @item.introduction %>
-                    </div>
+                    <h4 class="pt-2 pb-3"><%= @item.name %></h4>
                   </div>
+
+                  <div class="col-12 col-md-8 offset-md-2">
+                    <%= @item.introduction %>
+                  </div>
+                  <div class="col-md-2 d-none d-md-block"></div>
                 </div>
               </div>
 
