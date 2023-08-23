@@ -56,7 +56,7 @@
         <% end %>
 
         <!--情報入力-->
-        <%= form_with model: @order, url: orders_confirm_user_shop_path do |f| %>
+        <%= form_with model: @order, url: orders_confirm_user_shop_path(current_user) do |f| %>
 
           <!--ボディ-->
           <div class="card-body">

@@ -5,12 +5,12 @@
 
   <div class="mx-auto">
     <div class="py-2">
-      <%= link_to "すべて", user_shop_path(user.name_id) %>
+      <%= link_to "すべて", user_shop_path(user.name_id), class: 'text-dark' %>
     </div>
 
     <% categories.each do |category| %>
       <div class="py-2">
-        <%= link_to category.name, user_shop_path(user.name_id, category_id: category.id) %>
+        <%= link_to category.name, user_shop_path(user.name_id, category_id: category.id), class: 'text-dark' %>
       </div>
     <% end %>
 
