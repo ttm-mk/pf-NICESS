@@ -227,9 +227,9 @@
               </div>
             </div>
             <div class="col-md-2 d-none d-md-2"></div>
-            <!--<div class="pt-4">-->
-            <!--  <%#= link_to "注文情報入力に戻る", new_user_shop_order_path(current_user, @shop.id), class: 'text-right' %>-->
-            <!--</div>-->
+            <div class="pt-4">
+              <%= link_to "注文情報入力に戻る", new_user_shop_order_path(current_user, {shop_id: @shop.id}), class: 'text-right' %>
+            </div>
           </div>
         <% end %>
 

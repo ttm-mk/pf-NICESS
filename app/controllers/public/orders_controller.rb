@@ -51,7 +51,7 @@ class Public::OrdersController < ApplicationController
       end
 
       @total_payment = @shop.postage + @total_price
-      
+
       # valid?でバリデーションよんでくれる
       unless @order.valid?
         # @shop = Shop.find(params[:order][:shop_id])
@@ -73,7 +73,6 @@ class Public::OrdersController < ApplicationController
     @shop = Shop.find(params[:order][:shop_id])
     # TODO
     cart_items = current_user.cart_items.joins(:item).where('items.shop_id = ?', @shop.id)
-
     if @order.save
       cart_items.each do |cart_item|
         order_detail = OrderDetail.new
@@ -102,8 +101,6 @@ class Public::OrdersController < ApplicationController
 
   def update
     order = Order.find(params[:id])
-    order.user_id = current_user.id
-    order.shop_id = current_user.shop.id
 
     if order.update(order_params)
       redirect_to user_shop_order_path(order)

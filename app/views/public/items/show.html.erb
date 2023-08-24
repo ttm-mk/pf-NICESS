@@ -52,7 +52,7 @@
               <% if @shop.user_id == current_user.id %>
                 <div class="col-md-12 col-lg-4">
                   <div class="m-4">
-                    <%= link_to "編集する", edit_user_shop_item_path(@shop.user_id, @item), class: 'btn btn-success btn-block' %>
+                    <%= link_to "編集する", edit_user_shop_item_path(@shop.user, @item), class: 'btn btn-success btn-block' %>
                   </div>
                   <div class="m-4">
                     <%= link_to "削除する", user_shop_item_path(@item), method: :delete, class: 'btn btn-danger btn-block', data: {confirm: "本当に削除しますか？"} %>
@@ -64,7 +64,7 @@
           </div>
 
           <!--在庫がない場合-->
-          <% if @item.stock == 0 %>
+          <% if @item.stock == 0 || @item.is_sale == false %>
             <div class="form-group pt-3">
               <div class="row">
 

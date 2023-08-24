@@ -67,7 +67,12 @@ class Public::ItemsController < ApplicationController
     if item.update(shop_item_params)
       redirect_to user_shop_item_path(item.shop.user_id)
     else
-      user_shop_path(current_user.name_id)
+      @user = User.find_by(id: params[:user_id])
+      pp @user, "ここである"
+      @shop = @user.shop
+      @item = Item.find(params[:id])
+      @categories = @shop.categories.all
+      render :edit
     end
   end
 

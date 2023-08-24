@@ -44,7 +44,7 @@
           商品情報編集
         </div>
 
-        <%= form_with model: @item, url:user_shop_item_path(@item), method: :patch do |f| %>
+        <%= form_with model: @item, url:user_shop_item_path(current_user, @item), method: :patch do |f| %>
           <div class="card-body">
 
             <div class="row m-3">
@@ -139,9 +139,6 @@
 
           </div>
         <% end %>
-      </div>
-      <div class="py-3 text-center">
-        <%= link_to "TOPに戻る", user_shop_path(@item.shop.user.name_id, @shop.id) %>
       </div>
 
     </div>
