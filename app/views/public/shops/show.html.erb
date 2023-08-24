@@ -37,58 +37,61 @@
           </div>
         </div>
 
-        <div class="row mt-4">
-
-          <% @category_items.each do |item| %>
-            <div class="col-lg-5 col-md-5 col-sm-12 mx-auto">
-
-              <div class="card mx-auto mb-2 bg-white" style="width: 20rem; height: 27rem;">
-
-                <!--ボディ-->
-                <div class="card-body text-center">
-
-                  <div class="form-group">
-                    <div class="my-auto">
-                      <%= image_tag item.get_item_image(150,150), class: 'img-fluid' %>
-                    </div>
-                  </div>
-
-                  <div class="text-secondary pb-2" style="font-size: 0.8em">
-                    <%= item.category.name %>
-                  </div>
-
-                  <div class="card-title h5">
-                    <%= item.name %>
-                  </div>
-
-                  <div class="card-text">
-                    <div class="pt-2">
-                      価格：<%= item.price %>円(税込)
-                    </div>
-
-                    <% if item.is_sale %>
-                      <div class="pt-2 text-primary">
-                        販売中
+        <div class="row">
+          <div class="col-12 col-lg-10 offset-lg-1">
+            <div class="row">
+              <% @category_items.each do |item| %>
+                <div class="col-12 col-md-6 mt-4">
+    
+                  <div class="card bg-white" style="width: 20rem; height: 27rem;">
+    
+                    <!--ボディ-->
+                    <div class="card-body text-center">
+    
+                      <div class="form-group">
+                        <div class="my-auto">
+                          <%= image_tag item.get_item_image(200,200), class: 'img-fluid' %>
+                        </div>
                       </div>
-                    <% else %>
-                      <div class="pt-2 text-danger">
-                        品切れ
+    
+                      <div class="text-secondary pb-2" style="font-size: 0.8em">
+                        <%= item.category.name %>
                       </div>
-                    <% end %>
+    
+                      <div class="card-title h5">
+                        <%= item.name %>
+                      </div>
+    
+                      <div class="card-text">
+                        <div class="pt-2">
+                          価格：<%= item.price %>円(税込)
+                        </div>
+    
+                        <% if item.is_sale %>
+                          <div class="pt-2 text-primary">
+                            販売中
+                          </div>
+                        <% else %>
+                          <div class="pt-2 text-danger">
+                            品切れ
+                          </div>
+                        <% end %>
+                      </div>
+    
+                    </div>
+    
+                    <!--フッター-->
+                    <div class="card-footer py-4">
+                      <%= link_to "詳細を見る", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary btn-block' %>
+                    </div>
+    
                   </div>
-
+    
                 </div>
-
-                <!--フッター-->
-                <div class="card-footer py-4">
-                  <%= link_to "詳細を見る", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary btn-block' %>
-                </div>
-
-              </div>
-
+              <% end %>
             </div>
-          <% end %>
-
+          </div>
+          <div class="col-lg-1 d-none d-lg-block"></div>
         </div>
 
         <div class="row">
@@ -110,56 +113,62 @@
           </div>
         </div>
 
-        <div class="row mt-4">
-
-          <% @items.each do |item| %>
-            <div class="col-lg-5 col-md-5 col-sm-12 mx-auto">
-
-              <div class="card mx-auto mb-2 bg-white" style="width: 20rem; height: 27rem;">
-
-                <!--ボディ-->
-                <div class="card-body text-center">
-                  <div class="form-group">
-                    <div class="my-auto">
-                      <%= image_tag item.get_item_image(150,150), class: 'img-fluid' %>
-                    </div>
-                  </div>
-
-                  <% if item.category.present? %>
-                    <div class="text-secondary pb-2" style="font-size: 0.8em">
-                      <%= item.category.name %>
-                    </div>
-                  <% end %>
-
-                  <div class="card-title h5">
-                    <%= item.name %>
-                  </div>
-
-                  <div class="card-text">
-                    <div class="pt-2">
-                      価格：<%= item.price %>円(税込)
-                    </div>
-                    <% if item.is_sale %>
-                      <div class="pt-2 text-primary">
-                        販売中
+        <div class="row">
+          <div class="col-12 col-lg-10 offset-lg-1">
+            <div class="row">
+              <% @items.each do |item| %>
+                <div class="col-12 col-md-6 mt-4">
+    
+                  <div class="card bg-white" style="width: 20rem; height: 27rem;">
+    
+                    <!--ボディ-->
+                    <div class="card-body text-center">
+    
+                      <div class="form-group">
+                        <div class="my-auto">
+                          <%= image_tag item.get_item_image(200,200), class: 'img-fluid' %>
+                        </div>
                       </div>
-                    <% else %>
-                      <div class="pt-2 text-danger">
-                        品切れ
+    
+                      <div class="text-secondary pb-2" style="font-size: 0.8em">
+                        <%= item.category.name %>
                       </div>
-                    <% end %>
+    
+                      <div class="card-title h5">
+                        <%= item.name %>
+                      </div>
+    
+                      <div class="card-text">
+                        <div class="pt-2">
+                          価格：<%= item.price %>円(税込)
+                        </div>
+    
+                        <% if item.is_sale %>
+                          <div class="pt-2 text-primary">
+                            販売中
+                          </div>
+                        <% else %>
+                          <div class="pt-2 text-danger">
+                            品切れ
+                          </div>
+                        <% end %>
+                      </div>
+    
+                    </div>
+    
+                    <!--フッター-->
+                    <div class="card-footer py-4">
+                      <%= link_to "詳細を見る", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary btn-block' %>
+                    </div>
+    
                   </div>
-
+    
                 </div>
-
-                <!--フッター-->
-                <div class="card-footer py-4">
-                  <%= link_to "詳細を見る", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary btn-block' %>
-                </div>
-
-              </div>
+              <% end %>
             </div>
-          <% end %>
+          </div>
+          <div class="col-lg-1 d-none d-lg-block"></div>
+        </div>
 
         </div>
 

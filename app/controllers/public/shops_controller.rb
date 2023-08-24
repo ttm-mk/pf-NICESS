@@ -54,10 +54,6 @@ class Public::ShopsController < ApplicationController
     if shop.update(shop_params)
       redirect_to user_shop_path(shop.user.name_id)
     else
-      # @user = User.find_by(name_id: params[:user_id])
-      # @shop = @user.shop
-      # @categories = @shop.categories.all
-      # render :edit
       redirect_to edit_user_shop_path(current_user.name_id)
     end
 
