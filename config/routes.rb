@@ -31,8 +31,6 @@ Rails.application.routes.draw do
     patch 'user/resign' => 'users#resign'
     get 'user/user_orders' => 'users#user_orders'
     resources :users, only: [:show, :edit, :update] do
-      # get 'shop/new' => 'shops#new'
-      # post '/shop' => 'shops#create'
       resource :shop, only: [:new, :create, :show, :edit, :update] do
         resources :items, only: [:new, :create, :index, :show, :edit, :update, :destroy]
         post '/orders/confirm' => 'orders#confirm'
@@ -43,7 +41,7 @@ Rails.application.routes.draw do
       end
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
-      resources :posts do
+      resources :posts, only: [:index, :show, :create, :destroy] do
         resources :comments, only: [:create, :destroy]
         resource :favorites, only: [:create, :destroy]
       end

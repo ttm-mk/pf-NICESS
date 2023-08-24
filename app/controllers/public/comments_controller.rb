@@ -1,12 +1,15 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_user!
-  
+
 
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
       redirect_to user_post_path(params[:user_id], params[:post_id])
     else
+      @user = User.find_by(name_id: params[:user_id])
+      @shop = @user.shop
+      @post = Post.new
       render 'public/posts/index'
     end
   end
