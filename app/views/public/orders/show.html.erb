@@ -130,19 +130,24 @@
                       <strong>注文ステータス</strong>
                     </div>
 
-                    <div class="col-12 col-md-9">
-                      <%= form_with model: @order, url:user_shop_order_path, method: :patch do |f| %>
-                        <div class="">
-                          <%= f.hidden_field :order_id, :value => @order.id %>
-                          <%= f.select :status, Order.statuses_i18n.invert %>
-                        </div>
-                        <div class="py-2">
-                          <%#= f.select :status, options_from_collection_for_select(@order, :id, :status_i18n) %>
-                          <%= f.submit "変更する", class: 'btn btn-success px-5' %>
-                        </div>
-                      <% end %>
-                      <%#= order_detail.order.status_i18n %>
-                    </div>
+                    <% if @order.status == "finished" %>
+                      <div class="text-primary">
+                        発送完了
+                      </div>
+                    <% else %>
+                      <div class="col-12 col-md-9">
+                        <%= form_with model: @order, url:user_shop_order_path, method: :patch do |f| %>
+                          <div class="">
+                            <%= f.hidden_field :order_id, :value => @order.id %>
+                            <!--TODO invert-->
+                            <%= f.select :status, Order.statuses_i18n.invert %>
+                          </div>
+                          <div class="py-2">
+                            <%= f.submit "変更する", class: 'btn btn-success px-5' %>
+                          </div>
+                        <% end %>
+                      </div>
+                    <% end %>
                   </div>
                 </div>
 

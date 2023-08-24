@@ -42,31 +42,31 @@
             <div class="row">
               <% @category_items.each do |item| %>
                 <div class="col-12 col-md-6 mt-4">
-    
+
                   <div class="card bg-white" style="width: 20rem; height: 27rem;">
-    
+
                     <!--ボディ-->
                     <div class="card-body text-center">
-    
+
                       <div class="form-group">
                         <div class="my-auto">
-                          <%= image_tag item.get_item_image(200,200), class: 'img-fluid' %>
+                          <%= image_tag item.get_item_image(150,150), class: 'img-fluid' %>
                         </div>
                       </div>
-    
+
                       <div class="text-secondary pb-2" style="font-size: 0.8em">
                         <%= item.category.name %>
                       </div>
-    
+
                       <div class="card-title h5">
                         <%= item.name %>
                       </div>
-    
+
                       <div class="card-text">
                         <div class="pt-2">
                           価格：<%= item.price %>円(税込)
                         </div>
-    
+
                         <% if item.is_sale %>
                           <div class="pt-2 text-primary">
                             販売中
@@ -77,16 +77,16 @@
                           </div>
                         <% end %>
                       </div>
-    
+
                     </div>
-    
+
                     <!--フッター-->
                     <div class="card-footer py-4">
                       <%= link_to "詳細を見る", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary btn-block' %>
                     </div>
-    
+
                   </div>
-    
+
                 </div>
               <% end %>
             </div>
@@ -118,31 +118,31 @@
             <div class="row">
               <% @items.each do |item| %>
                 <div class="col-12 col-md-6 mt-4">
-    
+
                   <div class="card bg-white" style="width: 20rem; height: 27rem;">
-    
+
                     <!--ボディ-->
                     <div class="card-body text-center">
-    
+
                       <div class="form-group">
                         <div class="my-auto">
-                          <%= image_tag item.get_item_image(200,200), class: 'img-fluid' %>
+                          <%= image_tag item.get_item_image(150,150), class: 'img-fluid' %>
                         </div>
                       </div>
-    
+
                       <div class="text-secondary pb-2" style="font-size: 0.8em">
                         <%= item.category.name %>
                       </div>
-    
+
                       <div class="card-title h5">
                         <%= item.name %>
                       </div>
-    
+
                       <div class="card-text">
                         <div class="pt-2">
                           価格：<%= item.price %>円(税込)
                         </div>
-    
+
                         <% if item.is_sale %>
                           <div class="pt-2 text-primary">
                             販売中
@@ -153,16 +153,16 @@
                           </div>
                         <% end %>
                       </div>
-    
+
                     </div>
-    
+
                     <!--フッター-->
                     <div class="card-footer py-4">
                       <%= link_to "詳細を見る", user_shop_item_path(params[:user_id], item.id), class: 'btn btn-primary btn-block' %>
                     </div>
-    
+
                   </div>
-    
+
                 </div>
               <% end %>
             </div>
