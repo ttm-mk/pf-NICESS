@@ -24,16 +24,16 @@
         <div class="row">
           <div class="col-4 col-md-2 offset-8 offset-md-10">
             <div class="dropdown">
-              <button class="btn btn-lg dropdown-toggle" type="button" id="dropdownMenu" aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">
+              <button class="btn dropdown-toggle" type="button" id="dropdownMenu" aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">
                 <div class="h4 text-light pt-5 mt-4">
                   MENU
                 </div>
               </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu">
 
                 <!--ログイン後-->
                 <% if user_signed_in? %>
-                  <li class="dropdown-item">
+                  <li class="dropdown-header">
                     <%= image_tag current_user.get_user_icon(50,50) %><br>
                     <%= current_user.name %>
                   </li>
