@@ -72,7 +72,7 @@
           <% @orders.reverse.each do |order| %>
             <div class="card mb-2">
               <div class="card-header">
-                <%= link_to user_shop_order_path(current_user, order.shop) do %>
+                <%= link_to user_shop_order_path(current_user.name_id, order) do %>
                   <%= order.created_at.in_time_zone('Tokyo').strftime('%Y年%m月%d日 %H:%M') %>
                 <% end %>
               </div>
