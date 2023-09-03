@@ -22,7 +22,7 @@
     </div>
 
     <!--カテゴリー-->
-    <div class="col-12 col-lg-10 pl-5">
+    <div class="col-12 col-lg-10 pl-md-5">
 
       <!--error_message-->
       <% if @category.errors.any? %>
@@ -72,11 +72,25 @@
                          <div class="col-6">
                            <%= category.name %>
                          </div>
-                         <div class="col-3">
+
+                         <!--md以上-->
+                         <div class="col-3 d-none d-md-block">
                            <%= link_to "編集", edit_user_shop_category_path(params[:user_id], category), class: 'btn btn-success btn-block' %>
                          </div>
-                         <div class="col-3">
+                         <div class="col-3 d-none d-md-block">
                            <%= link_to "削除", user_shop_category_path(params[:user_id], category), method: :delete, class: 'btn btn-danger btn-block', data: {confirm: "本当に削除しますか？"} %>
+                         </div>
+
+                         <!--md未満-->
+                         <div class="col-3 d-block d-md-none d-lg-none d-xl-none">
+                           <%= link_to edit_user_shop_category_path(params[:user_id], category) do %>
+                             <i class="fas fa-edit"></i>
+                           <% end %>
+                         </div>
+                         <div class="col-3 d-block d-md-none d-lg-none d-xl-none">
+                           <%= link_to user_shop_category_path(params[:user_id], category), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                             <i class="fas fa-trash-alt"></i>
+                           <% end %>
                          </div>
                       </div>
                     </div>
