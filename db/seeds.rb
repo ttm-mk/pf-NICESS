@@ -136,6 +136,7 @@ Item.find_or_create_by!(name: "最果てのカラム") do |item|
   item.is_sale = true
   item.shop_id = emuru.shop.id
   # item.category_id = Category.find(2).id
+  item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample_item3.jpg"), filename:"sample_item3.jpg")
 end
 
 Item.find_or_create_by!(name: "既刊「光と影」") do |item|
@@ -145,6 +146,7 @@ Item.find_or_create_by!(name: "既刊「光と影」") do |item|
   item.is_sale = true
   item.shop_id = nanashi.shop.id
   # item.category_id = Category.find(3).id
+  item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample_item3.jpg"), filename:"sample_item3.jpg")
 end
 
 Item.find_or_create_by!(name: "新刊「いざない」") do |item|
@@ -154,6 +156,7 @@ Item.find_or_create_by!(name: "新刊「いざない」") do |item|
   item.is_sale = true
   item.shop_id = nanashi.shop.id
   # item.category_id = Category.find(3).id
+  item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample_item3.jpg"), filename:"sample_item3.jpg")
 end
 
 puts "情報登録が完了しました"
