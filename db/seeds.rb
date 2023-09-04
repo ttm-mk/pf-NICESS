@@ -95,18 +95,18 @@ Shop.find_or_create_by!(name: "ななしショップ") do |shop|
   shop.postage = 500
 end
 
-# カテゴリー
-Category.find_or_create_by!(name: "グッズ") do |category|
-  category.shop_id = official.shop.id
-end
+# # カテゴリー
+# Category.find_or_create_by!(name: "グッズ") do |category|
+#   category.shop_id = official.shop.id
+# end
 
-Category.find_or_create_by!(name: "漫画") do |category|
-  category.shop_id = emuru.shop.id
-end
+# Category.find_or_create_by!(name: "漫画") do |category|
+#   category.shop_id = emuru.shop.id
+# end
 
-Category.find_or_create_by!(name: "本") do |category|
-  category.shop_id = nanashi.shop.id
-end
+# Category.find_or_create_by!(name: "本") do |category|
+#   category.shop_id = nanashi.shop.id
+# end
 
 # 商品
 Item.find_or_create_by!(name: "セナアクリルスタンド") do |item|
@@ -115,7 +115,7 @@ Item.find_or_create_by!(name: "セナアクリルスタンド") do |item|
   item.stock = 5
   item.is_sale = true
   item.shop_id = official.shop.id
-  item.category_id = Category.find(1).id
+  # item.category_id = Category.find(1).id
   item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample_item1.png"), filename:"sample_item1.png")
 end
 
@@ -125,7 +125,7 @@ Item.find_or_create_by!(name: "スイアクリルスタンド") do |item|
   item.stock = 5
   item.is_sale = true
   item.shop_id = official.shop.id
-  item.category_id = Category.find(1).id
+  # item.category_id = Category.find(1).id
   item.item_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample_item2.png"), filename:"sample_item2.png")
 end
 
@@ -135,7 +135,7 @@ Item.find_or_create_by!(name: "最果てのカラム") do |item|
   item.stock = 10
   item.is_sale = true
   item.shop_id = emuru.shop.id
-  item.category_id = Category.find(2).id
+  # item.category_id = Category.find(2).id
 end
 
 Item.find_or_create_by!(name: "既刊「光と影」") do |item|
@@ -144,7 +144,7 @@ Item.find_or_create_by!(name: "既刊「光と影」") do |item|
   item.stock = 10
   item.is_sale = true
   item.shop_id = nanashi.shop.id
-  item.category_id = Category.find(3).id
+  # item.category_id = Category.find(3).id
 end
 
 Item.find_or_create_by!(name: "新刊「いざない」") do |item|
@@ -153,7 +153,7 @@ Item.find_or_create_by!(name: "新刊「いざない」") do |item|
   item.stock = 15
   item.is_sale = true
   item.shop_id = nanashi.shop.id
-  item.category_id = Category.find(3).id
+  # item.category_id = Category.find(3).id
 end
 
 puts "情報登録が完了しました"

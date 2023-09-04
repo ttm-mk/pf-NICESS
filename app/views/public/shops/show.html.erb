@@ -129,10 +129,12 @@
                           <%= image_tag item.get_item_image(150,150), class: 'img-fluid' %>
                         </div>
                       </div>
-
-                      <div class="text-secondary pb-2" style="font-size: 0.8em">
-                        <%= item.category.name %>
-                      </div>
+                      
+                      <% if item.category.present? %>
+                        <div class="text-secondary pb-2" style="font-size: 0.8em">
+                          <%= item.category.name %>
+                        </div>
+                      <% end %>
 
                       <div class="card-title h5">
                         <%= item.name %>
