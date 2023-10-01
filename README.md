@@ -30,9 +30,6 @@
 - 匿名で創作活動している人の作品を匿名で閲覧する
 - 創作活動している人の作品を購入する
 
-## 設計書
-- 準備中です。
-
 ## 実装機能リスト
   https://docs.google.com/spreadsheets/d/1ZiNV6nXEmGnXF05a5lxnREZyOWxmPLyOuTwrh2dO-44/edit?usp=sharing
 
