@@ -26,6 +26,11 @@ header {
   background-image: image-url("nicess_header.jpg");
 }
 
+.blue {
+  -webkit-text-stroke: 1px blue;
+  text-stroke: 1px blue;
+}
+
 
 /*レスポンシブ記述*/
 @media screen and (max-width: 1024px) {

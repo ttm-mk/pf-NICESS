@@ -1,0 +1,87 @@
+    <div class="row">
+      <div class="col-12 p-4">
+        <h1 class="text-center">
+          <span class="text-primary">NICESS</span>へようこそ！
+        </h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6 offset-md-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center py-auto">
+              匿名で創作活動をしたい人を応援するSNSサイトです。<br>
+              ＥＣサイトを複合することで、<br>
+              創作活動をする人たちをつなぎ、支援します。<br>
+              <br>
+              創作活動や交流を楽しみましょう！
+            </div>
+         </div>
+        </div>
+      </div>
+      <div class="col-md-3 d-none d-md-block"></div>
+    </div>
+
+      <div class="form-group">
+        <div class="row m-5">
+          <div class="col-4 col-md-3 offset-md-2 text-right">
+            <div class="h1"><i class="far fa-comments"></i></div>
+            <div class="pr-1">SNS</div>
+          </div>
+          <div class="col-4 col-md-2 h1 text-center py-auto"><i class="fas fa-times"></i></div>
+          <div class="col-4 col-md-3 text-left">
+            <div class="h1"><i class="fas fa-store"></i></div>
+            <div class="pl-3">EC</div>
+          </div>
+          <div class="col-md-2 d-none d-md-block"></div>
+        </div>
+      </div>
+
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-lg-4 d-none d-lg-block">
+            <%= image_tag 'sena2.png', size: '350x500', class: 'pr-3' %>
+            <div class="text-center">セナ</div>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <div class="col-12 text-center">
+              <div class="h2">まずはゲストログインをして<br>試してみてください！</div>
+              <div class="py-3">※ゲストユーザーはSNSの機能のみ使用できます。</div>
+              <div class="p-3 lead">
+                <u class="text-primary">
+                  <%= link_to "こちらからどうぞ！", user_guest_sign_in_path, method: :post, class: 'blue h4 text-light' %>
+                </u>
+              </div>
+
+              <div class="p-3">
+                NICESSの詳しい内容は<br>
+                <u><%= link_to "ABOUT", about_path, class: 'blue h3 text-light' %></u><br>
+                をご覧ください。
+              </div>
+
+              <div class="p-3">
+                新規登録は
+                <%= link_to "こちら", new_user_registration_path, class: 'blue h5 text-light' %>
+                から
+              </div>
+
+              <div class="p-3">
+                ログインは
+                <%= link_to "こちら", new_user_session_path, class: 'blue h5 text-light' %>
+                から
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-lg-4 d-none d-lg-block">
+            <%= image_tag 'sui2.png', size: '350x500', class: 'pr-3' %>
+            <div class="text-center">スイ</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
