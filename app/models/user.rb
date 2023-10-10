@@ -30,8 +30,6 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :name_id, presence: true, uniqueness: true
   validates :profile, length: { maximum: 200 }
-  validates :email, presence: true
-  validates :encrypted_password, presence: true, length: { minimum: 6 }
 
 
 # ゲスト関係：TODO

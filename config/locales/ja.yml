@@ -52,6 +52,7 @@ ja:
         name: ユーザー名
         name_id: ログインに使用するユーザーID
         email: メールアドレス
+        encrypted_password: パスワード
 
 
     errors:
