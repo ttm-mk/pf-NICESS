@@ -33,6 +33,10 @@ class Public::UsersController < ApplicationController
   def edit
     if current_user.email == "guest@sample.com"
       redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+
+    elsif params[:user_id] != current_user.id
+      redirect_to root_path
+
     else
       @user = User.find_by(name_id: params[:id])
     end

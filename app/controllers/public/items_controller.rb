@@ -39,6 +39,10 @@ class Public::ItemsController < ApplicationController
   def edit
     if current_user.email == "guest@sample.com"
       redirect_to root_path, notice: "機能のご利用にはユーザー登録が必要です。"
+
+    elsif params[:user_id] != current_user.id
+      redirect_to root_path
+
     else
       @user = User.find_by(id: params[:user_id])
       @shop = @user.shop
@@ -53,7 +57,6 @@ class Public::ItemsController < ApplicationController
     if @item.save
       redirect_to user_shop_item_path(@item.shop.user.name_id, @item.id)
     else
-      # @item = Item.new
       @user = User.find_by(id: params[:user_id])
       @shop = current_user.shop
       @categories = @shop.categories.all
