@@ -38,7 +38,7 @@ class Public::CartItemsController < ApplicationController
     elsif @cart_item.save
       redirect_to cart_items_path(current_user, {shop_id: @item.shop.id}, {name_id: @item.shop.user.name_id})
     else
-      user_shop_path(@item.shop.user.name_id)
+      redirect_to user_shop_item_path(@item.shop.user.name_id, @item.id)
     end
   end
 

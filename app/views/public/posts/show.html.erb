@@ -108,7 +108,7 @@
 
                   <% end %>
 
-                  <%= form_with model: @comment, url: user_post_comments_path(params[:user_id], @post) do |f| %>
+                  <%= form_with model: @comment, url: user_post_comments_path(@post.user.name_id, @post) do |f| %>
                     <div class="form-group">
                       <%= f.text_area :text, rows: 5, class: 'form-control' %>
                     </div>

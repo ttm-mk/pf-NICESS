@@ -64,12 +64,12 @@
                   </div>
                   <div class="col-12 col-lg-9">
                     <%= form_with model: @user, url:admin_user_path do |f| %>
-                      <div class="">
+                      <div>
                         <%= f.radio_button :is_deleted, "false" %>
-                        <%= f.label :is_deleted_false, "有効" %>
+                        <%= f.label :is_deleted, "有効", value: false %>
 
                         <%= f.radio_button :is_deleted, "true" %>
-                        <%= f.label :is_deleted_false, "退会" %>
+                        <%= f.label :is_deleted, "退会", valuse: true %>
                         <span class="pl-5"><%= f.submit '変更を保存', class: 'btn btn-success' %></span>
                       </div>
                     <% end %>
